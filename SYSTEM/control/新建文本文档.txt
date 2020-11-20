@@ -1,0 +1,100 @@
+//#include "control.h"
+//#include "sys.h"
+//#include "motor.h"
+
+
+////  /**************************************************************************
+////**************************************************************************/
+////int Target_position=11000;    //初始值是10000，目标值是11000
+////int TIM7_IRQHandler(void)
+////{
+//// if(TIM_GetFlagStatus(TIM7,TIM_FLAG_Update)==SET)
+//// {
+////   TIM_ClearITPendingBit(TIM7,TIM_IT_Update);   //===清除定时器1中断标志位
+////	 Encoder=Read_Encoder(2);                     //取定时器2计数器的值
+////// Led_Flash(100);                              //LED闪烁
+////	 moto=Position_PID(Encoder,Target_position);    //===位置PID控制器
+////	 Xianfu_Pwm();
+////   Set_Pwm(moto);
+//// }
+//// return 0;
+////}
+
+
+
+//void TIM7_IRQHandler(void)
+//{
+//	extern int Encoder_Date[],Target_Speed[],PWM[];         // 引入外部的变量
+//	if(TIM_GetITStatus(TIM7,TIM_IT_Update)==SET)            // 判断是溢出中断
+//	{
+//		Caculate_Encoder(Encoder_Date);                       // 计算编每一个电机的速度
+//		PWM[0] =  MotorA_PI(Encoder_Date[2],Target_Speed[0]); //  A 的 PWM的计算
+//		PWM[1] =  MotorB_PI(Encoder_Date[1],Target_Speed[1]); //  B 的 PWM的计算
+//		PWM[2] =  MotorC_PI(Encoder_Date[3],Target_Speed[2]); //  C 的 PWM的计算
+//		PWM[3] =  MotorD_PI(Encoder_Date[0],Target_Speed[3]); //  D 的 PWM的计算
+//  	TIM1->CCR1 = PWM[0] + 500;                            //  A 的 PWM赋值
+//		TIM1->CCR2 = PWM[1] + 500;                            //  B 的 PWM赋值
+//		TIM1->CCR3 = PWM[2] + 500;                            //  C 的 PWM赋值
+//		TIM1->CCR4 = PWM[3] + 500;                            //  D 的 PWM赋值
+//	}// 这里的 PWM[] 很明显是一个中间变量，这里保留了这个中间变量主要为了方便调试
+//	TIM_ClearITPendingBit(TIM7,TIM_IT_Update);              // 清除中断标志位
+//}
+
+
+
+
+/////**************************************************************************
+////函数功能：赋值给PWM寄存器
+////入口参数：PWM
+////返回  值：无
+////**************************************************************************/
+////void Set_Pwm(int moto)//赋值给PWM寄存器
+////{
+//// if(moto>0) AIN1=0,   AIN2=1;
+////	else      AIN1=1,   AIN2=0;
+////	PWMA=myabs(moto);
+////}
+/////**************************************************************************
+////函数功能：限制PWM赋值 
+////入口参数：无
+////返回  值：无
+////**************************************************************************/
+//// void Xianfu_Pwm(void) //限制幅度的函数
+//// {
+////   int Amplitude=7100;  //===PWM满幅是7200 限制在7100
+////	 if(moto<-Amplitude)  moto = -Amplitude;
+////	 if(moto>Amplitude)   moto =  Amplitude;
+//// }
+/////**************************************************************************
+////函数功能：绝对值函数
+////入口参数：int
+////返回  值：unsigned int
+////**************************************************************************/
+////int myabs(int a) //取绝对值
+////{ 		   
+////	 int temp;
+////	 if(a<0)  temp=-a;  
+////	 else temp=a;
+////	 return temp;
+////}
+/////**************************************************************************
+////函数功能：位置式PID控制器
+////入口参数：编码器测量位置信息，目标位置
+////返回  值：电机PWM
+////根据位置式离散PID公式 
+////pwm=Kp*e(k)+Ki*∑e(k)+Kd[e（k）-e(k-1)]
+////e(k)代表本次偏差 
+////e(k-1)代表上一次的偏差  
+////∑e(k)代表e(k)以及之前的偏差的累积和;其中k为1,2,,k;
+////pwm代表输出
+////**************************************************************************/
+////int Position_PID (int Encoder,int Target)
+////{ 	
+////	 float Position_KP=80,Position_KI=0.1,Position_KD=500;
+////	 static float Bias,Pwm,Integral_bias,Last_Bias;
+////	 Bias=Encoder-Target;                                  //计算偏差
+////	 Integral_bias+=Bias;	                                 //求出偏差的积分
+////	 Pwm=Position_KP*Bias+Position_KI*Integral_bias+Position_KD*(Bias-Last_Bias);       //位置式PID控制器
+////	 Last_Bias=Bias;                                       //保存上一次偏差 
+////	 return Pwm;                                           //增量输出
+////}
