@@ -50,23 +50,26 @@ int main(void)
 	
 //	LCD_Init();					//初始化LCD
 //	KEY_Init();					//初始化按键
-//	I2C_Configuration();//I2C初始化
+	I2C_Configuration();//I2C初始化
+	
+	
+	IIC_Init();
 
-//	OLED0561_Init(); //OLED初始化
-//	OLED_DISPLAY_LIT(100);//亮度设置
+	OLED0561_Init(); //OLED初始化
+	OLED_DISPLAY_LIT(100);//亮度设置
 
-//	OLED_DISPLAY_PIC1();//显示全屏图片
-//	delay_ms(1000); //延时
-//	OLED_DISPLAY_CLEAR();
-//	OLED_DISPLAY_8x16_BUFFER(0,"   YoungTalk "); //显示字符串
-//	OLED_DISPLAY_8x16_BUFFER(6,"  Temp:"); //显示字符串
+	OLED_DISPLAY_PIC1();//显示全屏图片
+	delay_ms(1000); //延时
+	OLED_DISPLAY_CLEAR();
+	OLED_DISPLAY_8x16_BUFFER(0,"      GAHO "); //显示字符串
+//	OLED_DISPLAY_8x16_BUFFER(6,"  KP：KI："); //显示字符串
 
 //	OLED_DISPLAY_16x16(2,2*16,0);
 //	OLED_DISPLAY_16x16(2,3*16,1);
 //	OLED_DISPLAY_16x16(2,4*16,2);
 //	OLED_DISPLAY_16x16(2,5*16,3);
 
-	EncoderInit();
+//	EncoderInit();
 	LED0 = 1;
 	LED1 = 1;
 	BREEZE_Init();
@@ -82,9 +85,9 @@ int main(void)
 	while(1){
 	//		printf("Encoder0:%d \r\n",Encoder[0]);
 //		TIM8_PwmSetPulse (1,70);
-		
+		I2C_SAND_BYTE(0x41,00000,40);
 		delay_ms(2000);
-
+		I2C_SAND_BYTE(0x41,00000,80);
 //				delay_ms(2000);
 //		BREEZE = 0;
 		

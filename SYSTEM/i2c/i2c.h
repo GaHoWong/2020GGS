@@ -21,16 +21,16 @@
 #define I2C1_CLK                      RCC_APB1Periph_I2C1
 #define I2C1_CLK_INIT							  	RCC_APB1PeriphClockCmd
 
-#define I2C1_SCL_PIN                  GPIO_Pin_6                 
+#define I2C1_SCL_PIN                  GPIO_Pin_8                 
 #define I2C1_SCL_GPIO_PORT            GPIOB                       
 #define I2C1_SCL_GPIO_CLK             RCC_AHB1Periph_GPIOB
-#define I2C1_SCL_SOURCE               GPIO_PinSource6
+#define I2C1_SCL_SOURCE               GPIO_PinSource8
 #define I2C1_SCL_AF                   GPIO_AF_I2C1
 
-#define I2C1_SDA_PIN                  GPIO_Pin_7                  
+#define I2C1_SDA_PIN                  GPIO_Pin_9                  
 #define I2C1_SDA_GPIO_PORT            GPIOB                       
 #define I2C1_SDA_GPIO_CLK             RCC_AHB1Periph_GPIOB
-#define I2C1_SDA_SOURCE               GPIO_PinSource7
+#define I2C1_SDA_SOURCE               GPIO_PinSource9
 #define I2C1_SDA_AF                   GPIO_AF_I2C1
 
 /*等待超时时间*/
