@@ -82,6 +82,7 @@ int main(void)
 	while(1){
 	//		printf("Encoder0:%d \r\n",Encoder[0]);
 //		TIM8_PwmSetPulse (1,70);
+		
 		delay_ms(2000);
 
 //				delay_ms(2000);

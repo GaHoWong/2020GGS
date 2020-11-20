@@ -40,3 +40,5 @@
 ..\obj\usart.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\usart.o: ..\SYSTEM\usart\usart.h
 ..\obj\usart.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\usart.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\usart.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

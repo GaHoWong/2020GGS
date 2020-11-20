@@ -31,6 +31,59 @@ void usart_init(void);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//引脚定义
+/*******************************************************/
+#define PLAY_USART                             UART7
+#define PLAY_USART_CLK                         RCC_APB1Periph_UART7
+
+#define PLAY_USART_RX_GPIO_PORT                GPIOF
+#define PLAY_USART_RX_GPIO_CLK                 RCC_AHB1Periph_GPIOF
+#define PLAY_USART_RX_PIN                      GPIO_Pin_7
+#define PLAY_USART_RX_AF                       GPIO_AF_UART7
+#define PLAY_USART_RX_SOURCE                   GPIO_PinSource7
+
+#define PLAY_USART_TX_GPIO_PORT                GPIOF
+#define PLAY_USART_TX_GPIO_CLK                 RCC_AHB1Periph_GPIOF
+#define PLAY_USART_TX_PIN                      GPIO_Pin_6
+#define PLAY_USART_TX_AF                       GPIO_AF_UART7
+#define PLAY_USART_TX_SOURCE                   GPIO_PinSource6
+
+
+#define PLAY_USART_IRQHandler                   UART7_IRQHandler
+#define PLAY_USART_IRQ                 					UART7_IRQn
+/************************************************************/
+
+
+//串口波特率
+#define PLAY_USART_BAUDRATE                    9600
+void PLAY (char *fmt, ...);
+
+
+void uart7_init(void);
+void uart7_SendStr_length( USART_TypeDef * pUSARTx, uint8_t *str,uint32_t strlen );
+void uart7_SendString( USART_TypeDef * pUSARTx, uint8_t *str);
+
+
+
+
+
+
+
+
+
 #endif	   
 
 

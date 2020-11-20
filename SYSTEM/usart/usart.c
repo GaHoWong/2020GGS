@@ -1,5 +1,10 @@
 #include "sys.h"
 #include "usart.h"	  
+#include "stdarg.h"
+#include "string.h"
+
+
+
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //如果使用ucos,则包括下面的头文件即可.
 #if SYSTEM_SUPPORT_OS
@@ -53,6 +58,7 @@ int fputc(int ch, FILE *f)
 	USART1->DR = (u8) ch;      
 	return ch;
 }
+
 #endif 
 //end
 //////////////////////////////////////////////////////////////////
@@ -136,7 +142,6 @@ void uart1_init(u32 pclk2,u32 bound)
 void usart_init(void){
 
 		uart1_init(90,115200); //与电脑端通讯
-		uart6_init(90,115200);//与k210端通讯
 		uart6_init(90,115200);//与k210端通讯
 }
 
@@ -268,8 +273,6 @@ void USART6_IRQHandler(void)                	//串口3中断服务程序
     } 		 
 } 
 	
-
-
 
 
 

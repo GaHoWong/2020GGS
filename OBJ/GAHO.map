@@ -3427,34 +3427,34 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000001ac   Data   RO            3    RESET               startup_stm32f429xx.o
-    0x080001ac   0x080001ac   0x00000000   Code   RO         6665  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080001ac   0x080001ac   0x00000004   Code   RO         7021    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080001b0   0x080001b0   0x00000004   Code   RO         7024    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO         7026    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO         7028    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001b4   0x080001b4   0x00000008   Code   RO         7029    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001bc   0x080001bc   0x00000000   Code   RO         7031    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080001bc   0x080001bc   0x00000000   Code   RO         7033    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080001bc   0x080001bc   0x00000004   Code   RO         7022    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         6668  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080001ac   0x080001ac   0x00000004   Code   RO         7024    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080001b0   0x080001b0   0x00000004   Code   RO         7027    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO         7029    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO         7031    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001b4   0x080001b4   0x00000008   Code   RO         7032    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001bc   0x080001bc   0x00000000   Code   RO         7034    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080001bc   0x080001bc   0x00000000   Code   RO         7036    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080001bc   0x080001bc   0x00000004   Code   RO         7025    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x080001c0   0x080001c0   0x0000002c   Code   RO            4    .text               startup_stm32f429xx.o
-    0x080001ec   0x080001ec   0x0000001e   Code   RO         6670    .text               mc_w.l(llshl.o)
-    0x0800020a   0x0800020a   0x00000024   Code   RO         6672    .text               mc_w.l(llsshr.o)
-    0x0800022e   0x0800022e   0x0000014e   Code   RO         6947    .text               mf_w.l(dadd.o)
-    0x0800037c   0x0800037c   0x000000e4   Code   RO         6949    .text               mf_w.l(dmul.o)
-    0x08000460   0x08000460   0x000000de   Code   RO         6951    .text               mf_w.l(ddiv.o)
+    0x080001ec   0x080001ec   0x0000001e   Code   RO         6673    .text               mc_w.l(llshl.o)
+    0x0800020a   0x0800020a   0x00000024   Code   RO         6675    .text               mc_w.l(llsshr.o)
+    0x0800022e   0x0800022e   0x0000014e   Code   RO         6950    .text               mf_w.l(dadd.o)
+    0x0800037c   0x0800037c   0x000000e4   Code   RO         6952    .text               mf_w.l(dmul.o)
+    0x08000460   0x08000460   0x000000de   Code   RO         6954    .text               mf_w.l(ddiv.o)
     0x0800053e   0x0800053e   0x00000002   PAD
-    0x08000540   0x08000540   0x00000030   Code   RO         6965    .text               mf_w.l(cdrcmple.o)
-    0x08000570   0x08000570   0x0000002c   Code   RO         7035    .text               mc_w.l(uidiv.o)
-    0x0800059c   0x0800059c   0x00000062   Code   RO         7037    .text               mc_w.l(uldiv.o)
-    0x080005fe   0x080005fe   0x00000020   Code   RO         7039    .text               mc_w.l(llushr.o)
-    0x0800061e   0x0800061e   0x00000000   Code   RO         7048    .text               mc_w.l(iusefp.o)
-    0x0800061e   0x0800061e   0x000000ba   Code   RO         7051    .text               mf_w.l(depilogue.o)
-    0x080006d8   0x080006d8   0x00000030   Code   RO         7059    .text               mf_w.l(dfixul.o)
-    0x08000708   0x08000708   0x00000024   Code   RO         7061    .text               mc_w.l(init.o)
-    0x0800072c   0x0800072c   0x00000038   Code   RO         4115    i.BREEZE_Init       breeze.o
+    0x08000540   0x08000540   0x00000030   Code   RO         6968    .text               mf_w.l(cdrcmple.o)
+    0x08000570   0x08000570   0x0000002c   Code   RO         7038    .text               mc_w.l(uidiv.o)
+    0x0800059c   0x0800059c   0x00000062   Code   RO         7040    .text               mc_w.l(uldiv.o)
+    0x080005fe   0x080005fe   0x00000020   Code   RO         7042    .text               mc_w.l(llushr.o)
+    0x0800061e   0x0800061e   0x00000000   Code   RO         7051    .text               mc_w.l(iusefp.o)
+    0x0800061e   0x0800061e   0x000000ba   Code   RO         7054    .text               mf_w.l(depilogue.o)
+    0x080006d8   0x080006d8   0x00000030   Code   RO         7062    .text               mf_w.l(dfixul.o)
+    0x08000708   0x08000708   0x00000024   Code   RO         7064    .text               mc_w.l(init.o)
+    0x0800072c   0x0800072c   0x00000038   Code   RO         4121    i.BREEZE_Init       breeze.o
     0x08000764   0x08000764   0x00000004   Code   RO         3199    i.BusFault_Handler  stm32f4xx_it.o
     0x08000768   0x08000768   0x00000002   Code   RO         3200    i.DebugMon_Handler  stm32f4xx_it.o
-    0x0800076a   0x0800076a   0x00000014   Code   RO         3955    i.EncoderInit       encoder.o
+    0x0800076a   0x0800076a   0x00000014   Code   RO         3961    i.EncoderInit       encoder.o
     0x0800077e   0x0800077e   0x00000040   Code   RO         3378    i.GPIO_AF_Set       sys.o
     0x080007be   0x080007be   0x00000090   Code   RO         1269    i.GPIO_Init         stm32f4xx_gpio.o
     0x0800084e   0x0800084e   0x00000046   Code   RO         1270    i.GPIO_PinAFConfig  stm32f4xx_gpio.o
@@ -3462,7 +3462,7 @@ Memory Map of the image
     0x08000972   0x08000972   0x00000004   Code   RO         3201    i.HardFault_Handler  stm32f4xx_it.o
     0x08000976   0x08000976   0x00000002   PAD
     0x08000978   0x08000978   0x0000006c   Code   RO         3274    i.Incremental_PI    control.o
-    0x080009e4   0x080009e4   0x00000064   Code   RO         3611    i.LED_Init          led.o
+    0x080009e4   0x080009e4   0x00000064   Code   RO         3617    i.LED_Init          led.o
     0x08000a48   0x08000a48   0x00000078   Code   RO         3382    i.MY_NVIC_Init      sys.o
     0x08000ac0   0x08000ac0   0x00000028   Code   RO         3383    i.MY_NVIC_PriorityGroupConfig  sys.o
     0x08000ae8   0x08000ae8   0x00000010   Code   RO         3384    i.MY_NVIC_SetVectorTable  sys.o
@@ -3476,7 +3476,7 @@ Memory Map of the image
     0x08000b90   0x08000b90   0x00000020   Code   RO         1598    i.RCC_AHB1PeriphClockCmd  stm32f4xx_rcc.o
     0x08000bb0   0x08000bb0   0x00000020   Code   RO         1607    i.RCC_APB1PeriphClockCmd  stm32f4xx_rcc.o
     0x08000bd0   0x08000bd0   0x00000020   Code   RO         1610    i.RCC_APB2PeriphClockCmd  stm32f4xx_rcc.o
-    0x08000bf0   0x08000bf0   0x000000ec   Code   RO         3956    i.Read_Encoder      encoder.o
+    0x08000bf0   0x08000bf0   0x000000ec   Code   RO         3962    i.Read_Encoder      encoder.o
     0x08000cdc   0x08000cdc   0x00000002   Code   RO         3205    i.SVC_Handler       stm32f4xx_it.o
     0x08000cde   0x08000cde   0x00000002   PAD
     0x08000ce0   0x08000ce0   0x00000040   Code   RO         3275    i.Set_Pwm           control.o
@@ -3484,14 +3484,14 @@ Memory Map of the image
     0x08000d88   0x08000d88   0x00000002   Code   RO         3206    i.SysTick_Handler   stm32f4xx_it.o
     0x08000d8a   0x08000d8a   0x00000002   PAD
     0x08000d8c   0x08000d8c   0x0000010c   Code   RO         3386    i.Sys_Clock_Set     sys.o
-    0x08000e98   0x08000e98   0x000000ec   Code   RO         4018    i.TIM1_PWM_Init     motor.o
-    0x08000f84   0x08000f84   0x0000007c   Code   RO         3957    i.TIM2_ENC_Init     encoder.o
-    0x08001000   0x08001000   0x00000068   Code   RO         3958    i.TIM3_ENC_Init     encoder.o
+    0x08000e98   0x08000e98   0x000000ec   Code   RO         4024    i.TIM1_PWM_Init     motor.o
+    0x08000f84   0x08000f84   0x0000007c   Code   RO         3963    i.TIM2_ENC_Init     encoder.o
+    0x08001000   0x08001000   0x00000068   Code   RO         3964    i.TIM3_ENC_Init     encoder.o
     0x08001068   0x08001068   0x00000050   Code   RO         3276    i.TIM3_IRQHandler   control.o
-    0x080010b8   0x080010b8   0x00000068   Code   RO         3959    i.TIM4_ENC_Init     encoder.o
-    0x08001120   0x08001120   0x00000064   Code   RO         3960    i.TIM5_ENC_Init     encoder.o
-    0x08001184   0x08001184   0x00000098   Code   RO         4020    i.TIM6_DAC_IRQHandler  motor.o
-    0x0800121c   0x0800121c   0x00000104   Code   RO         4021    i.TIM8_PWM_Init     motor.o
+    0x080010b8   0x080010b8   0x00000068   Code   RO         3965    i.TIM4_ENC_Init     encoder.o
+    0x08001120   0x08001120   0x00000064   Code   RO         3966    i.TIM5_ENC_Init     encoder.o
+    0x08001184   0x08001184   0x00000098   Code   RO         4026    i.TIM6_DAC_IRQHandler  motor.o
+    0x0800121c   0x0800121c   0x00000104   Code   RO         4027    i.TIM8_PWM_Init     motor.o
     0x08001320   0x08001320   0x00000018   Code   RO         2358    i.TIM_ARRPreloadConfig  stm32f4xx_tim.o
     0x08001338   0x08001338   0x00000006   Code   RO         2364    i.TIM_ClearFlag     stm32f4xx_tim.o
     0x0800133e   0x0800133e   0x00000006   Code   RO         2365    i.TIM_ClearITPendingBit  stm32f4xx_tim.o
@@ -3502,14 +3502,14 @@ Memory Map of the image
     0x080013ce   0x080013ce   0x00000022   Code   RO         2391    i.TIM_GetITStatus   stm32f4xx_tim.o
     0x080013f0   0x080013f0   0x00000012   Code   RO         2395    i.TIM_ITConfig      stm32f4xx_tim.o
     0x08001402   0x08001402   0x00000002   PAD
-    0x08001404   0x08001404   0x00000040   Code   RO         4023    i.TIM_Mode_Config   motor.o
+    0x08001404   0x08001404   0x00000040   Code   RO         4029    i.TIM_Mode_Config   motor.o
     0x08001444   0x08001444   0x0000007c   Code   RO         2399    i.TIM_OC1Init       stm32f4xx_tim.o
     0x080014c0   0x080014c0   0x000000a4   Code   RO         2404    i.TIM_OC2Init       stm32f4xx_tim.o
     0x08001564   0x08001564   0x000000a0   Code   RO         2409    i.TIM_OC3Init       stm32f4xx_tim.o
     0x08001604   0x08001604   0x00000078   Code   RO         2414    i.TIM_OC4Init       stm32f4xx_tim.o
     0x0800167c   0x0800167c   0x00000084   Code   RO         2442    i.TIM_TimeBaseInit  stm32f4xx_tim.o
-    0x08001700   0x08001700   0x00000028   Code   RO         4024    i.TIMx_Configuration  motor.o
-    0x08001728   0x08001728   0x0000002a   Code   RO         4025    i.TIMx_NVIC_Configuration  motor.o
+    0x08001700   0x08001700   0x00000028   Code   RO         4030    i.TIMx_Configuration  motor.o
+    0x08001728   0x08001728   0x0000002a   Code   RO         4031    i.TIMx_NVIC_Configuration  motor.o
     0x08001752   0x08001752   0x00000002   PAD
     0x08001754   0x08001754   0x00000080   Code   RO         3476    i.USART1_IRQHandler  usart.o
     0x080017d4   0x080017d4   0x00000084   Code   RO         3477    i.USART6_IRQHandler  usart.o
@@ -3520,15 +3520,15 @@ Memory Map of the image
     0x080018f6   0x080018f6   0x0000000a   Code   RO         2938    i.USART_ReceiveData  stm32f4xx_usart.o
     0x08001900   0x08001900   0x00000004   Code   RO         3207    i.UsageFault_Handler  stm32f4xx_it.o
     0x08001904   0x08001904   0x00000028   Code   RO         3277    i.Xianfu_Pwm        control.o
-    0x0800192c   0x0800192c   0x00000020   Code   RO         6919    i.__0printf         mc_w.l(printfa.o)
-    0x0800194c   0x0800194c   0x0000000e   Code   RO         7067    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800195a   0x0800195a   0x00000002   Code   RO         7068    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800195c   0x0800195c   0x0000000e   Code   RO         7069    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0800192c   0x0800192c   0x00000020   Code   RO         6922    i.__0printf         mc_w.l(printfa.o)
+    0x0800194c   0x0800194c   0x0000000e   Code   RO         7070    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0800195a   0x0800195a   0x00000002   Code   RO         7071    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0800195c   0x0800195c   0x0000000e   Code   RO         7072    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x0800196a   0x0800196a   0x00000002   PAD
-    0x0800196c   0x0800196c   0x00000184   Code   RO         6926    i._fp_digits        mc_w.l(printfa.o)
-    0x08001af0   0x08001af0   0x000006dc   Code   RO         6927    i._printf_core      mc_w.l(printfa.o)
-    0x080021cc   0x080021cc   0x00000024   Code   RO         6928    i._printf_post_padding  mc_w.l(printfa.o)
-    0x080021f0   0x080021f0   0x0000002e   Code   RO         6929    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x0800196c   0x0800196c   0x00000184   Code   RO         6929    i._fp_digits        mc_w.l(printfa.o)
+    0x08001af0   0x08001af0   0x000006dc   Code   RO         6930    i._printf_core      mc_w.l(printfa.o)
+    0x080021cc   0x080021cc   0x00000024   Code   RO         6931    i._printf_post_padding  mc_w.l(printfa.o)
+    0x080021f0   0x080021f0   0x0000002e   Code   RO         6932    i._printf_pre_padding  mc_w.l(printfa.o)
     0x0800221e   0x0800221e   0x00000002   PAD
     0x08002220   0x08002220   0x00000038   Code   RO         3332    i.delay_init        delay.o
     0x08002258   0x08002258   0x00000038   Code   RO         3333    i.delay_ms          delay.o
@@ -3540,7 +3540,7 @@ Memory Map of the image
     0x08002368   0x08002368   0x00000100   Code   RO         3481    i.uart1_init        usart.o
     0x08002468   0x08002468   0x00000100   Code   RO         3482    i.uart6_init        usart.o
     0x08002568   0x08002568   0x00000018   Code   RO         3483    i.usart_init        usart.o
-    0x08002580   0x08002580   0x00000020   Data   RO         7065    Region$$Table       anon$$obj.o
+    0x08002580   0x08002580   0x00000020   Data   RO         7068    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080025a0, Size: 0x00000940, Max: 0x00030000, ABSOLUTE)
@@ -3552,7 +3552,7 @@ Memory Map of the image
     0x20000018   0x080025b8   0x00000004   Data   RW         3336    .data               delay.o
     0x2000001c   0x080025bc   0x00000006   Data   RW         3485    .data               usart.o
     0x20000022   0x080025c2   0x00000002   PAD
-    0x20000024   0x080025c4   0x00000044   Data   RW         4026    .data               motor.o
+    0x20000024   0x080025c4   0x00000044   Data   RW         4032    .data               motor.o
     0x20000068        -       0x00000010   Zero   RW         3113    .bss                main.o
     0x20000078        -       0x000000c8   Zero   RW         3484    .bss                usart.o
     0x20000140        -       0x00000800   Zero   RW            1    STACK               startup_stm32f429xx.o
@@ -3581,10 +3581,10 @@ Image component sizes
        168          0          0          0          0       4034   stm32f4xx_usart.o
        834         44          0          0          0       4838   sys.o
          0          0          0          0          0     278640   system_stm32f4xx.o
-       824         58          0          6        200       5403   usart.o
+       824         58          0          6        200       6055   usart.o
 
     ----------------------------------------------------------------------
-      5516        496        460        104       2264     329544   Object Totals
+      5516        496        460        104       2264     330196   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         16          0          0          2          0          0   (incl. Padding)
 
@@ -3637,8 +3637,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      9172        602        460        104       2264     324020   Grand Totals
-      9172        602        460        104       2264     324020   ELF Image Totals
+      9172        602        460        104       2264     324672   Grand Totals
+      9172        602        460        104       2264     324672   ELF Image Totals
       9172        602        460        104          0          0   ROM Totals
 
 ==============================================================================
