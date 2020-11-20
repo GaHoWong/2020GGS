@@ -137,6 +137,7 @@ void usart_init(void){
 
 		uart1_init(90,115200); //与电脑端通讯
 		uart6_init(90,115200);//与k210端通讯
+		uart6_init(90,115200);//与k210端通讯
 }
 
 

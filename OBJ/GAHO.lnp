@@ -31,6 +31,7 @@
 "..\obj\encoder.o"
 "..\obj\timer.o"
 "..\obj\motor.o"
+"..\obj\breeze.o"
 "..\obj\inv_mpu.o"
 "..\obj\inv_mpu_dmp_motion_driver.o"
 "..\obj\log_stm32.o"

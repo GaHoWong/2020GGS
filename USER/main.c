@@ -14,6 +14,7 @@
 #include "encoder.h"
 #include "timer.h"
 #include "motor.h" 
+#include "breeze.h"
 
 u8 flag_Stop=1;     //停止标志位
 int Encoder[4];        //编码器的脉冲计数
@@ -68,17 +69,25 @@ int main(void)
 	EncoderInit();
 	LED0 = 1;
 	LED1 = 1;
+	BREEZE_Init();
+	delay_ms(200);
+	BREEZE = 0;
 	printf("ok");
 //	TIM8_PwmSetPulse(2,60);
 //	TIM8_PwmSetPulse(4,60);
 //	
 //	TIM1_PwmSetPulse(1,60);
 //	TIM1_PwmSetPulse(3,60);
-	
+
 	while(1){
 	//		printf("Encoder0:%d \r\n",Encoder[0]);
 //		TIM8_PwmSetPulse (1,70);
-		delay_ms(200);
+		delay_ms(2000);
+
+//				delay_ms(2000);
+//		BREEZE = 0;
+		
+		
 //		TIM8_PwmSetPulse (2,70);
 //		delay_ms(3000);
 //		TIM8_PwmSetPulse (3,70);

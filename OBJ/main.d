@@ -54,3 +54,4 @@
 ..\obj\main.o: ..\HARDWARE\ENCODER\encoder.h
 ..\obj\main.o: ..\HARDWARE\TIMER\timer.h
 ..\obj\main.o: ..\HARDWARE\MOTOR\motor.h
+..\obj\main.o: ..\HARDWARE\BREEZE\breeze.h
