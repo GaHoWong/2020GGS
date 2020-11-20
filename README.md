@@ -3,16 +3,18 @@
 #### 介绍
 2020广工赛
 
-#### 软件架构
-软件架构说明
+#### 我如何提交代码？
+1、git add .
+2、git commit -m "debug"
+3、git push origin master
 
+#### 请即使更新主代码，使用命令
 
-#### 安装教程
+git remote add upstream https://gitee.com/gahowong/GGS2020.git
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 如何贡献代码？
 
+git push origin BRANCH_NAME
 #### 使用说明
 
 实验目的:
