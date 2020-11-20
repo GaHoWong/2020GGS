@@ -15,10 +15,22 @@
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
+实验目的:
+	学习MPU9250 九轴传感器(三轴加速度+三轴陀螺仪+三轴磁力计)的使用.
+	
+硬件资源:
+	1,DS0(连接在PB1)  
+	2,串口1(波特率:115200,PA9/PA10连接在板载USB转串口芯片CH340上面) 
+	3,ALIENTEK 2.8/3.5/4.3/7寸LCD模块(包括MCU屏和RGB屏,都支持) 
+	4,KEY0按键(连接在PH3)
+	5,MPU9250传感器(连接在PH4/PH5上,INT脚未用到).
+	
+实验现象:
+	本实验,程序先初始化MPU9250等外设，然后利用MPL库，初始化MPU9250及使能DMP，最后，在死循环里面
+	不停读取：温度传感器、加速度传感器、陀螺仪、磁力计、MPL姿态解算后的欧拉角等数据，通过串口上报
+	给上位机（温度不上报），利用上位机软件（ANO_TC匿名科创地面站v4.exe），可以实时显示MPU9250的传
+	感器状态曲线，并显示3D姿态，可以通过KEY0按键开启/关闭数据上传功能。同时，在LCD模块上面显示温度
+	和欧拉角等信息。DS0来指示程序正在运行。
 #### 参与贡献
 
 1.  Fork 本仓库
@@ -29,9 +41,3 @@
 
 #### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
