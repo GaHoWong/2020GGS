@@ -162,10 +162,10 @@ void TIMx_Configuration(void)
 {
 	
 	
-	//TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
+	TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
 	TIM8_PWM_Init(TIM8_Period,0);
 	TIMx_NVIC_Configuration();	
-  
+//  
   TIM_Mode_Config();
 }
 
@@ -391,12 +391,12 @@ void  BASIC_TIM_IRQHandler (void)
 		TIM8->CCR1 = PWM[2] - 3000;                            //  MOTOR3 的 PWM赋值
 		TIM1->CCR4 = PWM[3] - 3000;                            //  MOTOR4 的 PWM赋值
 //		
-
+//		printf("PWM0=%d \r\n PWM1=%d \r\n PWM2=%d \r\n PWM3=%d \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
 //			TIM8_PwmSetPulse(1,58);
 //			TIM8_PwmSetPulse(3,58);
 //			TIM1_PwmSetPulse(2,64);
 //			TIM1_PwmSetPulse(4,64);
-    printf("Encoder0=%d \r\n Encoder1=%d \r\n Encoder2=%d \r\n Encoder3=%d \r\n",Encoder[0],Encoder[1],Encoder[2],Encoder[3]);   
+//    printf("Encoder0=%d \r\n Encoder1=%d \r\n Encoder2=%d \r\n Encoder3=%d \r\n",Encoder[0],Encoder[1],Encoder[2],Encoder[3]);   
 	 //moto=Incremental_PI(Encoder,0);    //===位置PID控制器
 	 //Xianfu_Pwm();
 		TIM_ClearITPendingBit(BASIC_TIM , TIM_IT_Update);  		 
