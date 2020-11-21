@@ -210,7 +210,7 @@ void EncoderInit(void){
 
 
 
-int Read_Encoder(u8 TIMX)//读取计数器的值
+u8 Read_Encoder(u8 TIMX)//读取计数器的值
 {
   int Encoder_TIM;
 	switch(TIMX)

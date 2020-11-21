@@ -1,6 +1,13 @@
 #include "motor.h"
 #include "sys.h"
 #include "control.h"
+#include "oled.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+
+
+
 
 static  __IO u16 TIM1_Period = 8999;	// 定时器1的重载值
 static  __IO u16 TIM8_Period = 8999;	// 定时器8的重载值
@@ -158,7 +165,7 @@ void TIMx_Configuration(void)
 {
 	
 	
-	TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
+//	TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
 	TIM8_PWM_Init(TIM8_Period,0);
 	TIMx_NVIC_Configuration();	
   
@@ -365,6 +372,17 @@ void  BASIC_TIM_IRQHandler (void)
 		Encoder[1]=Read_Encoder(3);                     //取定时器2计数器的值 
 		Encoder[2]=Read_Encoder(4);                     //取定时器2计数器的值 
 		Encoder[3]=Read_Encoder(5);                     //取定时器2计数器的值 
+		
+
+		
+		OLED_DISPLAY_8x16_BUFFER(0,Encoder[0]);
+		OLED_DISPLAY_8x16_BUFFER(2,Encoder[1]);
+		OLED_DISPLAY_8x16_BUFFER(4,Encoder[2]);
+		OLED_DISPLAY_8x16_BUFFER(6,Encoder[3]);
+		
+		
+		
+		
 		
 //		Encoder[0] = TIM_GetCounter(TIM4);	
 //		printf("%d\r\n ", Encoder[0]);

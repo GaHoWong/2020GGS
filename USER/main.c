@@ -15,10 +15,18 @@
 #include "timer.h"
 #include "motor.h" 
 #include "breeze.h"
+#include "servo.h"
+#include "tfmini.h"
+
 
 u8 flag_Stop=1;     //停止标志位
-int Encoder[4];        //编码器的脉冲计数
+int  Encoder[4];        //编码器的脉冲计数
 int moto;           //电机PWM变量
+
+
+
+//extern int Distance;
+//extern int Strength;
 
 int main(void)
 {     
@@ -49,10 +57,10 @@ int main(void)
 	OLED_DISPLAY_8x16_BUFFER(0,"      GAHO "); //显示字符串
 //	OLED_DISPLAY_8x16_BUFFER(6,"  KP：KI："); //显示字符串
 
-	OLED_DISPLAY_16x16(2,2*16,0);
-	OLED_DISPLAY_16x16(2,3*16,1);
-	OLED_DISPLAY_16x16(2,4*16,2);
-	OLED_DISPLAY_16x16(2,5*16,3);
+//	OLED_DISPLAY_16x16(2,2*16,0);
+//	OLED_DISPLAY_16x16(2,3*16,1);
+//	OLED_DISPLAY_16x16(2,4*16,2);
+//	OLED_DISPLAY_16x16(2,5*16,3);
 
 //	EncoderInit();
 	LED0 = 0;
@@ -66,29 +74,22 @@ int main(void)
 //	
 //	TIM1_PwmSetPulse(1,60);
 //	TIM1_PwmSetPulse(3,60);
+	TIM12_PWMinit(20000,1000000);
+	
+	
+	
+//	Debug_USART_Config();
 
 	while(1){
-
-	}
+		
+		delay_ms(100);
+//		printf("%d",Distance);		
+//		TIM12_PwmSetPulse(1,led0pwmval);	
+//		delay_ms(500);			
+//		printf("PWM:%d\r\n",led0pwmval);//查看占空比
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

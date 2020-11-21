@@ -39,6 +39,3 @@
 ..\obj\servo.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\obj\servo.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\servo.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-..\obj\servo.o: ..\HARDWARE\24CXX\myiic.h
-..\obj\servo.o: ..\SYSTEM\delay\delay.h
-..\obj\servo.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

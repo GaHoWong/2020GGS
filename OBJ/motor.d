@@ -41,3 +41,7 @@
 ..\obj\motor.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\motor.o: ..\HARDWARE\TIMER\timer.h
 ..\obj\motor.o: ..\SYSTEM\control\control.h
+..\obj\motor.o: ..\HARDWARE\OLED\oled.h
+..\obj\motor.o: ..\SYSTEM\i2c\i2c.h
+..\obj\motor.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\motor.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

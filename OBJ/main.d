@@ -55,3 +55,5 @@
 ..\obj\main.o: ..\HARDWARE\TIMER\timer.h
 ..\obj\main.o: ..\HARDWARE\MOTOR\motor.h
 ..\obj\main.o: ..\HARDWARE\BREEZE\breeze.h
+..\obj\main.o: ..\HARDWARE\SERVO\servo.h
+..\obj\main.o: ..\HARDWARE\TFmini\tfmini.h
