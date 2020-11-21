@@ -30,17 +30,21 @@ int moto;           //电机PWM变量
 
 int main(void)
 {     
+	
+	
+
 	Stm32_Clock_Init(360,25,2,8);   //设置时钟,180Mhz
-	delay_init(180);			          //初始化延时函数 
+	delay_init(180);			          //初始化延时函数
+//	TIMx_Configuration();//定时器初始化	
 	//usart_init();                   //初始化串口
-	usart_init();
-	//uart1_init(90,115200); //与电脑端通讯
+//	usart_init();
+   // uart1_init(90,115200); //与电脑端通讯
 //	usmart_dev.init(90);		//初始化USMART
 	LED_Init();					//初始化与LED连接的硬件接口	
 //	SDRAM_Init();				  //初始化SDRAM 		
-		TIMx_Configuration();//定时器初始化
 		
-	printf("init ok");
+		
+	//printf("init ok");
 	
 //	KEY_Init();					//初始化按键
 	I2C_Configuration();//I2C初始化
@@ -68,11 +72,11 @@ int main(void)
 	BREEZE_Init();
 	delay_ms(200);
 	BREEZE = 0;
-	printf("ok");
+//	printf("ok");
 //	TIM8_PwmSetPulse(2,60);
 //	TIM8_PwmSetPulse(4,60);
-//	
-//	TIM1_PwmSetPulse(1,60);
+////	
+//  TIM1_PwmSetPulse(1,60);
 //	TIM1_PwmSetPulse(3,60);
 	TIM12_PWMinit(20000,1000000);
 	
@@ -83,6 +87,7 @@ int main(void)
 	while(1){
 		
 		delay_ms(100);
+
 //		printf("%d",Distance);		
 //		TIM12_PwmSetPulse(1,led0pwmval);	
 //		delay_ms(500);			

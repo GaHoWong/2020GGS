@@ -79,6 +79,7 @@
 void TIM2_ENC_Init(void)  // PA15  PB3  ENC_D1 ENC_D2
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); //使能TIM5时钟
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);//使能GPIOA时钟
@@ -92,6 +93,14 @@ void TIM2_ENC_Init(void)  // PA15  PB3  ENC_D1 ENC_D2
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
+	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
+  TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
+  TIM_TimeBaseStructure.TIM_Period = 8999; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
+  TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+	
 
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource15,GPIO_AF_TIM2);//将PA0引脚配置为TIM5
 	GPIO_PinAFConfig(GPIOB,GPIO_PinSource3,GPIO_AF_TIM2);//将PA1引脚配置为TIM5
@@ -114,7 +123,8 @@ void TIM2_ENC_Init(void)  // PA15  PB3  ENC_D1 ENC_D2
 void TIM3_ENC_Init(void)  // PA6   PA7  
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
-
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //使能TIM3时钟
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);//使能GPIOA时钟
 
@@ -124,6 +134,14 @@ void TIM3_ENC_Init(void)  // PA6   PA7
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;		//开漏输出
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	
+	
+	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
+  TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
+  TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD-1; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
 
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource6,GPIO_AF_TIM3);//将PA0引脚配置为TIM5
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource7,GPIO_AF_TIM3);//将PA1引脚配置为TIM5
@@ -144,6 +162,7 @@ void TIM3_ENC_Init(void)  // PA6   PA7
 void TIM4_ENC_Init(void)  
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE); //使能TIM4时钟
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);//使能GPIOD时钟
@@ -157,6 +176,13 @@ void TIM4_ENC_Init(void)
 	
 	GPIO_PinAFConfig(GPIOB,GPIO_PinSource6,GPIO_AF_TIM4);//将PD12引脚配置为TIM4
 	GPIO_PinAFConfig(GPIOB,GPIO_PinSource7,GPIO_AF_TIM4);//将PD13引脚配置为TIM4
+	
+	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
+  TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
+  TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD-1; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
 	
 	//编码器接口配置
 	TIM_EncoderInterfaceConfig(TIM4, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);
@@ -175,7 +201,7 @@ void TIM4_ENC_Init(void)
 void TIM5_ENC_Init(void)  // PA0  PA1   ENC_C1 ENC_C2
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
-
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE); //使能TIM5时钟
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);//使能GPIOA时钟
 
@@ -186,6 +212,14 @@ void TIM5_ENC_Init(void)  // PA0  PA1   ENC_C1 ENC_C2
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		//上拉
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
+	
+	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
+  TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
+  TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD-1; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+	
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource0,GPIO_AF_TIM5);//将PA0引脚配置为TIM5
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource1,GPIO_AF_TIM5);//将PA1引脚配置为TIM5
 	

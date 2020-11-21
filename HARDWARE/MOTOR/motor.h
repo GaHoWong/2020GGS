@@ -94,7 +94,7 @@ void Moter_IOs_Init(void);       // 电机方向控制IO初始化
 
 
 
-
+int num_String(int x, char *s);
 
 
 
@@ -110,7 +110,7 @@ void Moter_IOs_Init(void);       // 电机方向控制IO初始化
 ///////////////////
 void TIMx_Configuration(void);
 void TIM1_PWM_Init(u16 arr,u16 psc);
-void  TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse);
+void TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse);
 void TIM8_PWM_Init(u16 arr,u16 psc);
 void TIM8_PwmSetPulse (u8 TIM8_CH,u8 pulse);
 

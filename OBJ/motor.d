@@ -43,5 +43,4 @@
 ..\obj\motor.o: ..\SYSTEM\control\control.h
 ..\obj\motor.o: ..\HARDWARE\OLED\oled.h
 ..\obj\motor.o: ..\SYSTEM\i2c\i2c.h
-..\obj\motor.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\motor.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
