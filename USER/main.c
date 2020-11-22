@@ -70,8 +70,7 @@ int main(void)
 	OLED0561_Init();                //初始化OLED显示屏
 
 	//TIMx_Configuration();         //初始化电机PWM与时钟6定时中断	
-	
-	delay_ms(200);                  //延时等待
+	delay_ms(600);                  //延时等待
 	BREEZE = 0;                     //硬件初始成功蜂鸣器响一声
 	printf("硬件初始化成功！");     
 		
@@ -80,12 +79,29 @@ int main(void)
 	OLED_DISPLAY_PIC1();            //显示全屏图片
 	delay_ms(1000);                 //延时（必须）
 	OLED_DISPLAY_CLEAR();           //清屏
-	OLED_DISPLAY_8x16_BUFFER(0,"      GAHO "); //显示字符串
-	OLED_DISPLAY_8x16_BUFFER(6,"  KP：KI："); //显示字符串
+//	OLED_DISPLAY_8x16_BUFFER(0,"KP:"); //显示字符串
+//	OLED_DISPLAY_8x16_BUFFER(2,"KI:");
+//	OLED_DISPLAY_8x16_BUFFER(4,"KD:"); //显示字符串
+//	OLED_DISPLAY_8x16_BUFFER(2,"KI:");
+	OLED_DISPLAY_8x16(1,0,'K'); //显示字符串
+	OLED_DISPLAY_8x16(1,8,'P'); //显示字符串
+	OLED_DISPLAY_8x16(1,16,':'); //显示字符串
+	OLED_DISPLAY_8x16(1,24,'1'); //显示字符串
+	OLED_DISPLAY_8x16(1,32,'2'); //显示字符串
+	OLED_DISPLAY_8x16(1,40,'3'); //显示字符串
+	OLED_DISPLAY_8x16(1,64,'K'); //显示字符串
+	OLED_DISPLAY_8x16(1,72,'I'); //显示字符串
+	OLED_DISPLAY_8x16(1,80,':'); //显示字符串
+	OLED_DISPLAY_8x16(1,88,'1'); //显示字符串
+	OLED_DISPLAY_8x16(1,96,'2'); //显示字符串
+	OLED_DISPLAY_8x16(1,104,'3'); //显示字符串
+	
+	
 	printf("%s", pro);              //增大音量
 	delay_ms(200);                  //延时等待
 	
-/***********初始化完成************/		
+/***********初始化完成************/	
+	
 	LED0 = 0;                       //板载LED灯亮起
 	LED1 = 0;                       //板载LED灯亮起，说明整个初始化成功!
 
@@ -132,6 +148,7 @@ int main(void)
 
 	while(1){
 		delay_ms(1000);
+		
 		//printf("%s",suc2);
 		delay_ms(5000);
 		/*TURN_1+=5;

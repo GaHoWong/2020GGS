@@ -392,6 +392,8 @@ void  BASIC_TIM_IRQHandler (void)
 		TIM1->CCR4 = PWM[3] - 3000;                            //  MOTOR4 µÄ PWM¸³Öµ
 
 		
+	//	OLED_DISPLAY_8x16_BUFFER(4,Encoder[0]); //ÏÔÊ¾×Ö·û´®
+		
 		
 //		printf("PWM0=%c \r\n PWM1=%c \r\n PWM2=%c \r\n PWM3=%c \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
 //			TIM8_PwmSetPulse(1,58);
