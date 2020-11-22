@@ -13,8 +13,6 @@
 
 
 
-
-
 //0,不支持OS
 //1,支持OS
 #define SYSTEM_SUPPORT_OS		0		//定义系统文件夹是否支持OS
@@ -139,12 +137,13 @@ typedef volatile uint8_t  vu8;
 #define PIN14				1<<14
 #define PIN15				1<<15 
 ////////////////////////////////////////////////////////////////////////////////// 
-
-
-
 extern int moto;
 extern u8 Flag_Stop;            //停止标志位
 extern int Encoder[4],Position;               //编码器的脉冲计数
+
+
+
+
 
 ////////////////////////////////////////////////////////////////
 
