@@ -10,7 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -184,8 +184,6 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
-            <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -339,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,STM32F429xx,USE_DMP,MPL_LOG_NDEBUG=1,EMPL,MPU9250,EMPL_TARGET_STM32F4</Define>
               <Undefine></Undefine>
-              <IncludePath>..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include;..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc;..\LIBRARIES\CMSIS\Include;..\USER;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\LED;..\HARDWARE\KEY;..\HARDWARE\EXTI;..\HARDWARE\WDG;..\HARDWARE\TIMER;..\HARDWARE\TPAD;..\HARDWARE\OLED;..\HARDWARE\LCD;..\HARDWARE\SDRAM;..\USMART;..\HARDWARE\RTC;..\HARDWARE\RNG;..\HARDWARE\WKUP;..\HARDWARE\ADC;..\HARDWARE\DAC;..\HARDWARE\DMA;..\HARDWARE\24CXX;..\HARDWARE\PCF8574;..\HARDWARE\AP3216C;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\RS485;..\HARDWARE\CAN;..\HARDWARE\TOUCH;..\HARDWARE\REMOTE;..\HARDWARE\DS18B20;..\HARDWARE\DHT11;..\HARDWARE\MPU9250;..\HARDWARE\MPU9250\MPL\driver\eMPL;..\HARDWARE\MPU9250\MPL\driver\include;..\HARDWARE\MPU9250\MPL\driver\stm32L;..\HARDWARE\MPU9250\MPL\eMPL-hal;..\HARDWARE\MPU9250\MPL\mllite;..\HARDWARE\MPU9250\MPL\mpl;..\SYSTEM\i2c;..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc;..\LIBRARIES\CMSIS\Include;..\HARDWARE\MOTOR;..\HARDWARE\ENCODER;..\SYSTEM\control;..\HARDWARE\TIMER;..\HARDWARE\MOTO;..\HARDWARE\ENCODER;..\SYSTEM\control;..\HARDWARE\BREEZE;..\HARDWARE\SERVO;..\HARDWARE\TFmini</IncludePath>
+              <IncludePath>..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include;..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc;..\LIBRARIES\CMSIS\Include;..\USER;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\LED;..\HARDWARE\KEY;..\HARDWARE\EXTI;..\HARDWARE\WDG;..\HARDWARE\TIMER;..\HARDWARE\TPAD;..\HARDWARE\OLED;..\HARDWARE\LCD;..\HARDWARE\SDRAM;..\USMART;..\HARDWARE\RTC;..\HARDWARE\RNG;..\HARDWARE\WKUP;..\HARDWARE\ADC;..\HARDWARE\DAC;..\HARDWARE\DMA;..\HARDWARE\24CXX;..\HARDWARE\PCF8574;..\HARDWARE\AP3216C;..\HARDWARE\SPI;..\HARDWARE\W25QXX;..\HARDWARE\RS485;..\HARDWARE\CAN;..\HARDWARE\TOUCH;..\HARDWARE\REMOTE;..\HARDWARE\DS18B20;..\HARDWARE\DHT11;..\HARDWARE\MPU9250;..\HARDWARE\MPU9250\MPL\driver\eMPL;..\HARDWARE\MPU9250\MPL\driver\include;..\HARDWARE\MPU9250\MPL\driver\stm32L;..\HARDWARE\MPU9250\MPL\eMPL-hal;..\HARDWARE\MPU9250\MPL\mllite;..\HARDWARE\MPU9250\MPL\mpl;..\SYSTEM\i2c;..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc;..\LIBRARIES\CMSIS\Include;..\HARDWARE\MOTOR;..\HARDWARE\ENCODER;..\SYSTEM\control;..\HARDWARE\TIMER;..\HARDWARE\MOTO;..\HARDWARE\ENCODER;..\SYSTEM\control;..\HARDWARE\BREEZE;..\HARDWARE\SERVO;..\HARDWARE\TFminiPlus;..\HARDWARE\Voice;..\HARDWARE\PCA9685</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -352,7 +350,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -2088,7 +2086,17 @@
             <File>
               <FileName>tfmini.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\TFmini\tfmini.c</FilePath>
+              <FilePath>..\HARDWARE\TFminiPlus\tfmini.c</FilePath>
+            </File>
+            <File>
+              <FileName>voice.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Voice\voice.c</FilePath>
+            </File>
+            <File>
+              <FileName>pca9685.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PCA9685\pca9685.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2359,20 +2367,5 @@
     <components/>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>&lt;Project Info&gt;</LayName>
-        <LayDesc></LayDesc>
-        <LayUrl></LayUrl>
-        <LayKeys></LayKeys>
-        <LayCat></LayCat>
-        <LayLic></LayLic>
-        <LayTarg>0</LayTarg>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>

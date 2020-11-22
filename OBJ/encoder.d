@@ -3,7 +3,7 @@
 ..\obj\encoder.o: ..\SYSTEM\sys\sys.h
 ..\obj\encoder.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\encoder.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\encoder.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\encoder.o: E:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\encoder.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\encoder.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\encoder.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h

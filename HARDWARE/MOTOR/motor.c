@@ -362,7 +362,7 @@ void  TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse)
 
 void  BASIC_TIM_IRQHandler (void)
 {	
-		char OLED_Encoder[32]= {0};
+	char OLED_Encoder[32]= {0};
 	int PWM[4],Encoder_Date[4],Target_Speed[4];              // 引入外部的变量
 		
 		Target_Speed[0] = 5000;
@@ -381,22 +381,24 @@ void  BASIC_TIM_IRQHandler (void)
 //		Encoder[0] = TIM_GetCounter(TIM4);	
 //		printf("%d\r\n ", Encoder[0]);
 //		TIM_SetCounter(TIM4,0);
-		PWM[0] =  Motor1_PI(Encoder[2],Target_Speed[0]); //  MOTOR1 的 PWM的计算
-		PWM[1] =  Motor2_PI(Encoder[1],Target_Speed[1]); //  MOTOR1 的 PWM的计算
-		PWM[2] =  Motor3_PI(Encoder[3],Target_Speed[2]); //  MOTOR1 的 PWM的计算
+		PWM[0] =  Motor1_PI(Encoder[3],Target_Speed[0]); //  MOTOR1 的 PWM的计算
+		PWM[1] =  Motor2_PI(Encoder[2],Target_Speed[1]); //  MOTOR1 的 PWM的计算
+		PWM[2] =  Motor3_PI(Encoder[1],Target_Speed[2]); //  MOTOR1 的 PWM的计算
 		PWM[3] =  Motor4_PI(Encoder[0],Target_Speed[3]); //  MOTOR1 的 PWM的计算
 		
 		TIM8->CCR3 = PWM[0] - 3000;                            //  MOTOR1 的 PWM赋值
 		TIM1->CCR2 = PWM[1] - 3000;                            //  MOTOR2 的 PWM赋值
 		TIM8->CCR1 = PWM[2] - 3000;                            //  MOTOR3 的 PWM赋值
 		TIM1->CCR4 = PWM[3] - 3000;                            //  MOTOR4 的 PWM赋值
-//		
-//		printf("PWM0=%d \r\n PWM1=%d \r\n PWM2=%d \r\n PWM3=%d \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
+
+		
+		
+//		printf("PWM0=%c \r\n PWM1=%c \r\n PWM2=%c \r\n PWM3=%c \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
 //			TIM8_PwmSetPulse(1,58);
 //			TIM8_PwmSetPulse(3,58);
 //			TIM1_PwmSetPulse(2,64);
 //			TIM1_PwmSetPulse(4,64);
-//    printf("Encoder0=%d \r\n Encoder1=%d \r\n Encoder2=%d \r\n Encoder3=%d \r\n",Encoder[0],Encoder[1],Encoder[2],Encoder[3]);   
+    printf("Encoder0=%d \r\n Encoder1=%d \r\n Encoder2=%d \r\n Encoder3=%d \r\n",Encoder[0]-'0',Encoder[1]-'0',Encoder[2]-'0',Encoder[3]-'0');   
 	 //moto=Incremental_PI(Encoder,0);    //===位置PID控制器
 	 //Xianfu_Pwm();
 		TIM_ClearITPendingBit(BASIC_TIM , TIM_IT_Update);  		 

@@ -1,3 +1,6 @@
+#include "voice.h"
+
+
 void  Voice_Config(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -24,7 +27,6 @@ void  Voice_Config(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
 	
 	// IO口初始化
-	USART_GPIO_Config();
 		 
 	// 配置串口各项参数
 	USART_InitStructure.USART_BaudRate 	 = 9600; //波特率

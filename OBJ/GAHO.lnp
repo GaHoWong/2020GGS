@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 "..\obj\startup_stm32f429xx.o"
 "..\obj\system_stm32f4xx.o"
 "..\obj\misc.o"
@@ -34,6 +34,8 @@
 "..\obj\breeze.o"
 "..\obj\servo.o"
 "..\obj\tfmini.o"
+"..\obj\voice.o"
+"..\obj\pca9685.o"
 "..\obj\inv_mpu.o"
 "..\obj\inv_mpu_dmp_motion_driver.o"
 "..\obj\log_stm32.o"

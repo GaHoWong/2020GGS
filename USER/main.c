@@ -16,9 +16,9 @@
 #include "motor.h" 
 #include "breeze.h"
 #include "servo.h"
-#include "tfmini.h"
-
-
+#include "tfmini.h"  
+#include "voice.h"
+#include "pca9685.h"
 u8 flag_Stop=1;     //停止标志位
 int  Encoder[4];        //编码器的脉冲计数
 int moto;           //电机PWM变量
@@ -37,10 +37,10 @@ int main(void)
 	delay_init(180);			          //初始化延时函数
 
 //  uart_init(90,115200); //与电脑端通讯
-	TIMx_Configuration();//定时器初始化		
+	//TIMx_Configuration();//定时器初始化		
 //	printf("12134");
 //	usmart_dev.init(90);		//初始化USMART
-	LED_Init();					//初始化与LED连接的硬件接口	
+	//LED_Init();					//初始化与LED连接的硬件接口	
 //	SDRAM_Init();				  //初始化SDRAM 		
 
 		
@@ -50,7 +50,7 @@ int main(void)
 	I2C_Configuration();//I2C初始化
 	
 	
-	IIC_Init();
+	
 
 	OLED0561_Init(); //OLED初始化
 	OLED_DISPLAY_LIT(100);//亮度设置
@@ -83,10 +83,30 @@ int main(void)
 	
 	
 //	Debug_USART_Config();
+	IIC_Init();
+	PCA9685_write(PCA9685_MODE1,0x0);
+	setPWMFreq(50);
+	GPIO_ResetBits(GPIOA,GPIO_Pin_4 | GPIO_Pin_5);
+	up();
+	TURN_1=90;
+	TURN_2=90;
+	TURN_3=90;
+	TURN_4=40;	
+	BEFORE[0]=TURN_1;
+	BEFORE[1]=TURN_2;
+	BEFORE[2]=TURN_3;
+	BEFORE[3]=TURN_4;
+	RETURN(BEFORE,TURN_1,TURN_2,TURN_3,TURN_4); 
+
 
 	while(1){
 		
 		delay_ms(100);
+		TURN_1+=5;
+		if(TURN_1>180)
+			TURN_1=90;
+		RETURN(BEFORE,TURN_1,TURN_2,TURN_3,TURN_4);
+		delay_ms(1000);
 		//printf("12134");
 
 //		printf("%d",Distance);		

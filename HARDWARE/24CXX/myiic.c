@@ -2,12 +2,20 @@
 #include "delay.h"
 
 
-
 //初始化IIC  PH4  PH5
 void IIC_Init(void)
-{					     
-	RCC->AHB1ENR|=1<<7;    //使能PORTH时钟	   	  
-	GPIO_Set(GPIOH,PIN4|PIN5,GPIO_MODE_OUT,GPIO_OTYPE_PP,GPIO_SPEED_50M,GPIO_PUPD_PU);//PH4/PH5设置 
+{			
+  GPIO_InitTypeDef  GPIO_InitStructure;
+
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);//使能GPIOB时钟
+
+  //GPIOB8,B9初始化设置
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//普通输出模式
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//推挽输出
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//100MHz
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//上拉
+  GPIO_Init(GPIOH, &GPIO_InitStructure);//初始化
 	IIC_SCL=1;
 	IIC_SDA=1;
 }
@@ -116,9 +124,6 @@ u8 IIC_Read_Byte(unsigned char ack)
         IIC_Ack(); //发送ACK   
     return receive;
 }
-
-
-
 
 
 

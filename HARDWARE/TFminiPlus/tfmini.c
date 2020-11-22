@@ -20,7 +20,7 @@ volatile u16 USART2_RX_STA=0;               //bit15:½ÓÊÕÍê³É±êÖ¾   bit14~0:½ÓÊÕµ
 //ÒÆÖ²ÐÞ¸ÄÇøstart
 //È«¾ÖÌæ»».h  .c µÄ´®¿ÚUSART3ÎªÒÆÖ²µÄ´®¿Ú£¬²¢ÐÞ¸ÄÏÂÃæ´úÂë
 
-//USART3
+//USART3   y
 #define USART3_TX_RCC_APB2Periph_GPIOx      RCC_AHB1Periph_GPIOB
 #define USART3_TX_GPIOx                     GPIOB
 #define USART3_TX_GPIO_Pin_x                GPIO_Pin_10
@@ -40,7 +40,7 @@ volatile u16 USART2_RX_STA=0;               //bit15:½ÓÊÕÍê³É±êÖ¾   bit14~0:½ÓÊÕµ
 #define USART3_RX_DMA_Channelx              DMA_Channel_4
 
 
-//USART2
+//USART2   x
 #define USART2_TX_RCC_APB2Periph_GPIOx      RCC_AHB1Periph_GPIOD
 #define USART2_TX_GPIOx                     GPIOD
 #define USART2_TX_GPIO_Pin_x                GPIO_Pin_5
@@ -487,3 +487,5 @@ void USART3_IRQHandler(void)                	//´®¿Ú1ÖÐ¶Ï·þÎñ³ÌÐò
 	
     USART_ClearITPendingBit(USART3,USART_FLAG_TC);        
 }
+
+
