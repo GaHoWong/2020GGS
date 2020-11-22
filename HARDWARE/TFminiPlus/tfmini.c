@@ -384,37 +384,39 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 
 			TFmini2_high = temp2_data;
 			
-			if(distance2 <= 1200 && distance2 != 89 && distance2 != 86)
-				lastdis2 = distance2;
+//			if(distance2 <= 1200 && distance2 != 89 && distance2 != 86)
+//				lastdis2 = distance2;
 			distance2 = ((uint16_t)TFmini2_high<<8) | ((uint16_t)TFmini2_low);
-			if(lastdis2 >=distance2 && distance2 <= 120 && distance2 != 89 && distance2 != 86)
-				rx2_dis[num2++] = distance2;
-			
-			if(lastdis2 >= distance2)
-				lastdis2 = distance2;
-			
-			
-			if(num2 == 8)
-			{
-				num2 = 0;
-				for(i=0; i<8; i++)
-					if(lastdis2>=rx2_dis[i])
-						num2++;
-				
-				if(num2>=3)
-				{
-					printf("receive once：  %d cm \r\n",rx2_dis[i-1]-2);
-					x = rx2_dis[i-1]-2;
-				}				
-				num2 = 0;
-				//sum = 0;
-				
-				for(i=0; i<10; i++)
-					rx2_dis[i] = 0;
-			}
-			/*if((lastdis-distance >= -10)||(lastdis-distance <= 10))
-				printf("receive once：  %d cm \r\n",distance);
-			*/
+			x = distance2;
+			printf("result x :%d\r\n" , x);
+//			if(lastdis2 >=distance2 && distance2 <= 120 && distance2 != 89 && distance2 != 86)
+//				rx2_dis[num2++] = distance2;
+//			
+//			if(lastdis2 >= distance2)
+//				lastdis2 = distance2;
+//			
+//			
+//			if(num2 == 8)
+//			{
+//				num2 = 0;
+//				for(i=0; i<8; i++)
+//					if(lastdis2>=rx2_dis[i])
+//						num2++;
+//				
+//				if(num2>=3)
+//				{
+//					printf("receive once：  %d cm \r\n",rx2_dis[i-1]-2);
+//					x = rx2_dis[i-1]-2;
+//				}				
+//				num2 = 0;
+//				//sum = 0;
+//				
+//				for(i=0; i<10; i++)
+//					rx2_dis[i] = 0;
+//			}
+//			/*if((lastdis-distance >= -10)||(lastdis-distance <= 10))
+//				printf("receive once：  %d cm \r\n",distance);
+//			*/
 			flag2 = 0;
 		}	
 	}	
@@ -461,34 +463,36 @@ void USART3_IRQHandler(void)                	//串口1中断服务程序
 
 			TFmini3_high = temp3_data;
 			
-			if(distance3 <= 120 && distance3 != 89 && distance3 != 86)
-				lastdis3 = distance3;
+//			if(distance3 <= 120 && distance3 != 89 && distance3 != 86)
+//				lastdis3 = distance3;
 			distance3 = ((uint16_t)TFmini3_high<<8) | ((uint16_t)TFmini3_low);
-			if(lastdis3>=distance3 && distance3 <= 120 && distance3 != 89 && distance3 != 86)
-				rx3_dis[num3++] = distance3;
-			
-			if(lastdis3 >= distance3)
-				lastdis3 = distance3;
-			
-			
-			if(num3 == 8)
-			{
-				num3 = 0;
-				for(i=0; i<8; i++)
-					if(lastdis3>=rx3_dis[i])
-						num3++;
-				
-				if(num3>=3)
-				{
-					printf("receive once：  %d cm \r\n",rx3_dis[i-1]-2);
-					y = rx3_dis[i-1]-2;
-				}				
-				num3 = 0;
-				//sum = 0;
-				
-				for(i=0; i<10; i++)
-					rx3_dis[i] = 0;
-			}
+			y = distance3;
+			printf("result x :%d\r\n" , y);
+//			if(lastdis3>=distance3 && distance3 <= 120 && distance3 != 89 && distance3 != 86)
+//				rx3_dis[num3++] = distance3;
+//			
+//			if(lastdis3 >= distance3)
+//				lastdis3 = distance3;
+//			
+//			
+//			if(num3 == 8)
+//			{
+//				num3 = 0;
+//				for(i=0; i<8; i++)
+//					if(lastdis3>=rx3_dis[i])
+//						num3++;
+//				
+//				if(num3>=3)
+//				{
+//					printf("receive once：  %d cm \r\n",rx3_dis[i-1]-2);
+//					y = rx3_dis[i-1]-2;
+//				}				
+//				num3 = 0;
+//				//sum = 0;
+//				
+//				for(i=0; i<10; i++)
+//					rx3_dis[i] = 0;
+//			}
 			flag3 = 0;
 		}
 	}
