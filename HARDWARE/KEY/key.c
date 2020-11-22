@@ -1,5 +1,5 @@
 #include "key.h"
-
+#include "led.h"
  /**
   * @brief  配置嵌套向量中断控制器NVIC
   * @param  无
@@ -14,8 +14,8 @@ static void NVIC_Configuration(void)
   
   /* 配置中断源：按键1 */
   NVIC_InitStructure.NVIC_IRQChannel = KEY1_INT_EXTI_IRQ;
-  /* 配置抢占优先级：1 */
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+  /* 配置抢占优先级：2 */
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
   /* 配置子优先级：1 */
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
   /* 使能中断通道 */
@@ -93,7 +93,7 @@ void KEY1_IRQHandler(void)
 	if(EXTI_GetITStatus(KEY1_INT_EXTI_LINE) != RESET) 
 	{
 		// LED1 取反		
-		//LED1_TOGGLE;
+		LED1_TOGGLE;
     //清除中断标志位
 		EXTI_ClearITPendingBit(KEY1_INT_EXTI_LINE);     
 	}  
@@ -105,7 +105,7 @@ void KEY2_IRQHandler(void)
 	if(EXTI_GetITStatus(KEY2_INT_EXTI_LINE) != RESET) 
 	{
 		// LED2 取反		
-		//LED2_TOGGLE;
+		LED2_TOGGLE;
     //清除中断标志位
 		EXTI_ClearITPendingBit(KEY2_INT_EXTI_LINE);     
 	}  

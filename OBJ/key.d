@@ -39,3 +39,4 @@
 ..\obj\key.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\obj\key.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\key.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+..\obj\key.o: ..\HARDWARE\LED\led.h

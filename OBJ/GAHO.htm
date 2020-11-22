@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\GAHO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\GAHO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Nov 22 20:43:21 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Nov 22 20:54:59 2020
 <BR><P>
 <H3>Maximum Stack Usage =        100 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -48,10 +48,10 @@ Function Pointers
  <LI><a href="#[8]">DebugMon_Handler</a> from stm32f4xx_it.o(i.DebugMon_Handler) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[48]">ETH_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[49]">ETH_WKUP_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
- <LI><a href="#[11]">EXTI0_IRQHandler</a> from key.o(i.EXTI0_IRQHandler) referenced from startup_stm32f429xx.o(RESET)
+ <LI><a href="#[11]">EXTI0_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[33]">EXTI15_10_IRQHandler</a> from key.o(i.EXTI15_10_IRQHandler) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[12]">EXTI1_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
- <LI><a href="#[13]">EXTI2_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
+ <LI><a href="#[13]">EXTI2_IRQHandler</a> from key.o(i.EXTI2_IRQHandler) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[14]">EXTI3_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[15]">EXTI4_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
  <LI><a href="#[22]">EXTI9_5_IRQHandler</a> from startup_stm32f429xx.o(.text) referenced from startup_stm32f429xx.o(RESET)
@@ -236,10 +236,10 @@ Global Symbols
 <P><STRONG><a name="[49]"></a>ETH_WKUP_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
 </UL>
-<P><STRONG><a name="[12]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
+<P><STRONG><a name="[11]"></a>EXTI0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
 </UL>
-<P><STRONG><a name="[13]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
+<P><STRONG><a name="[12]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
 </UL>
 <P><STRONG><a name="[14]"></a>EXTI3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
@@ -603,15 +603,7 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
 </UL>
-<P><STRONG><a name="[11]"></a>EXTI0_IRQHandler</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, key.o(i.EXTI0_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI0_IRQHandler
-</UL>
-<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_GetITStatus
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_ClearITPendingBit
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
-</UL>
-<P><STRONG><a name="[33]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, key.o(i.EXTI15_10_IRQHandler))
+<P><STRONG><a name="[33]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, key.o(i.EXTI15_10_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI15_10_IRQHandler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_GetITStatus
@@ -619,14 +611,22 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
 </UL>
+<P><STRONG><a name="[13]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, key.o(i.EXTI2_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI2_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_GetITStatus
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
+</UL>
 <P><STRONG><a name="[82]"></a>EXTI_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_exti.o(i.EXTI_ClearITPendingBit))
-<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
-<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_IRQHandler
+<BR><BR>[Called By]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI2_IRQHandler
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
 </UL>
 
 <P><STRONG><a name="[81]"></a>EXTI_GetITStatus</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f4xx_exti.o(i.EXTI_GetITStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
-<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_IRQHandler
+<BR><BR>[Called By]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI2_IRQHandler
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
 </UL>
 
 <P><STRONG><a name="[9e]"></a>EXTI_Init</STRONG> (Thumb, 142 bytes, Stack size 0 bytes, stm32f4xx_exti.o(i.EXTI_Init))
@@ -1329,7 +1329,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Configuration
 </UL>
 
-<P><STRONG><a name="[9c]"></a>NVIC_Configuration</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, key.o(i.NVIC_Configuration))
+<P><STRONG><a name="[9c]"></a>NVIC_Configuration</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, key.o(i.NVIC_Configuration))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = NVIC_Configuration &rArr; NVIC_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
