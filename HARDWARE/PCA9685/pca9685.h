@@ -1,5 +1,5 @@
-#ifndef __PCF8574_H
-#define __PCF8574_H
+#ifndef __PCA9685_H
+#define __PCA9685_H
 #include "sys.h"
 #include "myiic.h"
 

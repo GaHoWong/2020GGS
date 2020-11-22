@@ -57,7 +57,7 @@
 ..\obj\main.o: ..\HARDWARE\BREEZE\breeze.h
 ..\obj\main.o: ..\HARDWARE\SERVO\servo.h
 ..\obj\main.o: ..\HARDWARE\TFminiPlus\tfmini.h
-..\obj\main.o: ..\HARDWARE\Voice\voice.h
+..\obj\main.o: ..\HARDWARE\PLAY\play.h
 ..\obj\main.o: E:\Keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\main.o: E:\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\main.o: ..\HARDWARE\PCA9685\pca9685.h

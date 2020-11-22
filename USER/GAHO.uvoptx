@@ -1030,8 +1030,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\HARDWARE\Voice\voice.c</PathWithFileName>
-      <FilenameWithoutPath>voice.c</FilenameWithoutPath>
+      <PathWithFileName>..\HARDWARE\PCA9685\pca9685.c</PathWithFileName>
+      <FilenameWithoutPath>pca9685.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1042,8 +1042,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\HARDWARE\PCA9685\pca9685.c</PathWithFileName>
-      <FilenameWithoutPath>pca9685.c</FilenameWithoutPath>
+      <PathWithFileName>..\HARDWARE\PLAY\play.c</PathWithFileName>
+      <FilenameWithoutPath>play.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
