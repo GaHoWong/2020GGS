@@ -3,7 +3,7 @@
 ..\obj\delay.o: ..\SYSTEM\sys\sys.h
 ..\obj\delay.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\delay.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\delay.o: E:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\delay.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\delay.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\delay.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\delay.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h

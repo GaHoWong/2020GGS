@@ -15,5 +15,10 @@ void     DMA_USART3_Init(void);
 
 void USART2_Init(u32 bound );
 void DMA_USART2_Init(void);
+
+
+void TFmini_Init(void);
+
+
 #endif //__TFMINI_H
 

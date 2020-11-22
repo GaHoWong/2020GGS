@@ -1,30 +1,32 @@
 #ifndef __KEY_H
 #define __KEY_H	 
 #include "sys.h" 
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32开发板
-//按键输入驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2015/12/5
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	 
+
+//引脚定义
+/*******************************************************/
+#define KEY1_INT_GPIO_PORT                GPIOA
+#define KEY1_INT_GPIO_CLK                 RCC_AHB1Periph_GPIOA
+#define KEY1_INT_GPIO_PIN                 GPIO_Pin_0
+#define KEY1_INT_EXTI_PORTSOURCE          EXTI_PortSourceGPIOA
+#define KEY1_INT_EXTI_PINSOURCE           EXTI_PinSource0
+#define KEY1_INT_EXTI_LINE                EXTI_Line0
+#define KEY1_INT_EXTI_IRQ                 EXTI0_IRQn
+
+#define KEY1_IRQHandler                   EXTI0_IRQHandler
+
+#define KEY2_INT_GPIO_PORT                GPIOC
+#define KEY2_INT_GPIO_CLK                 RCC_AHB1Periph_GPIOC
+#define KEY2_INT_GPIO_PIN                 GPIO_Pin_13
+#define KEY2_INT_EXTI_PORTSOURCE          EXTI_PortSourceGPIOC
+#define KEY2_INT_EXTI_PINSOURCE           EXTI_PinSource13
+#define KEY2_INT_EXTI_LINE                EXTI_Line13
+#define KEY2_INT_EXTI_IRQ                 EXTI15_10_IRQn
+
+#define KEY2_IRQHandler                   EXTI15_10_IRQHandler
+
+/*******************************************************/
 
 
-#define KEY0 		PHin(3)   	//PH3
-#define KEY1 		PHin(2)		//PH2 
-#define KEY2 		PCin(13)	//PC13
-#define WK_UP 		PAin(0)		//PA0 
+void KEY_Init(void);
 
-#define KEY0_PRES 	1	//KEY0按下
-#define KEY1_PRES	2	//KEY1按下
-#define KEY2_PRES	3	//KEY2按下
-#define WKUP_PRES   4	//KEY_UP按下(即WK_UP)
-
-void KEY_Init(void);	//IO初始化
-u8 KEY_Scan(u8);  		//按键扫描函数					    
 #endif

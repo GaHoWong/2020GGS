@@ -3,7 +3,7 @@
 ..\obj\myiic.o: ..\SYSTEM\sys\sys.h
 ..\obj\myiic.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\myiic.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\myiic.o: E:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\myiic.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\myiic.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\myiic.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\myiic.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h

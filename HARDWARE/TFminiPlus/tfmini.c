@@ -59,6 +59,14 @@ volatile u16 USART2_RX_STA=0;               //bit15:Ω” ’ÕÍ≥…±Í÷æ   bit14~0:Ω” ’µ
 
 
 
+void TFmini_Init(void){
+	
+	USART3_Init(115200);
+	USART2_Init(115200);
+
+}
+
+
 
 void USART3_Init(u32 bound )
 {
@@ -376,7 +384,7 @@ void USART2_IRQHandler(void)                	//¥Æø⁄1÷–∂œ∑˛ŒÒ≥Ã–Ú
 
 			TFmini2_high = temp2_data;
 			
-			if(distance2 <= 120 && distance2 != 89 && distance2 != 86)
+			if(distance2 <= 1200 && distance2 != 89 && distance2 != 86)
 				lastdis2 = distance2;
 			distance2 = ((uint16_t)TFmini2_high<<8) | ((uint16_t)TFmini2_low);
 			if(lastdis2 >=distance2 && distance2 <= 120 && distance2 != 89 && distance2 != 86)

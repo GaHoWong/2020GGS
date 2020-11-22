@@ -3,7 +3,7 @@
 ..\obj\key.o: ..\SYSTEM\sys\sys.h
 ..\obj\key.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\key.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\key.o: E:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\key.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\key.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\key.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\key.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -39,4 +39,3 @@
 ..\obj\key.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\obj\key.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\key.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-..\obj\key.o: ..\SYSTEM\delay\delay.h

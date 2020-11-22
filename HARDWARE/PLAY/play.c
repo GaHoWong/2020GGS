@@ -1,7 +1,7 @@
 #include "play.h"
 
 
-void  Voice_Config(void)
+void  PLAY_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_AHB1PeriphClockCmd ( RCC_AHB1Periph_GPIOF, ENABLE); 	//IO口时钟配置
