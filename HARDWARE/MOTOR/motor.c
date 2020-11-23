@@ -95,7 +95,7 @@ int Motor4_PI(int Encoder,int Target)
 
 
 
-static void TIMx_NVIC_Configuration(void)
+static void TIM6_NVIC_Configuration(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure; 
     // 设置中断组为0
@@ -122,7 +122,7 @@ static void TIMx_NVIC_Configuration(void)
  * TIM_RepetitionCounter TIMx,x[1,8]才有(高级定时器)
  *-----------------------------------------------------------------------------
  */
-static void TIM_Mode_Config(void)
+static void TIM6_Mode_Config(void)
 {
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 
@@ -158,14 +158,10 @@ static void TIM_Mode_Config(void)
   * @param  无
   * @retval 无
   */
-void TIMx_Configuration(void)
+void TIM6_Init(void)
 {
-	
-	
-
-	TIMx_NVIC_Configuration();	
-//  
-  TIM_Mode_Config();
+	TIM6_NVIC_Configuration();	
+  TIM6_Mode_Config();
 }
 
 

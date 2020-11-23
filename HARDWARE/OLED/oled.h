@@ -17,5 +17,8 @@ void OLED_DISPLAY_8x16_BUFFER(u8 row,u8 *str);//显示8x16的字符串
 
 void OLED_DISPLAY_16x16(u8 x,u8 y,u16 w); //汉字显示
 void OLED_DISPLAY_PIC1(void);//图片显示
-		 				    
+void OLED_ShowNum(unsigned char x, unsigned char y,unsigned int num);//显示int型数字		 				    
+								
+								
+								
 #endif

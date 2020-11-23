@@ -1,6 +1,7 @@
 #include "oled.h"
 #include "ASCII_8x16.h" //引入字体 ASCII
-
+#include "stdio.h" 
+#include "stdlib.h"
 #include "CHS_16x16.h" //引入汉字字体 
 #include "PIC1.h" //引入图片
 
@@ -113,4 +114,11 @@ void OLED_DISPLAY_PIC1(void){ //显示全屏图片
 }
  
 
-
+void OLED_ShowNum(unsigned char x, unsigned char y,unsigned int num)
+{
+	char buf[32]= {0};
+	sprintf(buf,"%4d",num);
+	
+//	itoa(num,buf,10);
+	OLED_DISPLAY_8x16(x,y,(u16)buf);
+}

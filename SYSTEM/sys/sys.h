@@ -141,7 +141,7 @@ extern int moto;
 extern u8 Flag_Stop;            //停止标志位
 extern int Encoder[4],Position;               //编码器的脉冲计数
 
-
+extern float Kp,Ki;
 
 
 

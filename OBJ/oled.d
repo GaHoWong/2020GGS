@@ -41,5 +41,7 @@
 ..\obj\oled.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\oled.o: ..\SYSTEM\i2c\i2c.h
 ..\obj\oled.o: ..\HARDWARE\OLED\ASCII_8x16.h
+..\obj\oled.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\oled.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\oled.o: ..\HARDWARE\OLED\CHS_16x16.h
 ..\obj\oled.o: ..\HARDWARE\OLED\PIC1.h

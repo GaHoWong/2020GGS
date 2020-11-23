@@ -1,5 +1,7 @@
 #include "key.h"
 #include "led.h"
+#include "motor.h"
+
  /**
   * @brief  配置嵌套向量中断控制器NVIC
   * @param  无
@@ -94,6 +96,8 @@ void KEY1_IRQHandler(void)
 	{
 		// LED1 取反		
 		LED1_TOGGLE;
+		Kp++;
+		
     //清除中断标志位
 		EXTI_ClearITPendingBit(KEY1_INT_EXTI_LINE);     
 	}  

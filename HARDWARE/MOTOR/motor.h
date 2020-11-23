@@ -108,7 +108,7 @@ int num_String(int x, char *s);
 #define BASIC_TIM_IRQHandler    TIM6_DAC_IRQHandler
 
 ///////////////////
-void TIMx_Configuration(void); //定时器中断初始化
+void TIM6_Init(void); //定时器中断初始化
 void MOTOR_Init(void);         //电机初始化
 
 

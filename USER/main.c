@@ -86,13 +86,13 @@ int main(void)
 	OLED_DISPLAY_8x16(1,0,'K'); //显示字符串
 	OLED_DISPLAY_8x16(1,8,'P'); //显示字符串
 	OLED_DISPLAY_8x16(1,16,':'); //显示字符串
-	OLED_DISPLAY_8x16(1,24,'1'); //显示字符串
-	OLED_DISPLAY_8x16(1,32,'2'); //显示字符串
+	OLED_ShowNum(1,24,Kp); //显示字符串
+	OLED_DISPLAY_8x16(1,32,Kp-'0'); //显示字符串
 	OLED_DISPLAY_8x16(1,40,'3'); //显示字符串
 	OLED_DISPLAY_8x16(1,64,'K'); //显示字符串
 	OLED_DISPLAY_8x16(1,72,'I'); //显示字符串
 	OLED_DISPLAY_8x16(1,80,':'); //显示字符串
-	OLED_DISPLAY_8x16(1,88,'1'); //显示字符串
+	OLED_DISPLAY_8x16(1,88,Ki); //显示字符串
 	OLED_DISPLAY_8x16(1,96,'2'); //显示字符串
 	OLED_DISPLAY_8x16(1,104,'3'); //显示字符串
 	
@@ -106,7 +106,7 @@ int main(void)
 	LED1 = 0;                       //板载LED灯亮起，说明整个初始化成功!
 
 
-	TIMx_Configuration();         //初始化定时6中断，这个必须放在最后，否者会错误	
+	TIM6_Init();                    //初始化定时6中断，这个必须放在最后，否者会错误	
 /***********调试区************/	
 
 
