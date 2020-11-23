@@ -119,7 +119,6 @@ int main(void)
 //	printf("ok");
 //	TIM8_PwmSetPulse(1,50);
 //	TIM8_PwmSetPulse(3,50);
-////	
 //  TIM1_PwmSetPulse(1,60);
 //	TIM1_PwmSetPulse(3,60);
 //	TIM124_PWMinit(20000,1000000);
