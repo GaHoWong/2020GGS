@@ -39,3 +39,4 @@
 ..\obj\breeze.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\obj\breeze.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\breeze.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+..\obj\breeze.o: ..\SYSTEM\delay\delay.h

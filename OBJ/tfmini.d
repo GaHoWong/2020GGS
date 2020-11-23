@@ -40,3 +40,6 @@
 ..\obj\tfmini.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\tfmini.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\tfmini.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\tfmini.o: ..\HARDWARE\OLED\oled.h
+..\obj\tfmini.o: ..\SYSTEM\sys\sys.h
+..\obj\tfmini.o: ..\SYSTEM\i2c\i2c.h

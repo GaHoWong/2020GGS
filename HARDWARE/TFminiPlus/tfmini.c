@@ -1,6 +1,9 @@
 #include "tfmini.h"  
 #include "stdio.h"
 #include "stdarg.h"
+#include "oled.h"
+
+
 // 函数：usart IO口初始化
 //
 
@@ -388,7 +391,8 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 //				lastdis2 = distance2;
 			distance2 = ((uint16_t)TFmini2_high<<8) | ((uint16_t)TFmini2_low);
 			x = distance2;
-			printf("result x :%d\r\n" , x);
+			//                        1printf("result x :%d\r\n" , x);
+			OLED_DISPLAY_8x16(2,0,x);
 //			if(lastdis2 >=distance2 && distance2 <= 120 && distance2 != 89 && distance2 != 86)
 //				rx2_dis[num2++] = distance2;
 //			
@@ -467,7 +471,8 @@ void USART3_IRQHandler(void)                	//串口1中断服务程序
 //				lastdis3 = distance3;
 			distance3 = ((uint16_t)TFmini3_high<<8) | ((uint16_t)TFmini3_low);
 			y = distance3;
-			printf("result x :%d\r\n" , y);
+		//	printf("result x :%d\r\n" , y);
+			OLED_DISPLAY_8x16(2,0,y);
 //			if(lastdis3>=distance3 && distance3 <= 120 && distance3 != 89 && distance3 != 86)
 //				rx3_dis[num3++] = distance3;
 //			

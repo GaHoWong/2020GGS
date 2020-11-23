@@ -162,8 +162,7 @@ void TIMx_Configuration(void)
 {
 	
 	
-	TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
-	TIM8_PWM_Init(TIM8_Period,0);
+
 	TIMx_NVIC_Configuration();	
 //  
   TIM_Mode_Config();
@@ -377,14 +376,18 @@ void  BASIC_TIM_IRQHandler (void)
 		Encoder[2]=Read_Encoder(4);                     //取定时器2计数器的值 
 		Encoder[3]=Read_Encoder(5);                     //取定时器2计数器的值 
 		
+		OLED_Encoder[0] = (u8) Encoder[0];
+		
+		
+		
 		
 //		Encoder[0] = TIM_GetCounter(TIM4);	
 //		printf("%d\r\n ", Encoder[0]);
 //		TIM_SetCounter(TIM4,0);
-		PWM[0] =  Motor1_PI(Encoder[3],Target_Speed[0]); //  MOTOR1 的 PWM的计算
-		PWM[1] =  Motor2_PI(Encoder[2],Target_Speed[1]); //  MOTOR1 的 PWM的计算
-		PWM[2] =  Motor3_PI(Encoder[1],Target_Speed[2]); //  MOTOR1 的 PWM的计算
-		PWM[3] =  Motor4_PI(Encoder[0],Target_Speed[3]); //  MOTOR1 的 PWM的计算
+		PWM[0] =  Motor1_PI(Encoder[0],Target_Speed[0]); //  MOTOR1 的 PWM的计算
+		PWM[1] =  Motor2_PI(Encoder[1],Target_Speed[1]); //  MOTOR2 的 PWM的计算
+		PWM[2] =  Motor3_PI(Encoder[2],Target_Speed[2]); //  MOTOR3 的 PWM的计算
+		PWM[3] =  Motor4_PI(Encoder[3],Target_Speed[3]); //  MOTOR4 的 PWM的计算
 		
 		TIM8->CCR3 = PWM[0] - 3000;                            //  MOTOR1 的 PWM赋值
 		TIM1->CCR2 = PWM[1] - 3000;                            //  MOTOR2 的 PWM赋值
@@ -392,7 +395,11 @@ void  BASIC_TIM_IRQHandler (void)
 		TIM1->CCR4 = PWM[3] - 3000;                            //  MOTOR4 的 PWM赋值
 
 		
-	//	OLED_DISPLAY_8x16_BUFFER(4,Encoder[0]); //显示字符串
+	  OLED_DISPLAY_8x16(4,0,(u8)Encoder[0]-'0'); //显示MOTOR1编码器数值
+		OLED_DISPLAY_8x16(4,64,(u8)Encoder[1]-'0'); //显示MOTOR2编码器数值
+		OLED_DISPLAY_8x16(6,0,(u8)Encoder[2]-'0'); //显示MOTOR3编码器数值
+		OLED_DISPLAY_8x16(6,64,(u8)Encoder[3]-'0'); //显示MOTOR4编码器数值
+		
 		
 		
 //		printf("PWM0=%c \r\n PWM1=%c \r\n PWM2=%c \r\n PWM3=%c \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
@@ -400,11 +407,16 @@ void  BASIC_TIM_IRQHandler (void)
 //			TIM8_PwmSetPulse(3,58);
 //			TIM1_PwmSetPulse(2,64);
 //			TIM1_PwmSetPulse(4,64);
-    printf("Encoder0=%d \r\n Encoder1=%d \r\n Encoder2=%d \r\n Encoder3=%d \r\n",Encoder[0]-'0',Encoder[1]-'0',Encoder[2]-'0',Encoder[3]-'0');   
+//    printf("Encoder0=%d \r\n Encoder1=%d \r\n Encoder2=%d \r\n Encoder3=%d \r\n",Encoder[0]-'0',Encoder[1]-'0',Encoder[2]-'0',Encoder[3]-'0');   
 	 //moto=Incremental_PI(Encoder,0);    //===位置PID控制器
 	 //Xianfu_Pwm();
 		TIM_ClearITPendingBit(BASIC_TIM , TIM_IT_Update);  		 
 	}		 	
 }
 
+
+void MOTOR_Init(void){
+	TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
+	TIM8_PWM_Init(TIM8_Period,0);
+}
 
