@@ -150,6 +150,11 @@ int main(void)
 		
 		//printf("%s",suc2);
 		delay_ms(5000);
+		OLED_DISPLAY_8x16(4,0,Encoder[0]);   //显示MOTOR1编码器数值
+		OLED_DISPLAY_8x16(2,64,Encoder[1]);  //显示MOTOR1编码器数值
+		OLED_DISPLAY_8x16(4,0,Encoder[2]);   //显示MOTOR1编码器数值
+		OLED_DISPLAY_8x16(4,64,Encoder[3]);  //显示MOTOR1编码器数值
+		
 		/*TURN_1+=5;
 		if(TURN_1>180)
 			TURN_1=90;

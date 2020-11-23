@@ -357,7 +357,7 @@ void  TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse)
 
 void  BASIC_TIM_IRQHandler (void)
 {	
-	char OLED_Encoder[32]= {0};
+//	char OLED_Encoder[32]= {0};
 	int PWM[4],Encoder_Date[4],Target_Speed[4];              // 引入外部的变量
 		
 		Target_Speed[0] = 5000;
@@ -372,7 +372,6 @@ void  BASIC_TIM_IRQHandler (void)
 		Encoder[2]=Read_Encoder(4);                     //取定时器2计数器的值 
 		Encoder[3]=Read_Encoder(5);                     //取定时器2计数器的值 
 		
-		OLED_Encoder[0] = (u8) Encoder[0];
 		
 		
 		
@@ -391,12 +390,12 @@ void  BASIC_TIM_IRQHandler (void)
 		TIM1->CCR4 = PWM[3] - 3000;                            //  MOTOR4 的 PWM赋值
 
 		
-	  OLED_DISPLAY_8x16(4,0,(u8)Encoder[0]-'0'); //显示MOTOR1编码器数值
-		OLED_DISPLAY_8x16(4,64,(u8)Encoder[1]-'0'); //显示MOTOR2编码器数值
-		OLED_DISPLAY_8x16(6,0,(u8)Encoder[2]-'0'); //显示MOTOR3编码器数值
-		OLED_DISPLAY_8x16(6,64,(u8)Encoder[3]-'0'); //显示MOTOR4编码器数值
-		
-		
+//	  OLED_DISPLAY_8x16(4,0,(u8)Encoder[0]-'0'); //显示MOTOR1编码器数值
+//		OLED_DISPLAY_8x16(4,64,(u8)Encoder[1]-'0'); //显示MOTOR2编码器数值
+//		OLED_DISPLAY_8x16(6,0,(u8)Encoder[2]-'0'); //显示MOTOR3编码器数值
+//		OLED_DISPLAY_8x16(6,64,(u8)Encoder[3]-'0'); //显示MOTOR4编码器数值
+//		
+//		
 		
 //		printf("PWM0=%c \r\n PWM1=%c \r\n PWM2=%c \r\n PWM3=%c \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
 //			TIM8_PwmSetPulse(1,58);
