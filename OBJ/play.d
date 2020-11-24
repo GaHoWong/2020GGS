@@ -1,11 +1,11 @@
 ..\obj\play.o: ..\HARDWARE\PLAY\play.c
 ..\obj\play.o: ..\HARDWARE\PLAY\play.h
-..\obj\play.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-..\obj\play.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-..\obj\play.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\play.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\play.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\play.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\play.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\play.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\play.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\play.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\play.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\play.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\play.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h

@@ -1,9 +1,9 @@
 ..\obj\tfmini.o: ..\HARDWARE\TFminiPlus\tfmini.c
 ..\obj\tfmini.o: ..\HARDWARE\TFminiPlus\tfmini.h
-..\obj\tfmini.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\tfmini.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\tfmini.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\tfmini.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\tfmini.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\tfmini.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\tfmini.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\tfmini.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\tfmini.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -39,7 +39,7 @@
 ..\obj\tfmini.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\obj\tfmini.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\tfmini.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-..\obj\tfmini.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\tfmini.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\tfmini.o: ..\HARDWARE\OLED\oled.h
 ..\obj\tfmini.o: ..\SYSTEM\sys\sys.h
 ..\obj\tfmini.o: ..\SYSTEM\i2c\i2c.h

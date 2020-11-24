@@ -3,7 +3,7 @@
 ..\obj\motor.o: ..\SYSTEM\sys\sys.h
 ..\obj\motor.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\motor.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\motor.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\motor.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\motor.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\motor.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -43,4 +43,4 @@
 ..\obj\motor.o: ..\SYSTEM\control\control.h
 ..\obj\motor.o: ..\HARDWARE\OLED\oled.h
 ..\obj\motor.o: ..\SYSTEM\i2c\i2c.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\motor.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

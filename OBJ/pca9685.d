@@ -3,7 +3,7 @@
 ..\obj\pca9685.o: ..\SYSTEM\sys\sys.h
 ..\obj\pca9685.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\pca9685.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\pca9685.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\pca9685.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\pca9685.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\pca9685.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\pca9685.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -41,4 +41,4 @@
 ..\obj\pca9685.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\pca9685.o: ..\HARDWARE\24CXX\myiic.h
 ..\obj\pca9685.o: ..\SYSTEM\delay\delay.h
-..\obj\pca9685.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+..\obj\pca9685.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

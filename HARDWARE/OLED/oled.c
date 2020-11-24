@@ -5,6 +5,8 @@
 #include "CHS_16x16.h" //引入汉字字体 
 #include "PIC1.h" //引入图片
 #include "delay.h"
+#include "motor.h"
+
 
 void OLED0561_Init (void){//OLED屏开显示初始化
 	OLED_DISPLAY_OFF(); //OLED关显示
@@ -154,29 +156,43 @@ void OLED_SHOW(void){
 	OLED_DISPLAY_PIC1();            //显示全屏图片
 	delay_ms(1000);                 //延时（必须）
 	OLED_DISPLAY_CLEAR();           //清屏
-	//第1行
-	OLED_DISPLAY_8x16(0,0,'K'); //显示字符串
-	OLED_DISPLAY_8x16(0,8,'P'); //显示字符串
-	OLED_DISPLAY_8x16(0,16,':'); //显示字符串
-	OLED_DISPLAY_8x16(0,24,'1'); //显示字符串
-	OLED_DISPLAY_8x16(0,32,'2'); //显示字符串
-	OLED_DISPLAY_8x16(0,40,'3'); //显示字符串
-	OLED_DISPLAY_8x16(0,64,'K'); //显示字符串
-	OLED_DISPLAY_8x16(0,72,'I'); //显示字符串
-	OLED_DISPLAY_8x16(0,80,':'); //显示字符串
-	OLED_DISPLAY_8x16(0,88,'1'); //显示字符串
-	OLED_DISPLAY_8x16(0,96,'2'); //显示字符串
-	OLED_DISPLAY_8x16(0,104,'3'); //显示字符串
-	//第2行
-	OLED_DISPLAY_8x16(2,0,'X'); //显示字符串
-	OLED_DISPLAY_8x16(2,8,':'); //显示字符串
-	
-	OLED_DISPLAY_8x16(2,64,'Y'); //显示字符串
-	OLED_DISPLAY_8x16(2,72,':'); //显示字符串
+	//第1行显示PID参数
+	OLED_DISPLAY_8x16(0,0,'K'); 
+	OLED_DISPLAY_8x16(0,8,'P'); 
+	OLED_DISPLAY_8x16(0,16,':'); 
+	OLED_DISPLAY_8x16(0,24,(int)Kp/100%10+0x30);
+	OLED_DISPLAY_8x16(0,32,(int)Kp/10%10+0x30);
+	OLED_DISPLAY_8x16(0,40,(int)Kp%10+0x30);
 
+	OLED_DISPLAY_8x16(0,64,'K'); 
+	OLED_DISPLAY_8x16(0,72,'I'); 
+	OLED_DISPLAY_8x16(0,80,':'); 
+	OLED_DISPLAY_8x16(0,88,(int)Kp/100%10+0x30);
+	OLED_DISPLAY_8x16(0,96,(int)Kp/10%10+0x30);
+	OLED_DISPLAY_8x16(0,104,(int)Kp%10+0x30);
 	
 	
+	//第2行，显示TFmini数值
+	OLED_DISPLAY_8x16(2,0,'X'); 
+	OLED_DISPLAY_8x16(2,8,':');
 	
+	OLED_DISPLAY_8x16(2,64,'Y'); 
+	OLED_DISPLAY_8x16(2,72,':'); 
 	
-
+	//第3行，显示编码器13的数值
+	OLED_DISPLAY_8x16(0,0,'M'); 
+	OLED_DISPLAY_8x16(0,8,'1'); 
+	OLED_DISPLAY_8x16(0,16,':');
+	OLED_DISPLAY_8x16(0,64,'M'); 
+	OLED_DISPLAY_8x16(0,72,'3'); 
+	OLED_DISPLAY_8x16(0,80,':');
+	
+	//第4行，显示编码器24的数值
+	OLED_DISPLAY_8x16(0,0,'M'); 
+	OLED_DISPLAY_8x16(0,8,'2'); 
+	OLED_DISPLAY_8x16(0,16,':'); 
+	OLED_DISPLAY_8x16(0,64,'M'); 
+	OLED_DISPLAY_8x16(0,72,'4'); 
+	OLED_DISPLAY_8x16(0,80,':'); 
+	
 }

@@ -11,6 +11,7 @@ static  __IO u16 TIM8_Period = 8999;	// 定时器8的重载值
 #define PWM_MAX   5400
 #define PWM_MIN  -5400  //将PWM最大占空比设置为60
 
+extern float Kp,Ki;
 float Kp= 30,Ki=20;
 float K_Speed_Move = 7,K_Speed_Turn = 5;
 #define Target_Max  350

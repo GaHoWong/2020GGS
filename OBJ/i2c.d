@@ -3,7 +3,7 @@
 ..\obj\i2c.o: ..\SYSTEM\sys\sys.h
 ..\obj\i2c.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\i2c.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\i2c.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\i2c.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\i2c.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\i2c.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\i2c.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
