@@ -58,7 +58,8 @@ int main(void)
 	PAout(10) = 0;
 	delay_init(180);			          //初始化延时函数
 	//uart_init(90,115200);           //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
-	I2C_Configuration();            //硬件I2C初始化
+	K210_USART(90,115200);            //与K210进行通讯
+	I2C_Configuration();              //硬件I2C初始化
 	
 //	printf("STM32外设初始化成功！");
 	
@@ -93,13 +94,15 @@ int main(void)
 	delay_ms(200);
 
 //	printf("ok");
-//	TIM8_PwmSetPulse(1,50);
-//	TIM8_PwmSetPulse(3,50);
-//  TIM1_PwmSetPulse(1,60);
-//	TIM1_PwmSetPulse(3,60);
-	TIM12_PWMinit(20000,1000000);  //50hz
+//	TIM8_PwmSetPulse(1,62);
+//	TIM8_PwmSetPulse(4,62);
+//  TIM1_PwmSetPulse(1,65);
+//	TIM1_PwmSetPulse(4,65);
+//	TIM12_PWMinit(20000,1000000);  //50hz
+//	
+//	
 	
-	
+
 	
 //	Debug_USART_Config();
 

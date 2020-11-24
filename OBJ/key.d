@@ -42,3 +42,5 @@
 ..\obj\key.o: ..\HARDWARE\LED\led.h
 ..\obj\key.o: ..\HARDWARE\MOTOR\motor.h
 ..\obj\key.o: ..\HARDWARE\TIMER\timer.h
+..\obj\key.o: ..\HARDWARE\OLED\oled.h
+..\obj\key.o: ..\SYSTEM\i2c\i2c.h

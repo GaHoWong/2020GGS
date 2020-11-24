@@ -91,14 +91,7 @@ void Moter_IOs_Init(void);       // 电机方向控制IO初始化
 
 /*****************************************/
 
-
-
-
 int num_String(int x, char *s);
-
-
-
-
 
 
 #define BASIC_TIM           		TIM6
