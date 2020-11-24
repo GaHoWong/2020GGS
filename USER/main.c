@@ -87,7 +87,7 @@ int main(void)
 	LED0 = 0;                       //板载LED灯亮起
 	LED1 = 0;                       //板载LED灯亮起，说明整个初始化成功!
 
-	TFmini_Init();                   //初始化TFmini PLUS
+//	TFmini_Init();                   //初始化TFmini PLUS
 //	TIM6_Init();                    //初始化定时6中断，这个必须放在最后，否者会错误	
 /***********调试区************/	
 	delay_ms(200);
