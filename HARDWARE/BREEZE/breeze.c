@@ -7,7 +7,7 @@ void BREEZE_Init(void)
 {    	 
 	RCC->AHB1ENR|=1<<7;//使能PORTH 时钟 
 	GPIO_Set(GPIOH,PIN3,GPIO_MODE_OUT,GPIO_OTYPE_PP,GPIO_SPEED_100M,GPIO_PUPD_PU); //PH3设置
-	BREEZE=1;//BREEZE初始化完成响一声
+	BREEZE=0;//BREEZE初始化完成响一声
 	delay_ms(600);                  //延时等待
 	BREEZE = 0;                     
 }

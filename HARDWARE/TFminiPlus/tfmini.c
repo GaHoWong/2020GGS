@@ -123,7 +123,6 @@ void USART3_Init(u32 bound )
 
   //DMA_USART3_Init();                                                                    //串口 DMA 配置
  
-	printf("USART3 OK...\r\n");
 }
 
 void DMA_USART3_Init(void)
@@ -218,7 +217,6 @@ void USART2_Init(u32 bound )
 
   //DMA_USART2_Init();                                                                    //串口 DMA 配置
  
-	printf("USART2 OK...\r\n");
 }
 
 void DMA_USART2_Init(void)
@@ -346,16 +344,16 @@ void DMA1_Stream1_IRQHandler(void)
 		//printf("error:  %d \r\n",DMA_GetITStatus(DMA2_Stream5,DMA_IT_TCIF5));
 }
 
-
+//TF1 -> Y
 uint8_t temp2_data = 0;
 uint8_t TFmini2_low,TFmini2_high = 0;
 uint8_t flag2 = 0;
 uint8_t distance2 = 0;
 uint8_t lastdis2 = 0;
-uint8_t rx2_dis[30]= 0;
+uint8_t rx2_dis[30]= "0";
 uint8_t num2 = 0;
 uint16_t sum2 = 0;
-int x  = 0;
+int Y  = 0;
 void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
 	//printf("USAART1 stay\r\n");
@@ -390,9 +388,16 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 //			if(distance2 <= 1200 && distance2 != 89 && distance2 != 86)
 //				lastdis2 = distance2;
 			distance2 = ((uint16_t)TFmini2_high<<8) | ((uint16_t)TFmini2_low);
-			x = distance2;
+			Y = distance2;
 			//                        1printf("result x :%d\r\n" , x);
-			OLED_DISPLAY_8x16(2,0,x);
+	//		OLED_DISPLAY_8x16(6,8*8,(u8)Encoder[1]/10000%10+0x30);//显示温度值
+		OLED_DISPLAY_8x16(2,80,Y/1000%10+0x30);
+		OLED_DISPLAY_8x16(2,88,Y/100%10+0x30);
+		OLED_DISPLAY_8x16(2,96,Y/10%10+0x30);
+		OLED_DISPLAY_8x16(2,104,Y%10+0x30);
+//		OLED_DISPLAY_8x16(6,13*8,'C');//
+//z  					OLED_DISPLAY_8x16(2,0,x);
+			
 //			if(lastdis2 >=distance2 && distance2 <= 120 && distance2 != 89 && distance2 != 86)
 //				rx2_dis[num2++] = distance2;
 //			
@@ -432,10 +437,10 @@ uint8_t TFmini3_low,TFmini3_high = 0;
 uint8_t flag3 = 0;
 uint8_t distance3 = 0;
 uint8_t lastdis3 = 0;
-uint8_t rx3_dis[30]= 0;
+uint8_t rx3_dis[30]= "0";
 uint8_t num3 = 0;
 uint16_t sum3 = 0;
-int y = 0;
+int X = 0;
 void USART3_IRQHandler(void)                	//串口1中断服务程序
 {
 	//printf("USAART1 stay\r\n");
@@ -470,10 +475,17 @@ void USART3_IRQHandler(void)                	//串口1中断服务程序
 //			if(distance3 <= 120 && distance3 != 89 && distance3 != 86)
 //				lastdis3 = distance3;
 			distance3 = ((uint16_t)TFmini3_high<<8) | ((uint16_t)TFmini3_low);
-			y = distance3;
+			X = distance3;
+			OLED_DISPLAY_8x16(2,16,X/1000%10+0x30);
+			OLED_DISPLAY_8x16(2,24,X/100%10+0x30);
+			OLED_DISPLAY_8x16(2,32,X/10%10+0x30);
+			OLED_DISPLAY_8x16(2,40,X%10+0x30);			
+			
 		//	printf("result x :%d\r\n" , y);
-			OLED_DISPLAY_8x16(2,0,y);
-//			if(lastdis3>=distance3 && distance3 <= 120 && distance3 != 89 && distance3 != 86)
+		//	OLED_DISPLAY_8x16(2,0,y);
+
+			
+			//			if(lastdis3>=distance3 && distance3 <= 120 && distance3 != 89 && distance3 != 86)
 //				rx3_dis[num3++] = distance3;
 //			
 //			if(lastdis3 >= distance3)

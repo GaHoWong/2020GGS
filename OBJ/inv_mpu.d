@@ -1,9 +1,9 @@
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\driver\eMPL\inv_mpu.c
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\driver\eMPL\inv_mpu.h
 ..\obj\inv_mpu.o: ..\SYSTEM\sys\sys.h
 ..\obj\inv_mpu.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
@@ -46,8 +46,8 @@
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mllite\mpl.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\driver\include\mltypes.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\driver\include\stdint_invensense.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mllite\invensense.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mllite\data_builder.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mllite\hal_outputs.h
@@ -59,7 +59,7 @@
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mllite\start_manager.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mllite\storage_manager.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\driver\include\log.h
-..\obj\inv_mpu.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\inv_mpu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\driver\include\mlinclude.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mpl\invensense_adv.h
 ..\obj\inv_mpu.o: ..\HARDWARE\MPU9250\MPL\mpl\accel_auto_cal.h

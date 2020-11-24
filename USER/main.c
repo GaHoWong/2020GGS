@@ -71,31 +71,13 @@ int main(void)
 //	PLAY_Init();	                  //初始化语音播报模块
 	OLED0561_Init();                //初始化OLED显示屏
 	EncoderInit();	                //初始化编码器   
-
+	OLED_SHOW();                    //oled显示
 //	printf("硬件初始化成功！");     
 		
 /***********硬件初始化设置************/	
-	OLED_DISPLAY_LIT(100);          //OLED亮度设置
-	OLED_DISPLAY_PIC1();            //显示全屏图片
-	delay_ms(1000);                 //延时（必须）
-	OLED_DISPLAY_CLEAR();           //清屏
-//	OLED_DISPLAY_8x16_BUFFER(0,"KP:"); //显示字符串
-//	OLED_DISPLAY_8x16_BUFFER(2,"KI:");
-//	OLED_DISPLAY_8x16_BUFFER(4,"KD:"); //显示字符串
-//	OLED_DISPLAY_8x16_BUFFER(2,"KI:");
-	OLED_DISPLAY_8x16(1,0,'K'); //显示字符串
-	OLED_DISPLAY_8x16(1,8,'P'); //显示字符串
-	OLED_DISPLAY_8x16(1,16,':'); //显示字符串
-	OLED_ShowNum(1,24,Kp); //显示字符串
-	OLED_DISPLAY_8x16(1,32,Kp-'0'); //显示字符串
-	OLED_DISPLAY_8x16(1,40,'3'); //显示字符串
-	OLED_DISPLAY_8x16(1,64,'K'); //显示字符串
-	OLED_DISPLAY_8x16(1,72,'I'); //显示字符串
-	OLED_DISPLAY_8x16(1,80,':'); //显示字符串
-	OLED_DISPLAY_8x16(1,88,Ki); //显示字符串
-	OLED_DISPLAY_8x16(1,96,'2'); //显示字符串
-	OLED_DISPLAY_8x16(1,104,'3'); //显示字符串
 	
+	int a = 123;
+	//OLED_ShowNumber(2,0,a,3);
 	
 //	printf("%s", pro);              //增大音量
 	delay_ms(200);                  //延时等待
@@ -105,15 +87,9 @@ int main(void)
 	LED0 = 0;                       //板载LED灯亮起
 	LED1 = 0;                       //板载LED灯亮起，说明整个初始化成功!
 
-
-	TIM6_Init();                    //初始化定时6中断，这个必须放在最后，否者会错误	
+	TFmini_Init();                   //初始化TFmini PLUS
+//	TIM6_Init();                    //初始化定时6中断，这个必须放在最后，否者会错误	
 /***********调试区************/	
-
-
-//	OLED_DISPLAY_16x16(2,2*16,0);
-//	OLED_DISPLAY_16x16(2,3*16,1);
-//	OLED_DISPLAY_16x16(2,4*16,2);
-//	OLED_DISPLAY_16x16(2,5*16,3);
 	delay_ms(200);
 
 //	printf("ok");
@@ -121,39 +97,37 @@ int main(void)
 //	TIM8_PwmSetPulse(3,50);
 //  TIM1_PwmSetPulse(1,60);
 //	TIM1_PwmSetPulse(3,60);
-//	TIM124_PWMinit(20000,1000000);
+	TIM12_PWMinit(20000,1000000);  //50hz
 	
 	
 	
 //	Debug_USART_Config();
-	/*IIC_Init();
-	PCA9685_write(PCA9685_MODE1,0x0);
-	setPWMFreq(50);
-	GPIO_ResetBits(GPIOA,GPIO_Pin_4 | GPIO_Pin_5);
-	up();
-	TURN_1=90;
-	TURN_2=90;
-	TURN_3=90;
-	TURN_4=40;	
-	BEFORE[0]=TURN_1;
-	BEFORE[1]=TURN_2;
-	BEFORE[2]=TURN_3;
-	BEFORE[3]=TURN_4;
-	RETURN(BEFORE,TURN_1,TURN_2,TURN_3,TURN_4); */
-
-
 
 
 
 	while(1){
-		delay_ms(1000);
+//		TIM12_PwmSetPulse(1,40);
+//		delay_ms(200);
+//		TIM12_PwmSetPulse(1,20);
+//		delay_ms(285);
+//		TIM12_PwmSetPulse(1,0);
+//		delay_ms(2000);
+////		TIM12_PwmSetPulse(1,10);
+//		delay_ms(285);
+//		TIM12_PwmSetPulse(1,0);
+//		delay_ms(5000);
+//		TIM12_PwmSetPulse(1,80);
+//		delay_ms(1000);
 		
+//				TIM12_PwmSetPulse(1,0);
+//		delay_ms(200);
+//		TIM12_PwmSetPulse(1,50);
 		//printf("%s",suc2);
-		delay_ms(5000);
-		OLED_DISPLAY_8x16(4,0,Encoder[0]);   //显示MOTOR1编码器数值
-		OLED_DISPLAY_8x16(2,64,Encoder[1]);  //显示MOTOR1编码器数值
-		OLED_DISPLAY_8x16(4,0,Encoder[2]);   //显示MOTOR1编码器数值
-		OLED_DISPLAY_8x16(4,64,Encoder[3]);  //显示MOTOR1编码器数值
+//		delay_ms(5000);
+//		OLED_DISPLAY_8x16(4,0,Encoder[0]);   //显示MOTOR1编码器数值
+//		OLED_DISPLAY_8x16(2,64,Encoder[1]);  //显示MOTOR1编码器数值
+//		OLED_DISPLAY_8x16(4,0,Encoder[2]);   //显示MOTOR1编码器数值
+//		OLED_DISPLAY_8x16(4,64,Encoder[3]);  //显示MOTOR1编码器数值
 		
 		/*TURN_1+=5;
 		if(TURN_1>180)

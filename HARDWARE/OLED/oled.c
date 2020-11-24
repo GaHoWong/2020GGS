@@ -4,7 +4,7 @@
 #include "stdlib.h"
 #include "CHS_16x16.h" //引入汉字字体 
 #include "PIC1.h" //引入图片
-
+#include "delay.h"
 
 void OLED0561_Init (void){//OLED屏开显示初始化
 	OLED_DISPLAY_OFF(); //OLED关显示
@@ -113,12 +113,70 @@ void OLED_DISPLAY_PIC1(void){ //显示全屏图片
 	}
 }
  
-
-void OLED_ShowNum(unsigned char x, unsigned char y,unsigned int num)
+//m^noˉêy
+u32 oled_pow(u8 m,u8 n)
 {
-	char buf[32]= {0};
-	sprintf(buf,"%4d",num);
+	u32 result=1;	 
+	while(n--)result*=m;    
+	return result;
+}		
+
+
+//显示两个数字
+//x,y:起点坐标
+//len：数字的位数
+//size：字体的大小
+//mode：模式 0填充， 1叠加
+//num：数值（0~4294967295）
+void OLED_ShowNumber(u8 x,u8 y,u32 num,u8 len,u8 size)
+{         	
+	u8 t,temp;
+	u8 enshow=0;						   
+	for(t=0;t<len;t++)
+	{
+		temp=(num/oled_pow(10,len-t-1))%10;
+		if(enshow==0&&t<(len-1))
+		{
+			if(temp==0)
+			{
+				OLED_DISPLAY_8x16(x+16*t,y,' ');
+				continue;
+			}else enshow=1; 
+		 	 
+		}
+	 	OLED_DISPLAY_8x16(x+16*t,y,temp+'0'); 
+	}
+} 
+
+
+void OLED_SHOW(void){
+	OLED_DISPLAY_LIT(100);          //OLED亮度设置
+	OLED_DISPLAY_PIC1();            //显示全屏图片
+	delay_ms(1000);                 //延时（必须）
+	OLED_DISPLAY_CLEAR();           //清屏
+	//第1行
+	OLED_DISPLAY_8x16(0,0,'K'); //显示字符串
+	OLED_DISPLAY_8x16(0,8,'P'); //显示字符串
+	OLED_DISPLAY_8x16(0,16,':'); //显示字符串
+	OLED_DISPLAY_8x16(0,24,'1'); //显示字符串
+	OLED_DISPLAY_8x16(0,32,'2'); //显示字符串
+	OLED_DISPLAY_8x16(0,40,'3'); //显示字符串
+	OLED_DISPLAY_8x16(0,64,'K'); //显示字符串
+	OLED_DISPLAY_8x16(0,72,'I'); //显示字符串
+	OLED_DISPLAY_8x16(0,80,':'); //显示字符串
+	OLED_DISPLAY_8x16(0,88,'1'); //显示字符串
+	OLED_DISPLAY_8x16(0,96,'2'); //显示字符串
+	OLED_DISPLAY_8x16(0,104,'3'); //显示字符串
+	//第2行
+	OLED_DISPLAY_8x16(2,0,'X'); //显示字符串
+	OLED_DISPLAY_8x16(2,8,':'); //显示字符串
 	
-//	itoa(num,buf,10);
-	OLED_DISPLAY_8x16(x,y,(u16)buf);
+	OLED_DISPLAY_8x16(2,64,'Y'); //显示字符串
+	OLED_DISPLAY_8x16(2,72,':'); //显示字符串
+
+	
+	
+	
+	
+
 }

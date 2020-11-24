@@ -8,8 +8,8 @@
 
 static  __IO u16 TIM1_Period = 8999;	// 定时器1的重载值
 static  __IO u16 TIM8_Period = 8999;	// 定时器8的重载值
-#define PWM_MAX   8500
-#define PWM_MIN  -8500
+#define PWM_MAX   5400
+#define PWM_MIN  -5400  //将PWM最大占空比设置为60
 
 float Kp= 30,Ki=20;
 float K_Speed_Move = 7,K_Speed_Turn = 5;
@@ -352,29 +352,33 @@ void  TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse)
 }
 
 
-
 //int Target_velocity=50;  //设定速度控制的目标速度为50个脉冲每10ms
 
 void  BASIC_TIM_IRQHandler (void)
 {	
-//	char OLED_Encoder[32]= {0};
+	
 	int PWM[4],Encoder_Date[4],Target_Speed[4];              // 引入外部的变量
 		
-		Target_Speed[0] = 5000;
-		Target_Speed[1] = 5000;
-		Target_Speed[2] = 5000;
-		Target_Speed[3] = 5000;
+		Target_Speed[0] = 12000;
+		Target_Speed[1] = 12000;
+		Target_Speed[2] = 12000;
+		Target_Speed[3] = 12000;
 		
 	if ( TIM_GetITStatus( BASIC_TIM, TIM_IT_Update) != RESET ) 
 	{	
+		                                                //显示MOTOR1编码器数值
+//		OLED_DISPLAY_8x16_BUFFER(4,64,Read_Encoder(3)); //显示MOTOR2编码器数值
+//		OLED_DISPLAY_8x16_BUFFER(6,0,Read_Encoder(4)); //显示MOTOR3编码器数值
+//		OLED_DISPLAY_8x16_BUFFER(6,64,Read_Encoder(5)); //显示MOTOR4编码器数值
+		
+		
 		Encoder[0]=Read_Encoder(2);                     //取定时器2计数器的值 
 		Encoder[1]=Read_Encoder(3);                     //取定时器2计数器的值 
 		Encoder[2]=Read_Encoder(4);                     //取定时器2计数器的值 
 		Encoder[3]=Read_Encoder(5);                     //取定时器2计数器的值 
 		
-		
-		
-		
+	//	OLED_ShowNumber(4,0,123,3,12);
+
 		
 //		Encoder[0] = TIM_GetCounter(TIM4);	
 //		printf("%d\r\n ", Encoder[0]);
@@ -384,18 +388,17 @@ void  BASIC_TIM_IRQHandler (void)
 		PWM[2] =  Motor3_PI(Encoder[2],Target_Speed[2]); //  MOTOR3 的 PWM的计算
 		PWM[3] =  Motor4_PI(Encoder[3],Target_Speed[3]); //  MOTOR4 的 PWM的计算
 		
-		TIM8->CCR3 = PWM[0] - 3000;                            //  MOTOR1 的 PWM赋值
-		TIM1->CCR2 = PWM[1] - 3000;                            //  MOTOR2 的 PWM赋值
-		TIM8->CCR1 = PWM[2] - 3000;                            //  MOTOR3 的 PWM赋值
-		TIM1->CCR4 = PWM[3] - 3000;                            //  MOTOR4 的 PWM赋值
-
-		
-//	  OLED_DISPLAY_8x16(4,0,(u8)Encoder[0]-'0'); //显示MOTOR1编码器数值
-//		OLED_DISPLAY_8x16(4,64,(u8)Encoder[1]-'0'); //显示MOTOR2编码器数值
-//		OLED_DISPLAY_8x16(6,0,(u8)Encoder[2]-'0'); //显示MOTOR3编码器数值
-//		OLED_DISPLAY_8x16(6,64,(u8)Encoder[3]-'0'); //显示MOTOR4编码器数值
+		TIM8->CCR3 = PWM[0]-500;                            //  MOTOR1 的 PWM赋值
+		TIM1->CCR2 = PWM[1]-500;                            //  MOTOR2 的 PWM赋值
+		TIM8->CCR1 = PWM[2]-500;                            //  MOTOR3 的 PWM赋值
+		TIM1->CCR4 = PWM[3]-500;                            //  MOTOR4 的 PWM赋值
 //		
-//		
+//		OLED_DISPLAY_8x16(6,8*8,(u8)Encoder[1]/10000%10+0x30);//显示温度值
+//		OLED_DISPLAY_8x16(6,9*8,(u8)Encoder[1]/1000%10+0x30);//
+//		OLED_DISPLAY_8x16(6,10*8,(u8)Encoder[1]/100%10+0x30);//
+//		OLED_DISPLAY_8x16(6,11*8,(u8)Encoder[1]/10%10+0x30);//
+//		OLED_DISPLAY_8x16(6,12*8,(u8)Encoder[1]%10+0x30);//
+//		OLED_DISPLAY_8x16(6,13*8,'C');//
 		
 //		printf("PWM0=%c \r\n PWM1=%c \r\n PWM2=%c \r\n PWM3=%c \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
 //			TIM8_PwmSetPulse(1,58);

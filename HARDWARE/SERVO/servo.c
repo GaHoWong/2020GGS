@@ -31,7 +31,7 @@ void  TIM12_GPIO_Config	(void)
 /******************************************************************************************************
 *	函 数 名: TIM12_PwmSetPulse
 *	入口参数: TIM12_CH - 定时器通道选择，可选 TIM_CH1/2/3/4
-*				 pulse - 占空比，范围 0-100
+*				 pulse - 占空比，范围 8-25是极限
 *	返 回 值: 无
 *	函数功能: 设置TIM12的PWM占空比
 *	说    明: 
@@ -87,5 +87,5 @@ void	TIM12_PWMinit(u16 period,u32 frequency)
 	
 	TIM_ARRPreloadConfig(TIM12,ENABLE);	//	使能自动重载
 	TIM_Cmd(TIM12,ENABLE); 					//	使能TIM12		
-	TIM12_PwmSetPulse (1,50); 		//	设置占空比为50%
+	TIM12_PwmSetPulse (1,0); 		//	设置占空比为50%
 }

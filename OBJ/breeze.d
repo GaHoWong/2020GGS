@@ -3,7 +3,7 @@
 ..\obj\breeze.o: ..\SYSTEM\sys\sys.h
 ..\obj\breeze.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\breeze.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\breeze.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\breeze.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\breeze.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\breeze.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\breeze.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h

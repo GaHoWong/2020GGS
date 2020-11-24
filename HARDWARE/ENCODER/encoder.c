@@ -244,54 +244,68 @@ void EncoderInit(void){
 
 
 
-u8 Read_Encoder(u8 TIMX)//读取计数器的值
+//u8 Read_Encoder(u8 TIMX)//读取计数器的值
+//{
+//  int Encoder_TIM;
+//	switch(TIMX)
+//	{
+//	  case 2:
+//					if(TIM2->CR1&0x10)              // 旋转方向判断
+//					{                             
+//						Encoder_TIM= 0xffffffff - TIM2->CNT;
+//						TIM2->CNT = 0xffffffff;     //如果是这种方向时 TIMx->CNT 是 -- 的
+//					}else {
+//						Encoder_TIM = TIM2->CNT;//如果是这种方向时 TIMx->CNT 是 ++ 的
+//						TIM2->CNT = 0;
+//					}
+//					break;
+//	  case 3:												
+//					if(TIM3->CR1&0x10)           // 这里应该注意， 不同的定时器的最大值是不同的，这主要是因为定时器的位数是不同的
+//					{                            // TIM2 TIM5 是32位定时器 最大值是0xffffffff TIM3 TIM4是16位定时器，最大值是 0xffff
+//					Encoder_TIM = 0xffff - TIM3->CNT;
+//					TIM3->CNT = 0xffff;
+//					}else{
+//					Encoder_TIM = TIM3->CNT;
+//					TIM3->CNT = 0;			
+//					}			
+//					break;
+//	  case 4:
+//					if(TIM4->CR1&0x10)
+//					{
+//						Encoder_TIM= 0xffff - TIM4->CNT;
+//						TIM4->CNT = 0xffff;
+//					}else {
+//						Encoder_TIM = TIM4->CNT;
+//						TIM4->CNT = 0;
+//						}
+//					break;
+//		case 5:
+//					if(TIM5->CR1&0x10)
+//					{
+//						Encoder_TIM = 0xffffffff - TIM5->CNT;
+//						TIM5->CNT = 0xffffffff;
+//					}else 
+//					{
+//						Encoder_TIM = TIM5->CNT;
+//						TIM5->CNT = 0;	
+//					}
+//					break;
+//		default: Encoder_TIM=0;
+//	}
+//  return Encoder_TIM;
+//}
+
+
+int Read_Encoder(u8 TIMX)    //读取计数器的值
 {
-  int Encoder_TIM;
-	switch(TIMX)
-	{
-	  case 2:
-					if(TIM2->CR1&0x10)              // 旋转方向判断
-					{                             
-						Encoder_TIM= 0xffffffff - TIM2->CNT;
-						TIM2->CNT = 0xffffffff;     //如果是这种方向时 TIMx->CNT 是 -- 的
-					}else {
-						Encoder_TIM = TIM2->CNT;//如果是这种方向时 TIMx->CNT 是 ++ 的
-						TIM2->CNT = 0;
-					}
-					break;
-	  case 3:												
-					if(TIM3->CR1&0x10)           // 这里应该注意， 不同的定时器的最大值是不同的，这主要是因为定时器的位数是不同的
-					{                            // TIM2 TIM5 是32位定时器 最大值是0xffffffff TIM3 TIM4是16位定时器，最大值是 0xffff
-					Encoder_TIM = 0xffff - TIM3->CNT;
-					TIM3->CNT = 0xffff;
-					}else{
-					Encoder_TIM = TIM3->CNT;
-					TIM3->CNT = 0;			
-					}			
-					break;
-	  case 4:
-					if(TIM4->CR1&0x10)
-					{
-						Encoder_TIM= 0xffff - TIM4->CNT;
-						TIM4->CNT = 0xffff;
-					}else {
-						Encoder_TIM = TIM4->CNT;
-						TIM4->CNT = 0;
-						}
-					break;
-		case 5:
-					if(TIM5->CR1&0x10)
-					{
-						Encoder_TIM = 0xffffffff - TIM5->CNT;
-						TIM5->CNT = 0xffffffff;
-					}else 
-					{
-						Encoder_TIM = TIM5->CNT;
-						TIM5->CNT = 0;	
-					}
-					break;
-		default: Encoder_TIM=0;
-	}
-  return Encoder_TIM;
+   int Encoder_TIM;    
+   switch(TIMX)
+	 {
+	   case 2:  Encoder_TIM= (short)TIM2 -> CNT;   TIM2 -> CNT=0;  break;
+		 case 3:  Encoder_TIM= (short)TIM3 -> CNT;   TIM3 -> CNT=0; break;	// 
+		 case 4:  Encoder_TIM= (short)TIM4 -> CNT;   TIM4 -> CNT=0;  break;	
+		 default: Encoder_TIM=0;
+	 }
+		return Encoder_TIM;
 }
 

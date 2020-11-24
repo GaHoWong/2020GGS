@@ -3,8 +3,8 @@
 #include "sys.h"
 
 #define I2CPORT		GPIOB	//定义IO接口
-#define I2C_SCL		GPIO_Pin_6	//定义IO接口
-#define I2C_SDA		GPIO_Pin_7	//定义IO接口
+#define I2C_SCL		GPIO_Pin_8	//定义IO接口
+#define I2C_SDA		GPIO_Pin_9	//定义IO接口
 
 #define HostAddress	0xc0	//总线主机的器件地址
 #define BusSpeed	200000	
