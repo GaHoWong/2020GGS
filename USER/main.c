@@ -42,7 +42,7 @@ int fputc(int c, FILE *fp)
 {
 
 	USART_SendData( USART1,(u8)c );	// 发送单字节数据
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);	//等待发送完毕 
+	while (USART_GetFlagStatus(USART6, USART_FLAG_TXE) == RESET);	//等待发送完毕 
 
 	return (c); //返回字符
 }
@@ -59,6 +59,7 @@ int main(void)
 	delay_init(180);			          //初始化延时函数
 	uart_init(90,115200);           //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
 //	K210_USART(90,115200);            //与K210进行通讯
+	USART6_Init(115200);
 	I2C_Configuration();              //硬件I2C初始化
 	
 //	printf("STM32外设初始化成功！");
@@ -123,7 +124,7 @@ int main(void)
 
 	while(1){
 		
-		//printf("1");
+		printf("1");
 		
 //		TIM12_PwmSetPulse(1,40);
 		delay_ms(200);

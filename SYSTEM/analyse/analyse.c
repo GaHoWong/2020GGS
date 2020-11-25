@@ -15,10 +15,13 @@ int sign_y;
 */
 void analyse(u8 data)
 {
+	
+	
+	//printf("%s",data);
 	static u8 RxBuffer[10];
 	static u8 state = 0;
-/*通信格式 0xAA 0x55 data1 data2 checkout 0x54*/	
-/*其中checkout=(data1+data2)低八位  比如 data1=0xe1,data2=0xf3,data1+data2=0x1d4,则checkout=0xd4*/
+/*通信格式 0xAA data0 data1 data2 checkout 0x54*/	
+/*其中checkout=(data1+data2)低八位  比如 data0 = 0x00,data1=0xe1,data2=0xf3,data1+data2=0x1d4,则checkout=0xd4*/
 	if(state==0&&data==0xAA)
 		state=1;
 	else if(state==1)
@@ -29,7 +32,7 @@ void analyse(u8 data)
 	else if(state==2)
 	{
 		RxBuffer[1]=data; //x坐标
-			state=3;
+		state=3;
 	}
 	else if(state==3)
 	{	
@@ -38,19 +41,20 @@ void analyse(u8 data)
 	}
 	else if(state==4)
 	{	
-		RxBuffer[2]=data;//checkout
+		RxBuffer[3]=data;//checkout
 		state = 5;
 	}
 
 	else if(state==5&&data==0x54)
 	{	
-		if(RxBuffer[2]==(u8)(RxBuffer[0]+RxBuffer[1]))//校验成功
+		if(RxBuffer[3]==(u8)(RxBuffer[1]+RxBuffer[2]))//校验成功
 		{
 		sign  = RxBuffer[0];
 		sign_x=RxBuffer[1];
 		sign_y=RxBuffer[2];
-		printf("%d",sign_x);
-		printf("%d",sign_y);
+		//printf("%d",sign);
+		printf("%d \r\n",sign_x);
+		//printf("%d",sign_y);
 		}
 	
 		state = 0;

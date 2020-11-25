@@ -42,3 +42,4 @@
 ..\obj\usart.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\usart.o: ..\HARDWARE\OLED\oled.h
 ..\obj\usart.o: ..\SYSTEM\i2c\i2c.h
+..\obj\usart.o: ..\HARDWARE\LED\led.h

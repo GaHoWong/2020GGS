@@ -1,6 +1,7 @@
 #include "sys.h"
 #include "usart.h"	
 #include "oled.h"
+#include "led.h"
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //如果使用ucos,则包括下面的头文件即可.
 #if SYSTEM_SUPPORT_OS
@@ -184,6 +185,9 @@ void USART6_Init(u32 bound )
 void USART6_IRQHandler(void)
 {	
 	u8 Data=0;
+	
+	LED1_TOGGLE;
+	
     if (USART_GetFlagStatus(USART6, USART_FLAG_PE) != RESET)
    {
        USART_ReceiveData(USART6);
@@ -206,6 +210,7 @@ void USART6_IRQHandler(void)
         USART_ClearFlag(USART6, USART_FLAG_RXNE);
         USART_ClearITPendingBit(USART6, USART_IT_RXNE);
         Data = USART_ReceiveData(USART6);
+		 //printf("%c",Data);
         analyse(Data); //处理函数
     } 
 } 
