@@ -46,7 +46,7 @@ void analyse(u8 data)
 	{	
 		if(RxBuffer[2]==(u8)(RxBuffer[0]+RxBuffer[1]))//校验成功
 		{
-		sign  = RxBuffer;
+		sign  = RxBuffer[0];
 		sign_x=RxBuffer[1];
 		sign_y=RxBuffer[2];
 		printf("%d",sign_x);
