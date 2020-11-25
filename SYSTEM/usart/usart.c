@@ -1,5 +1,6 @@
 #include "sys.h"
-#include "usart.h"	  
+#include "usart.h"	
+#include "oled.h"
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //如果使用ucos,则包括下面的头文件即可.
 #if SYSTEM_SUPPORT_OS
@@ -58,34 +59,64 @@ u16 USART6_RX_STA=0;       //接收状态标记
   
 void USART1_IRQHandler(void)
 {
-	u8 res;	
-#if SYSTEM_SUPPORT_OS 		//如果SYSTEM_SUPPORT_OS为真，则需要支持OS.
-	OSIntEnter();    
-#endif
-	if(USART1->SR&(1<<5))//接收到数据
-	{	 
-		res=USART1->DR; 
-		if((USART_RX_STA&0x8000)==0)//接收未完成
-		{
-			if(USART_RX_STA&0x4000)//接收到了0x0d
-			{
-				if(res!=0x0a)USART_RX_STA=0;//接收错误,重新开始
-				else USART_RX_STA|=0x8000;	//接收完成了 
-			}else //还没收到0X0D
-			{	
-				if(res==0x0d)USART_RX_STA|=0x4000;
-				else
-				{
-					USART_RX_BUF[USART_RX_STA&0X3FFF]=res;
-					USART_RX_STA++;
-					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//接收数据错误,重新开始接收	  
-				}		 
-			}
-		}  		 									     
-	} 
-#if SYSTEM_SUPPORT_OS 	//如果SYSTEM_SUPPORT_OS为真，则需要支持OS.
-	OSIntExit();  											 
-#endif
+u8 Data=0;
+    if (USART_GetFlagStatus(USART1, USART_FLAG_PE) != RESET)
+   {
+       USART_ReceiveData(USART1);
+     USART_ClearFlag(USART1, USART_FLAG_PE);
+   }
+   if (USART_GetFlagStatus(USART1, USART_FLAG_ORE) != RESET)
+   {
+       USART_ReceiveData(USART1);
+     USART_ClearFlag(USART1, USART_FLAG_ORE);
+   }
+    
+    if (USART_GetFlagStatus(USART1, USART_FLAG_FE) != RESET)
+   {
+       USART_ReceiveData(USART1);
+      USART_ClearFlag(USART1, USART_FLAG_FE);
+   }
+//为了避免接收错误,将一些不正常状态滤掉
+    if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+    {   
+        USART_ClearFlag(USART1, USART_FLAG_RXNE);
+        USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+        Data = USART_ReceiveData(USART1);
+		OPENMV_date_anl(Data); //处理函数
+    } 
+//	u8 res;	
+//#if SYSTEM_SUPPORT_OS 		//如果SYSTEM_SUPPORT_OS为真，则需要支持OS.
+//	OSIntEnter();    
+//#endif
+//	if(USART1->SR&(1<<5))//接收到数据
+//	{	 
+//		res=USART1->DR; 
+//		if((USART_RX_STA&0x8000)==0)//接收未完成
+//		{
+//			if(USART_RX_STA&0x4000)//接收到了0x0d
+//			{
+//				if(res!=0x0a)USART_RX_STA=0;//接收错误,重新开始
+//				else USART_RX_STA|=0x8000;	//接收完成了 
+//			}else //还没收到0X0D
+//			{	
+//				if(res==0x0d)USART_RX_STA|=0x4000;
+//				else
+//				{
+//					USART_RX_BUF[USART_RX_STA&0X3FFF]=res;
+//					USART_RX_STA++;
+//					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//接收数据错误,重新开始接收	  
+//				}		 
+//			}
+//		}  		 									     
+//	} 
+//#if SYSTEM_SUPPORT_OS 	//如果SYSTEM_SUPPORT_OS为真，则需要支持OS.
+//	OSIntExit();  											 
+//#endif
+
+
+
+
+
 } 
 #endif										 
 //初始化IO 串口1
@@ -157,29 +188,104 @@ void K210_USART(u32 pclk2,u32 bound){
 
 void USART6_IRQHandler(void)
 {
-	u8 res;	
-	if(USART6->SR&(1<<5))//接收到数据
-	{	 
-		res=USART6->DR; 
-		if((USART6_RX_STA&0x8000)==0)//接收未完成
-		{
-			if(USART6_RX_STA&0x4000)//接收到了0x0d
-			{
-				if(res!=0x0a)USART6_RX_STA=0;//接收错误,重新开始
-				else USART6_RX_STA|=0x8000;	//接收完成了 
-			}else //还没收到0X0D
-			{	
-				if(res==0x0d)USART6_RX_STA|=0x4000;
-				else
-				{
-					USART6_RX_BUF[USART6_RX_STA&0X3FFF]=res;
-					USART6_RX_STA++;
-					if(USART6_RX_STA>(USART6_REC_LEN-1))USART6_RX_STA=0;//接收数据错误,重新开始接收	  
-				}		 
-			}
-		}  		 									     
-	} 
+//	u8 res;	
+//	if(USART6->SR&(1<<5))//接收到数据
+//	{	 
+//		res=USART6->DR; 
+//		if((USART6_RX_STA&0x8000)==0)//接收未完成
+//		{
+//			if(USART6_RX_STA&0x4000)//接收到了0x0d
+//			{
+//				if(res!=0x0a)USART6_RX_STA=0;//接收错误,重新开始
+//				else USART6_RX_STA|=0x8000;	//接收完成了 
+//			}else //还没收到0X0D
+//			{	
+//				if(res==0x0d)USART6_RX_STA|=0x4000;
+//				else
+//				{
+//					USART6_RX_BUF[USART6_RX_STA&0X3FFF]=res;
+//					USART6_RX_STA++;
+//					if(USART6_RX_STA>(USART6_REC_LEN-1))USART6_RX_STA=0;//接收数据错误,重新开始接收	  
+//				}		 
+//			}
+//		}  		 									     
+//	} 
+	u8 Data=0;
+    if (USART_GetFlagStatus(USART6, USART_FLAG_PE) != RESET)
+   {
+       USART_ReceiveData(USART6);
+     USART_ClearFlag(USART6, USART_FLAG_PE);
+   }
+   if (USART_GetFlagStatus(USART6, USART_FLAG_ORE) != RESET)
+   {
+       USART_ReceiveData(USART6);
+     USART_ClearFlag(USART6, USART_FLAG_ORE);
+   }
+    
+    if (USART_GetFlagStatus(USART6, USART_FLAG_FE) != RESET)
+   {
+       USART_ReceiveData(USART6);
+      USART_ClearFlag(USART6, USART_FLAG_FE);
+   }
+//为了避免接收错误,将一些不正常状态滤掉
+    if(USART_GetITStatus(USART6, USART_IT_RXNE) != RESET)
+    {   
+        USART_ClearFlag(USART6, USART_FLAG_RXNE);
+        USART_ClearITPendingBit(USART6, USART_IT_RXNE);
+        Data = USART_ReceiveData(USART6);
+		OPENMV_date_anl(Data); //处理函数
+    } 
+
+
 } 
+
+
+
+
+extern int boll_x;
+extern int boll_y;
+void OPENMV_date_anl(u8 data)
+{
+	static u8 RxBuffer[10];
+	static u8 state = 0;
+/*通信格式 0xAA 0x55 data1 data2 checkout 0x54*/	
+/*其中checkout=(data1+data2)低八位  比如 data1=0xe1,data2=0xf3,data1+data2=0x1d4,则checkout=0xd4*/
+	if(state==0&&data==0xAA)
+		state=1;
+	else if(state==1&&data==0x55)
+		state=2;
+	else if(state==2)
+	{
+		RxBuffer[0]=data;//x
+			state=3;
+	}
+	else if(state==3)
+	{	
+		RxBuffer[1]=data;//y
+		state = 4;
+	}
+	else if(state==4)
+	{	
+		RxBuffer[2]=data;//checkout
+		state = 5;
+	}
+
+	else if(state==5&&data==0x54)
+	{	
+		if(RxBuffer[2]==(u8)(RxBuffer[0]+RxBuffer[1]))//校验成功
+		{
+		boll_x=RxBuffer[0];
+		boll_y=RxBuffer[1];
+
+		}
+	
+		state = 0;
+	}
+	else
+		state = 0;
+}
+
+
 
 
 

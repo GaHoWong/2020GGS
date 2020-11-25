@@ -18,7 +18,7 @@ void TIM5_ENC_Init(void);
 void Encoder_Init_TIM5(void);
 
 void Caculate_Encoder(void);
-
+int Read_Encoder(int TIMX);
 
 
 

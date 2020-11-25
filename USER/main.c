@@ -57,8 +57,8 @@ int main(void)
 	PAout(9) = 0;
 	PAout(10) = 0;
 	delay_init(180);			          //初始化延时函数
-	//uart_init(90,115200);           //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
-	K210_USART(90,115200);            //与K210进行通讯
+	uart_init(90,115200);           //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
+//	K210_USART(90,115200);            //与K210进行通讯
 	I2C_Configuration();              //硬件I2C初始化
 	
 //	printf("STM32外设初始化成功！");
@@ -68,12 +68,12 @@ int main(void)
 //	SDRAM_Init();	       			  //初始化SDRAM 		
 	LED_Init();		            			//初始化与LED连接的硬件接口
 	KEY_Init();					            //初始化按键
-	BREEZE_Init();                  //初始化蜂鸣器
+//	BREEZE_Init();                  //初始化蜂鸣器
 //	PLAY_Init();	                  //初始化语音播报模块
 	OLED0561_Init();                //初始化OLED显示屏
 	EncoderInit();	                //初始化编码器   
 	OLED_SHOW();                    //oled显示
-//	printf("硬件初始化成功！");     
+	printf("硬件初始化成功！");     
 		
 /***********硬件初始化设置************/	
 	
@@ -107,10 +107,28 @@ int main(void)
 //	Debug_USART_Config();
 
 
+////////////////////逻辑///////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
 	while(1){
+		
+		//printf("1");
+		
 //		TIM12_PwmSetPulse(1,40);
-//		delay_ms(200);
+		delay_ms(200);
+		
+
 //		TIM12_PwmSetPulse(1,20);
 //		delay_ms(285);
 //		TIM12_PwmSetPulse(1,0);
