@@ -26,7 +26,7 @@
 #define	TIM9_CH2_PORT						GPIOE
 #define	TIM9_CH2_CLK						RCC_AHB1Periph_GPIOE
 #define  TIM9_CH2_PIN						GPIO_Pin_6
-#define  TIM9_CH2_AF             		GPIO_AF_ TIM9
+#define  TIM9_CH2_AF             		GPIO_AF_TIM9
 #define  TIM9_CH2_PinSource      		GPIO_PinSource6
 
 
@@ -47,6 +47,9 @@
 
 void TIM12_PWMinit(u16 period,u32 frequency);		// 初始化 TIM12 ，并进行PWM的设置
 void TIM12_PwmSetPulse (u8 TIM12_CH,u8 pulse);		// 设置TIM12的PWM占空比
-	
+
+void TIM9_PWMinit(u16 period,u32 frequency);		// 初始化 TIM12 ，并进行PWM的设置
+void TIM9_PwmSetPulse (u8 TIM9_CH,u8 pulse);		// 设置TIM12的PWM占空比
+
 #endif
 

@@ -24,8 +24,6 @@
 
 
 
-
-
 int sign = 0;
 int sign_x = 0 ;
 int sign_y = 0;
@@ -56,8 +54,8 @@ char close2[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x32,0xba,0xc5,0xce,0xef,0xc1,0
 int fputc(int c, FILE *fp)//语音播报模块为UART7
 {
 
-	USART_SendData( USART1,(u8)c );	// 发送单字节数据
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);	//等待发送完毕 
+	USART_SendData( UART7,(u8)c );	// 发送单字节数据
+	while (USART_GetFlagStatus(UART7, USART_FLAG_TXE) == RESET);	//等待发送完毕 
 
 	return (c); //返回字符
 }
@@ -66,18 +64,21 @@ int fputc(int c, FILE *fp)//语音播报模块为UART7
 
 void GO_BACK(void){
 	
-	TIM8_PwmSetPulse(1,62);
-	TIM8_PwmSetPulse(3,62);
-   TIM1_PwmSetPulse(1,65);
-	TIM1_PwmSetPulse(3,65);
-	delay_ms(100);
-	TIM8_PwmSetPulse(1,0);
-	TIM8_PwmSetPulse(3,0);
-   TIM1_PwmSetPulse(1,0);
-	TIM1_PwmSetPulse(3,0);
-	
+	TIM8_PwmSetPulse(1,70);
+	TIM8_PwmSetPulse(3,70);
+   TIM1_PwmSetPulse(2,65);
+	TIM1_PwmSetPulse(4,65);
 }
 
+
+
+void GO(void){
+	
+	TIM8_PwmSetPulse(1,62);
+	TIM8_PwmSetPulse(3,62);
+   TIM1_PwmSetPulse(2,65);
+	TIM1_PwmSetPulse(4,65);
+}
 
 
 int main(void)
@@ -89,9 +90,9 @@ int main(void)
 	Stm32_Clock_Init(360,25,2,8);   //设置时钟,180Mhz
 
 	delay_init(180);			          //初始化延时函数
-	uart_init(90,115200);             //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
-//	PAout(9) = 0;
-//	PAout(10) = 0;
+//	uart_init(90,115200);             //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
+	PAout(9) = 0;
+	PAout(10) = 0;
 //	K210_USART(90,115200);            //与K210进行通讯
 	USART6_Init(115200);              //与OPEN MV进行通讯
 	I2C_Configuration();              //硬件I2C初始化
@@ -106,7 +107,7 @@ int main(void)
 	BREEZE_Init();                  //初始化蜂鸣器
 //	PLAY_Init();	                  //初始化语音播报模块
 //	OLED0561_Init();                 //初始化OLED显示屏
-//	EncoderInit();	                  //初始化编码器   
+	EncoderInit();	                  //初始化编码器   
 //	OLED_SHOW();                     //oled显示  
 		
 /***********硬件初始化设置************/	
@@ -114,7 +115,7 @@ int main(void)
 //	int a = 123;
 	//OLED_ShowNumber(2,0,a,3);
 	
-	printf("%s", pro);              //增大音量
+//	printf("%s", pro);              //增大音量
 	delay_ms(200);                  //延时等待
 	
 /***********初始化完成************/	
@@ -123,16 +124,26 @@ int main(void)
 	LED1 = 0;                       //板载LED灯亮起，说明整个初始化成功!
 
 //  	TFmini_Init();                   //初始化TFmini PLUS
-//	TIM6_Init();                    //初始化定时6中断，这个必须放在最后，否者会错误	
+	TIM6_Init();                    //初始化定时6中断，这个必须放在最后，否者会错误	
 /***********调试区************/	
 	delay_ms(200);
 
 	TIM12_PWMinit(20000,1000000);  //50hz
-//	TIM9_PWMinit(20000,1000000);  //50hz
+	TIM9_PWMinit(20000,1000000);  //50hz
 
 void ontrol(int sign,int sign_x,int sign_y);
 
 
+//		TIM12_PwmSetPulse(1,8);//1号物料仓打开
+//		delay_ms(500);
+//		TIM12_PwmSetPulse(1,22);//1号物料仓关闭
+//		delay_ms(500);
+//		
+//		
+//		TIM12_PwmSetPulse(2,8);//2号物料仓打开
+//		delay_ms(500);
+//		TIM12_PwmSetPulse(2,22);//2号物料仓关闭
+//		delay_ms(500);
 
 
 
@@ -145,27 +156,28 @@ TIM12_PwmSetPulse(1,20);
 delay_ms(500);
 task_flag = 0;
 
-	while(1){		
-		//ontrol(sign,sign_x,sign_y);
+while(1){		
 		
+		//GO();
+		delay_ms(100);
+		
+		//ontrol(sign,sign_x,sign_y);
+//		TIM9_PwmSetPulse(2,22);
+//		delay_ms(2000);
+//		TIM9_PwmSetPulse(2,12);
+//		delay_ms(2000);
+//		TIM9_PwmSetPulse(2,22);
+//		delay_ms(1500);
+//		
 		
 //		delay_ms(100);
 		//sign_x++;
 //		printf("1");
 	//	GO_BACK();
 		
-		TIM12_PwmSetPulse(1,8);
-		delay_ms(500);
-		TIM12_PwmSetPulse(1,22);
-		delay_ms(500);
+
 		
 		
-		
-		TIM12_PwmSetPulse(2,8);
-		delay_ms(500);
-		TIM12_PwmSetPulse(2,22);
-		delay_ms(500);
-	
 //		TIM12_PwmSetPulse(1,20);
 //		delay_ms(500);
 
