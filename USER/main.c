@@ -104,10 +104,10 @@ int main(void)
 	LED_Init();		            			//初始化与LED连接的硬件接口
 	KEY_Init();					            //初始化按键
 	BREEZE_Init();                  //初始化蜂鸣器
-	PLAY_Init();	                  //初始化语音播报模块
-	OLED0561_Init();                 //初始化OLED显示屏
-	EncoderInit();	                  //初始化编码器   
-	OLED_SHOW();                     //oled显示  
+//	PLAY_Init();	                  //初始化语音播报模块
+//	OLED0561_Init();                 //初始化OLED显示屏
+//	EncoderInit();	                  //初始化编码器   
+//	OLED_SHOW();                     //oled显示  
 		
 /***********硬件初始化设置************/	
 	
@@ -127,22 +127,8 @@ int main(void)
 /***********调试区************/	
 	delay_ms(200);
 
-//	printf("ok");
-
-//	TIM12_PWMinit(20000,1000000);  //50hz
-//	
-//	
-	
-
-	
-//	Debug_USART_Config();
-
-
-////////////////////逻辑///////////////////
-
-
-
-
+	TIM12_PWMinit(20000,1000000);  //50hz
+	TIM9_PWMinit(20000,1000000);  //50hz
 
 void ontrol(int sign,int sign_x,int sign_y);
 
@@ -155,8 +141,8 @@ sign_x = 0;
 sign_y = 0;
 
 
-
-
+TIM12_PwmSetPulse(1,20);
+delay_ms(500);
 task_flag = 0;
 
 	while(1){		
@@ -167,16 +153,39 @@ task_flag = 0;
 		//sign_x++;
 //		printf("1");
 	//	GO_BACK();
-//		TIM12_PwmSetPulse(1,40);
-		delay_ms(100);
-
+		
+		TIM12_PwmSetPulse(1,8);
+		delay_ms(500);
+		TIM12_PwmSetPulse(1,22);
+		delay_ms(500);
+		
+		
+		
+		TIM12_PwmSetPulse(2,8);
+		delay_ms(500);
+		TIM12_PwmSetPulse(2,22);
+		delay_ms(500);
+	
+		TIM9_PwmSetPulse(2,8);
+		delay_ms(500);
+		TIM9_PwmSetPulse(2,22);
+		delay_ms(500);
+	
+		TIM9_PwmSetPulse(1,8);
+		delay_ms(500);
+		TIM9_PwmSetPulse(1,22);
+		delay_ms(500);		
+		
 //		TIM12_PwmSetPulse(1,20);
-//		delay_ms(285);
-//		TIM12_PwmSetPulse(1,0);
-//		delay_ms(2000);
+//		delay_ms(500);
+
 //		TIM12_PwmSetPulse(1,10);
 //		delay_ms(285);
-//		TIM12_PwmSetPulse(1,0);
+//		TIM12_PwmSetPulse(2,10);
+//		delay_ms(2000);
+//		TIM12_PwmSetPulse(2,30);
+//		delay_ms(285);
+//		TIM9_PwmSetPulse(1,0);
 //		delay_ms(5000);
 //		TIM12_PwmSetPulse(1,80);
 //		delay_ms(1000);

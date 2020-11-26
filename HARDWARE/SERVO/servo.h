@@ -11,6 +11,29 @@
 #define  TIM12_CH1_AF             GPIO_AF_TIM12
 #define  TIM12_CH1_PinSource      GPIO_PinSource14
 
+#define	TIM12_CH2_PORT						GPIOB
+#define	TIM12_CH2_CLK						RCC_AHB1Periph_GPIOB
+#define  TIM12_CH2_PIN						GPIO_Pin_15
+#define  TIM12_CH2_AF               GPIO_AF_TIM12
+#define  TIM12_CH2_PinSource        GPIO_PinSource15
+
+#define	TIM9_CH1_PORT						GPIOE
+#define	TIM9_CH1_CLK						RCC_AHB1Periph_GPIOE
+#define  TIM9_CH1_PIN						GPIO_Pin_5
+#define  TIM9_CH1_AF             		GPIO_AF_TIM9
+#define  TIM9_CH1_PinSource      		GPIO_PinSource5
+
+#define	TIM9_CH2_PORT						GPIOE
+#define	TIM9_CH2_CLK						RCC_AHB1Periph_GPIOE
+#define  TIM9_CH2_PIN						GPIO_Pin_6
+#define  TIM9_CH2_AF             		GPIO_AF_ TIM9
+#define  TIM9_CH2_PinSource      		GPIO_PinSource6
+
+
+
+
+
+
 /*--------------------------------- 宏 -------------------------------------*/
 
 #define TimerClkAPB1 45000000		//挂载在 APB1 时钟线上的定时器时钟频率为 90M
