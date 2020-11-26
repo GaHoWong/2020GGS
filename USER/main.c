@@ -128,7 +128,7 @@ int main(void)
 	delay_ms(200);
 
 	TIM12_PWMinit(20000,1000000);  //50hz
-	TIM9_PWMinit(20000,1000000);  //50hz
+//	TIM9_PWMinit(20000,1000000);  //50hz
 
 void ontrol(int sign,int sign_x,int sign_y);
 
@@ -166,16 +166,6 @@ task_flag = 0;
 		TIM12_PwmSetPulse(2,22);
 		delay_ms(500);
 	
-		TIM9_PwmSetPulse(2,8);
-		delay_ms(500);
-		TIM9_PwmSetPulse(2,22);
-		delay_ms(500);
-	
-		TIM9_PwmSetPulse(1,8);
-		delay_ms(500);
-		TIM9_PwmSetPulse(1,22);
-		delay_ms(500);		
-		
 //		TIM12_PwmSetPulse(1,20);
 //		delay_ms(500);
 

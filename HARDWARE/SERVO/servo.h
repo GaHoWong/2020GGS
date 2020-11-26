@@ -6,16 +6,16 @@
 /*--------------------------------	IO≈‰÷√ ----------------------------------*/
 
 #define	TIM12_CH1_PORT						GPIOB
-#define	TIM12_CH1_CLK							RCC_AHB1Periph_GPIOB
+#define	TIM12_CH1_CLK						RCC_AHB1Periph_GPIOB
 #define  TIM12_CH1_PIN						GPIO_Pin_14
-#define  TIM12_CH1_AF             GPIO_AF_TIM12
-#define  TIM12_CH1_PinSource      GPIO_PinSource14
+#define  TIM12_CH1_AF             		GPIO_AF_TIM12
+#define  TIM12_CH1_PinSource      		GPIO_PinSource14
 
 #define	TIM12_CH2_PORT						GPIOB
 #define	TIM12_CH2_CLK						RCC_AHB1Periph_GPIOB
 #define  TIM12_CH2_PIN						GPIO_Pin_15
-#define  TIM12_CH2_AF               GPIO_AF_TIM12
-#define  TIM12_CH2_PinSource        GPIO_PinSource15
+#define  TIM12_CH2_AF               	GPIO_AF_TIM12
+#define  TIM12_CH2_PinSource        	GPIO_PinSource15
 
 #define	TIM9_CH1_PORT						GPIOE
 #define	TIM9_CH1_CLK						RCC_AHB1Periph_GPIOE
