@@ -2,9 +2,9 @@
 
 
 
-int sign;
-int sign_x;
-int sign_y;
+//int sign;
+//int sign_x;
+//int sign_y;
 
 
 
@@ -52,7 +52,7 @@ void analyse(u8 data)
 		sign  = RxBuffer[0];
 		sign_x=RxBuffer[1];
 		sign_y=RxBuffer[2];
-
+		
 		}
 	
 		state = 0;
@@ -60,6 +60,9 @@ void analyse(u8 data)
 	else
 		state = 0;
 }
+
+
+
 
 
 

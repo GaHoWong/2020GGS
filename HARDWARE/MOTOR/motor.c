@@ -12,7 +12,7 @@ static  __IO u16 TIM8_Period = 8999;	// 定时器8的重载值
 #define PWM_MIN  -5400  //将PWM最大占空比设置为60
 
 extern float Kp,Ki;
-float Kp= 30,Ki=20;
+float Kp= 3,Ki=2;
 float K_Speed_Move = 7,K_Speed_Turn = 5;
 #define Target_Max  350
 
@@ -46,7 +46,7 @@ void Moter_Target_limit(short int *A,short int *B,short int *C,short int *D)
 int Moter_PWM_Limit(int PWM)
 {
 	if(PWM > PWM_MAX ) PWM = PWM_MAX;
-	if(PWM < PWM_MIN ) PWM = PWM_MIN;
+	if(PWM < PWM_MIN ) PWM = PWM_MAX;
 	return  PWM;
 }
 
@@ -89,6 +89,32 @@ int Motor4_PI(int Encoder,int Target)
 }
 
 
+////平衡小车之家的代码
+
+
+
+
+/**************************************************************************
+函数功能：增量PI控制器
+入口参数：编码器测量值，目标速度
+返回  值：电机PWM
+根据增量式离散PID公式 
+pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)]
+e(k)代表本次偏差 
+e(k-1)代表上一次的偏差  以此类推 
+pwm代表增量输出
+在我们的速度控制闭环系统里面，只使用PI控制
+pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)
+**************************************************************************/
+int Incremental_PI (int Encoder,int Target)
+{ 	
+   float Kp=20,Ki=30;	
+	 static int Bias,Pwm,Last_bias;
+	 Bias=Encoder-Target;                //计算偏差
+	 Pwm+=Kp*(Bias-Last_bias)+Ki*Bias;   //增量式PI控制器
+	 Last_bias=Bias;	                   //保存上一次偏差 
+	 return Pwm;                         //增量输出
+}
 
 
 
@@ -360,13 +386,14 @@ void  BASIC_TIM_IRQHandler (void)
 	
 	int PWM[4],Target_Speed[4];              // 引入外部的变量
 		
-		Target_Speed[0] = 12000;
-		Target_Speed[1] = 12000;
-		Target_Speed[2] = 12000;
-		Target_Speed[3] = 12000;
+		Target_Speed[0] = 5000;
+		Target_Speed[1] = 5000;
+		Target_Speed[2] = 5000;
+		Target_Speed[3] = 5000;
 		
 	if ( TIM_GetITStatus( BASIC_TIM, TIM_IT_Update) != RESET ) 
 	{	
+
 		                                                //显示MOTOR1编码器数值
 //		OLED_DISPLAY_8x16_BUFFER(4,64,Read_Encoder(3)); //显示MOTOR2编码器数值
 //		OLED_DISPLAY_8x16_BUFFER(6,0,Read_Encoder(4)); //显示MOTOR3编码器数值
@@ -384,27 +411,58 @@ void  BASIC_TIM_IRQHandler (void)
 //		Encoder[0] = TIM_GetCounter(TIM4);	
 //		printf("%d\r\n ", Encoder[0]);
 //		TIM_SetCounter(TIM4,0);
-		PWM[0] =  Motor1_PI(Encoder[0],Target_Speed[0]); //  MOTOR1 的 PWM的计算
-		PWM[1] =  Motor2_PI(Encoder[1],Target_Speed[1]); //  MOTOR2 的 PWM的计算
-		PWM[2] =  Motor3_PI(Encoder[2],Target_Speed[2]); //  MOTOR3 的 PWM的计算
-		PWM[3] =  Motor4_PI(Encoder[3],Target_Speed[3]); //  MOTOR4 的 PWM的计算
+	   PWM[0] = Incremental_PI(Encoder[0 ],Target_Speed[0]);
+		PWM[1] = Incremental_PI(Encoder[0],Target_Speed[0]);
+		PWM[2] = Incremental_PI(Encoder[0],Target_Speed[0]);
+		PWM[3] = Incremental_PI(Encoder[0],Target_Speed[0]);
+		Moter_PWM_Limit(PWM[0]);
+		Moter_PWM_Limit(PWM[1]);
+		Moter_PWM_Limit(PWM[2]);
+		Moter_PWM_Limit(PWM[3]);
+		
+		
+		
+//		PWM[0] =  Motor1_PI(Encoder[0],Target_Speed[0]); //  MOTOR1 的 PWM的计算
+//		PWM[1] =  Motor2_PI(Encoder[1],Target_Speed[1]); //  MOTOR2 的 PWM的计算
+//		PWM[2] =  Motor3_PI(Encoder[2],Target_Speed[2]); //  MOTOR3 的 PWM的计算
+//		PWM[3] =  Motor4_PI(Encoder[3],Target_Speed[3]); //  MOTOR4 的 PWM的计算
 		
 		TIM8->CCR3 = PWM[0]-500;                            //  MOTOR1 的 PWM赋值
-		//TIM1->CCR2 = PWM[1]-500;                            //  MOTOR2 的 PWM赋值
+		TIM1->CCR4 = PWM[1]-500;                            //  MOTOR2 的 PWM赋值
 		TIM8->CCR1 = PWM[2]-500;                            //  MOTOR3 的 PWM赋值
-		//TIM1->CCR4 = PWM[3]-500;                            //  MOTOR4 的 PWM赋值
-//		
-//		OLED_DISPLAY_8x16(6,8*8,(u8)Encoder[1]/10000%10+0x30);//显示温度值
-//		OLED_DISPLAY_8x16(6,9*8,(u8)Encoder[1]/1000%10+0x30);//
-//		OLED_DISPLAY_8x16(6,10*8,(u8)Encoder[1]/100%10+0x30);//
-//		OLED_DISPLAY_8x16(6,11*8,(u8)Encoder[1]/10%10+0x30);//
-//		OLED_DISPLAY_8x16(6,12*8,(u8)Encoder[1]%10+0x30);//
+		TIM1->CCR2 = PWM[3]-500;                            //  MOTOR4 的 PWM赋值
+		
+		
+		
+		
+//		OLED_DISPLAY_8x16(4,0*8,(u8)Encoder[0]/10000%10+0x30);
+//		OLED_DISPLAY_8x16(4,1*8,(u8)Encoder[0]/1000%10+0x30);
+//		OLED_DISPLAY_8x16(4,2*8,(u8)Encoder[0]/100%10+0x30);
+//		OLED_DISPLAY_8x16(4,3*8,(u8)Encoder[0]/10%10+0x30);
+//		OLED_DISPLAY_8x16(4,4*8,(u8)Encoder[0]%10+0x30);
 
-	
+//		OLED_DISPLAY_8x16(4,7*8,(u8)Encoder[1]/10000%10+0x30);
+//		OLED_DISPLAY_8x16(4,8*8,(u8)Encoder[1]/1000%10+0x30);
+//		OLED_DISPLAY_8x16(4,9*8,(u8)Encoder[1]/100%10+0x30);
+//		OLED_DISPLAY_8x16(4,10*8,(u8)Encoder[1]/10%10+0x30);
+//		OLED_DISPLAY_8x16(4,11*8,(u8)Encoder[1]%10+0x30);
+
+//		OLED_DISPLAY_8x16(6,0*8,(u8)Encoder[2]/10000%10+0x30);
+//		OLED_DISPLAY_8x16(6,1*8,(u8)Encoder[2]/1000%10+0x30);
+//		OLED_DISPLAY_8x16(6,2*8,(u8)Encoder[2]/100%10+0x30);
+//		OLED_DISPLAY_8x16(6,3*8,(u8)Encoder[2]/10%10+0x30);
+//		OLED_DISPLAY_8x16(6,4*8,(u8)Encoder[2]%10+0x30);
+
+//		OLED_DISPLAY_8x16(6,7*8,(u8)Encoder[3]/10000%10+0x30);
+//		OLED_DISPLAY_8x16(6,8*8,(u8)Encoder[3]/1000%10+0x30);
+//		OLED_DISPLAY_8x16(6,9*8,(u8)Encoder[3]/100%10+0x30);
+//		OLED_DISPLAY_8x16(6,10*8,(u8)Encoder[3]/10%10+0x30);
+//		OLED_DISPLAY_8x16(6,11*8,(u8)Encoder[3]%10+0x30);
 
 
 
-		printf("PWM0=%c \r\n PWM1=%c \r\n PWM2=%c \r\n PWM3=%c \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
+
+		printf("PWM0=%d \r\n PWM1=%d \r\n PWM2=%d \r\n PWM3=%d \r\n",PWM[0],PWM[1],PWM[2],PWM[3]);
 //			TIM8_PwmSetPulse(1,58);
 //			TIM8_PwmSetPulse(3,58);
 //			TIM1_PwmSetPulse(2,64);
@@ -421,4 +479,24 @@ void MOTOR_Init(void){
 	//TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
 	TIM8_PWM_Init(TIM8_Period,0);
 }
+
+
+
+
+/**************************************************************************
+函数功能：小车运动数学模型
+入口参数：X Y 速度或者位置
+返回  值：无
+**************************************************************************/
+//void GO_TO(int sign,int sign_x,int sign_y)
+//{
+
+//		Moter_Target_limit(temp,temp+1,temp+2,temp+3);	
+//    TIM_Cmd(TIM7,DISABLE);
+//		Target_A = temp[0];
+//		Target_B = temp[1];
+//		Target_C = temp[2];
+//		Target_D = temp[3];
+//    TIM_Cmd(TIM7,ENABLE);
+//}
 

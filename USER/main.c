@@ -26,9 +26,9 @@
 
 
 
-//int sign;
-//int sign_x;
-//int sign_y;
+int sign = 0;
+int sign_x = 0 ;
+int sign_y = 0;
 
 u8 flag_Stop=1;      //停止标志位
 int  Encoder[4];     //编码器的脉冲计数
@@ -48,12 +48,12 @@ char arr1[30] = {0xb5,0xbd,0xb4,0xef,0x31,0xba,0xc5,0xca,0xd5,0xbb,0xf5,0xb5,0xe
 //到达2号收货点，请出示提货码
 char arr2[30] = {0xb5,0xbd,0xb4,0xef,0x32,0xba,0xc5,0xca,0xd5,0xbb,0xf5,0xb5,0xe3,0xa3,0xac,0xc7,0xeb,0xb3,0xf6,0xca,0xbe,0xcc,0xe1,0xbb,0xf5,0xc2,0xeb};
 //请取出1号物料，并关闭仓门
-char suc1[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x31,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
+char close1[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x31,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
 //请取出2号物料，并关闭仓门
-char suc2[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x32,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
+char close2[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x32,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
 
 //重定向printf函数
-int fputc(int c, FILE *fp)//语音播报模块为uart7
+int fputc(int c, FILE *fp)//语音播报模块为UART7
 {
 
 	USART_SendData( USART1,(u8)c );	// 发送单字节数据
@@ -62,6 +62,24 @@ int fputc(int c, FILE *fp)//语音播报模块为uart7
 	return (c); //返回字符
 }
 
+
+
+void GO_BACK(void){
+	
+	TIM8_PwmSetPulse(1,62);
+	TIM8_PwmSetPulse(3,62);
+   TIM1_PwmSetPulse(1,65);
+	TIM1_PwmSetPulse(3,65);
+	delay_ms(100);
+	TIM8_PwmSetPulse(1,0);
+	TIM8_PwmSetPulse(3,0);
+   TIM1_PwmSetPulse(1,0);
+	TIM1_PwmSetPulse(3,0);
+	
+}
+
+
+
 int main(void)
 {
 /***********变量定义************/	
@@ -69,10 +87,11 @@ int main(void)
 	
 /***********STM32外设初始化************/	
 	Stm32_Clock_Init(360,25,2,8);   //设置时钟,180Mhz
-	PAout(9) = 0;
-	PAout(10) = 0;
+
 	delay_init(180);			          //初始化延时函数
 	uart_init(90,115200);             //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
+//	PAout(9) = 0;
+//	PAout(10) = 0;
 //	K210_USART(90,115200);            //与K210进行通讯
 	USART6_Init(115200);              //与OPEN MV进行通讯
 	I2C_Configuration();              //硬件I2C初始化
@@ -109,10 +128,7 @@ int main(void)
 	delay_ms(200);
 
 //	printf("ok");
-//	TIM8_PwmSetPulse(1,62);
-//	TIM8_PwmSetPulse(4,62);
-//  TIM1_PwmSetPulse(1,65)
-//	TIM1_PwmSetPulse(4,65);
+
 //	TIM12_PWMinit(20000,1000000);  //50hz
 //	
 //	
@@ -128,42 +144,37 @@ int main(void)
 
 
 
+void ontrol(int sign,int sign_x,int sign_y);
 
 
 
 
 
+sign = 1;
+sign_x = 0;
+sign_y = 0;
 
-task_flag = 1;
 
-	while(1){
+
+
+task_flag = 0;
+
+	while(1){		
+		//ontrol(sign,sign_x,sign_y);
 		
-		printf("s = %d \r\n",sign);
-		printf("x = %d \r\n",sign_x);
-		printf("y = %d \r\n",sign_y);
-	
 		
-		
-//		if(task_flag == 1)  //如果task_flag=1，则任务为11，
-//		{
-//			printf("%s",open1);
-//			task_flag = 0;
-//			delay_ms(5000);
-//			break;
-//		}
-		//else 
-//		
+//		delay_ms(100);
+		//sign_x++;
 //		printf("1");
-//		
-////		TIM12_PwmSetPulse(1,40);
-		delay_ms(2000);
-		
+	//	GO_BACK();
+//		TIM12_PwmSetPulse(1,40);
+		delay_ms(100);
 
 //		TIM12_PwmSetPulse(1,20);
 //		delay_ms(285);
 //		TIM12_PwmSetPulse(1,0);
 //		delay_ms(2000);
-////		TIM12_PwmSetPulse(1,10);
+//		TIM12_PwmSetPulse(1,10);
 //		delay_ms(285);
 //		TIM12_PwmSetPulse(1,0);
 //		delay_ms(5000);
@@ -175,10 +186,10 @@ task_flag = 1;
 //		TIM12_PwmSetPulse(1,50);
 		//printf("%s",suc2);
 //		delay_ms(5000);
-//		OLED_DISPLAY_8x16(4,0,Encoder[0]);   //显示MOTOR1编码器数值
-//		OLED_DISPLAY_8x16(2,64,Encoder[1]);  //显示MOTOR1编码器数值
-//		OLED_DISPLAY_8x16(4,0,Encoder[2]);   //显示MOTOR1编码器数值
-//		OLED_DISPLAY_8x16(4,64,Encoder[3]);  //显示MOTOR1编码器数值
+//		OLED_DISPLAY_8x16(6,0,sign);   
+//		OLED_DISPLAY_8x16(6,24,sign_x); 
+//		OLED_DISPLAY_8x16(6,48,sign_y);   
+
 		
 		/*TURN_1+=5;
 		if(TURN_1>180)
@@ -196,6 +207,81 @@ task_flag = 1;
 }
 
 
+void ontrol(int sign,int sign_x,int sign_y){
+	int safe_x = 80;		//x坐标的安全范围
+	int safe_y = 60; 		//y坐标的安全范围
+	
+	switch(sign){
+		case 1://识别到二维码
+		{
+			switch(sign_x){
+			case 1: printf("%s",open1); delay_ms(5000);task_flag = 1;break;  
+			case 2: printf("%s",open2);  delay_ms(5000);task_flag = 2;break;
+			case 3: printf("%s",arr1);  delay_ms(5000);break;
+			case 4: printf("%s",arr2);  delay_ms(5000);break;
+			case 5: printf("%s",close1);  delay_ms(5000);break;
+			case 6: printf("%s",close2);  delay_ms(5000);break;
+			default:printf("error\n");delay_ms(2000); break;}
+			}
+		case 2://障碍物
+			{
+				if(sign_x < safe_x && sign_y < safe_y)//此时障碍物在左上，则车向↗右上行驶
+				{
+//					GO_right_UP();//伪代码，右上行驶
+					
+				}else if(sign_x > safe_x && sign_y < safe_y){//此时障碍物在右上，则车向↖左上行驶
+					
+//					GO_left_UP();//伪代码，左上行驶
+					
+				}else if(sign_x < safe_x&& sign_y > safe_y){//此时障碍物在左下，则车向→右行驶
+					
+//					GO_right();
+					
+				}else if(sign_x > safe_x&& sign_y > safe_y){
+					
+//					GO_left();
+					
+				}else{
+//					GO_BACK();//后退
+				}
+				break;
+			}
+		case 3://红绿灯停车区
+			{
+					break;
+				
+			}
+		case 4://绿灯
+			{	
+//				GO_TO(0,sign_x,sign_y);//调整
+				if(task_flag == 1){//任务1左行驶
+//					GO_UP();       //前进
+//					GO_left();     //左行驶
+				}else if(task_flag == 2){//任务2右行驶
+//					GO_UP();       //前进
+//					GO_right();     //左行驶
+				}else 
+				break;
+				
+			}
+		case 5:
+			{
+			//	GO_TO(1,sign_x,sign_y);//调整
+			}
+		case 6://收货地2
+			{
+		//		GO_TO(2,sign_x,sign_y);//调整
+			}
+		default://其它情况，停车
+			{
+		//		STOP();
+				break;	
+			}							
+		}
+	
+	
+
+}
 
 
 

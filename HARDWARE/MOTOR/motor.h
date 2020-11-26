@@ -117,7 +117,7 @@ void TIM8_PwmSetPulse (u8 TIM8_CH,u8 pulse);
 #define MOTOR3_A PAout(10)	
 #define MOTOR3_B PAout(11)	
 
-
+int Incremental_PI (int Encoder,int Target);
 
 #endif
 

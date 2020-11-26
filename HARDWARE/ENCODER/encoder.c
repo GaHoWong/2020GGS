@@ -96,7 +96,7 @@ void TIM2_ENC_Init(void)  // PA15  PB3  ENC_D1 ENC_D2
 	
 	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
   TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
-  TIM_TimeBaseStructure.TIM_Period = 8999; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_Period = 9000-1; //设定计数器自动重装值
   TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
@@ -138,7 +138,7 @@ void TIM3_ENC_Init(void)  // PA6   PA7
 	
 	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
   TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
-  TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD-1; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_Period = 9000-1; //设定计数器自动重装值
   TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
   TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
@@ -179,10 +179,10 @@ void TIM4_ENC_Init(void)
 	
 	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
   TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
-  TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD-1; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_Period = 9000-1; //设定计数器自动重装值
   TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
-  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+  TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
 	
 	//编码器接口配置
 	TIM_EncoderInterfaceConfig(TIM4, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);
@@ -215,10 +215,10 @@ void TIM5_ENC_Init(void)  // PA0  PA1   ENC_C1 ENC_C2
 	
 	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
   TIM_TimeBaseStructure.TIM_Prescaler = 0x0; // 预分频器 
-  TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD-1; //设定计数器自动重装值
+  TIM_TimeBaseStructure.TIM_Period = 9000-1; //设定计数器自动重装值
   TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;//选择时钟分频：不分频
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;////TIM向上计数  
-  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+  TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
 	
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource0,GPIO_AF_TIM5);//将PA0引脚配置为TIM5
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource1,GPIO_AF_TIM5);//将PA1引脚配置为TIM5
@@ -244,69 +244,70 @@ void EncoderInit(void){
 
 
 
-int Read_Encoder(int TIMX)//读取计数器的值
-{
-  int Encoder_TIM;
-	switch(TIMX)
-	{
-	  case 2:
-					if(TIM2->CR1&0x10)              // 旋转方向判断,如果是负的，那么将其的值转换为正
-					{                             
-						Encoder_TIM= -(TIM2->CNT);
-						TIM2->CNT = 0;    
-					}else {
-						Encoder_TIM = TIM2->CNT;    
-						TIM2->CNT = 0;
-					}
-					break;
-	  case 3:												
-					if(TIM3->CR1&0x10)           
-					{                            
-					Encoder_TIM = -(TIM3->CNT);
-					TIM3->CNT = 0;
-					}else{
-					Encoder_TIM = TIM3->CNT;
-					TIM3->CNT = 0;			
-					}			
-					break;
-	  case 4:
-					if(TIM4->CR1&0x10)
-					{
-						Encoder_TIM= -(TIM4->CNT);
-						TIM4->CNT = 0;
-					}else {
-						Encoder_TIM = TIM4->CNT;
-						TIM4->CNT = 0;
-						}
-					break;
-		case 5:
-					if(TIM5->CR1&0x10)
-					{
-						Encoder_TIM = -(TIM5->CNT);
-						TIM5->CNT = 0;
-					}else 
-					{
-						Encoder_TIM = TIM5->CNT;
-						TIM5->CNT = 0;	
-					}
-					break;
-		default: Encoder_TIM=0;
-	}
-  return Encoder_TIM;
-}
-
-
-//int Read_Encoder(u8 TIMX)    //读取计数器的值
+//u8 Read_Encoder(u8 TIMX)//读取计数器的值
 //{
-//   int Encoder_TIM;    
-//   switch(TIMX)
-//	 {
-//	   case 2:  Encoder_TIM= (short)TIM2 -> CNT;   TIM2 -> CNT=0;  break;
-//		 case 3:  Encoder_TIM= (short)TIM3 -> CNT;   TIM3 -> CNT=0; break;	
-//		 case 4:  Encoder_TIM= (short)TIM4 -> CNT;   TIM4 -> CNT=0;  break;	
-//		 case 5:  Encoder_TIM= (short)TIM5 -> CNT;   TIM5 -> CNT=0;  break;	
-//		 default: Encoder_TIM=0;
-//	 }
-//		return Encoder_TIM;
+//  int Encoder_TIM;
+//	switch(TIMX)
+//	{
+//	  case 2:
+//					if(TIM2->CR1&0x10)              // 旋转方向判断
+//					{                             
+//						Encoder_TIM= 0xffffffff - TIM2->CNT;
+//						TIM2->CNT = 0xffffffff;     //如果是这种方向时 TIMx->CNT 是 -- 的
+//					}else {
+//						Encoder_TIM = TIM2->CNT;//如果是这种方向时 TIMx->CNT 是 ++ 的
+//						TIM2->CNT = 0;
+//					}
+//					break;
+//	  case 3:												
+//					if(TIM3->CR1&0x10)           // 这里应该注意， 不同的定时器的最大值是不同的，这主要是因为定时器的位数是不同的
+//					{                            // TIM2 TIM5 是32位定时器 最大值是0xffffffff TIM3 TIM4是16位定时器，最大值是 0xffff
+//					Encoder_TIM = 0xffff - TIM3->CNT;
+//					TIM3->CNT = 0xffff;
+//					}else{
+//					Encoder_TIM = TIM3->CNT;
+//					TIM3->CNT = 0;			
+//					}			
+//					break;
+//	  case 4:
+//					if(TIM4->CR1&0x10)
+//					{
+//						Encoder_TIM= 0xffff - TIM4->CNT;
+//						TIM4->CNT = 0xffff;
+//					}else {
+//						Encoder_TIM = TIM4->CNT;
+//						TIM4->CNT = 0;
+//						}
+//					break;
+//		case 5:
+//					if(TIM5->CR1&0x10)
+//					{
+//						Encoder_TIM = 0xffffffff - TIM5->CNT;
+//						TIM5->CNT = 0xffffffff;
+//					}else 
+//					{
+//						Encoder_TIM = TIM5->CNT;
+//						TIM5->CNT = 0;	
+//					}
+//					break;
+//		default: Encoder_TIM=0;
+//	}
+//  return Encoder_TIM;
 //}
+
+
+int Read_Encoder(u8 TIMX)    //读取计数器的值
+{
+   int Encoder_TIM;    
+   switch(TIMX)
+	 {
+		 case 2:  Encoder_TIM= (short)TIM2 -> CNT;   TIM_SetCounter(TIM2, 0);;  break;
+		 case 3:  Encoder_TIM= (short)TIM3 -> CNT;   TIM_SetCounter(TIM3, 0);; break;	
+		 case 4:  Encoder_TIM= (short)TIM4 -> CNT;   TIM_SetCounter(TIM4, 0);;  break;	
+		 case 5:  Encoder_TIM= (short)TIM5 -> CNT;   TIM_SetCounter(TIM5, 0);;  break;	
+		 default: Encoder_TIM=0;
+	 }
+
+		return Encoder_TIM;
+}
 

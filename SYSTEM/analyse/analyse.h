@@ -4,9 +4,9 @@
 #include "sys.h" 
 #include "usart.h"
 
-//extern int sign;
-//extern int sign_x;//зјБъ
-//extern int sign_x;
+extern int sign;
+extern int sign_x;//зјБъ
+extern int sign_x;
 
 
 
