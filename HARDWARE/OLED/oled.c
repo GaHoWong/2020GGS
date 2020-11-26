@@ -194,3 +194,6 @@ void OLED_SHOW(void){
 	OLED_DISPLAY_8x16(0,80,':'); 
 	
 }
+
+
+

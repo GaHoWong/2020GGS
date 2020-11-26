@@ -357,7 +357,7 @@ int Y  = 0;
 void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
 	//printf("USAART1 stay\r\n");
-	uint8_t i = 0;
+	//uint8_t i = 0;
 	//DMA_Cmd(DMA2_Stream5, DISABLE);
 	//printf("error :   %d\r\n",USART_GetITStatus(USART3, USART_IT_RXNE));
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) //jinbuqu
@@ -444,7 +444,7 @@ int X = 0;
 void USART3_IRQHandler(void)                	//串口1中断服务程序
 {
 	//printf("USAART1 stay\r\n");
-	uint8_t i = 0;
+	//uint8_t i = 0;
 	//DMA_Cmd(DMA2_Stream5, DISABLE);
 	//printf("error :   %d\r\n",USART_GetITStatus(USART3, USART_IT_RXNE));
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) //jinbuqu

@@ -11,7 +11,7 @@ int sign_y;
 /**
 * @brief  analyse
 * @param  分析K210/OPEN MV/树莓派的数据
-* @retval None
+* @retval OPEN MV 最大分辨率 x=160  y=120，因此中心点坐标为(80,60) 
 */
 void analyse(u8 data)
 {
@@ -52,9 +52,7 @@ void analyse(u8 data)
 		sign  = RxBuffer[0];
 		sign_x=RxBuffer[1];
 		sign_y=RxBuffer[2];
-		//printf("%d",sign);
-		printf("%d \r\n",sign_x);
-		//printf("%d",sign_y);
+
 		}
 	
 		state = 0;

@@ -144,6 +144,15 @@ extern int Encoder[4],Position;               //编码器的脉冲计数
 extern float Kp,Ki;
 
 
+extern int task_flag;       //任务标志，1 = 11，2 = 12，3 = 21，4 = 22
+extern int wuliao_flag;     //物料标志，如果为1则一号物料，2为二号物料
+extern int dir_flag;	      //方向标志，如果为0则左转，为1则右转
+
+
+extern int sign;
+extern int sign_x;//坐标
+extern int sign_y;
+
 
 ////////////////////////////////////////////////////////////////
 

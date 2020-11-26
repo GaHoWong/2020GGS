@@ -4,9 +4,13 @@
 #include "sys.h" 
 #include "usart.h"
 
-extern int sign;
-extern int boll_x;//зјБъ
-extern int boll_y;
+//extern int sign;
+//extern int sign_x;//зјБъ
+//extern int sign_x;
+
+
+
+
 void analyse(u8 data);
 
 

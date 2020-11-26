@@ -60,5 +60,4 @@
 ..\obj\main.o: ..\HARDWARE\PLAY\play.h
 ..\obj\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
-..\obj\main.o: ..\HARDWARE\PCA9685\pca9685.h
-..\obj\main.o: ..\HARDWARE\24CXX\myiic.h
+..\obj\main.o: ..\SYSTEM\analyse\analyse.h

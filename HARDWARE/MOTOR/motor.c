@@ -358,7 +358,7 @@ void  TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse)
 void  BASIC_TIM_IRQHandler (void)
 {	
 	
-	int PWM[4],Encoder_Date[4],Target_Speed[4];              // 引入外部的变量
+	int PWM[4],Target_Speed[4];              // 引入外部的变量
 		
 		Target_Speed[0] = 12000;
 		Target_Speed[1] = 12000;

@@ -43,3 +43,4 @@
 ..\obj\usart.o: ..\HARDWARE\OLED\oled.h
 ..\obj\usart.o: ..\SYSTEM\i2c\i2c.h
 ..\obj\usart.o: ..\HARDWARE\LED\led.h
+..\obj\usart.o: ..\SYSTEM\analyse\analyse.h

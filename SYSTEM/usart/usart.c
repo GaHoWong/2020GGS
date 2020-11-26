@@ -2,6 +2,7 @@
 #include "usart.h"	
 #include "oled.h"
 #include "led.h"
+#include "analyse.h"
 ////////////////////////////////////////////////////////////////////////////////// 	 
 //如果使用ucos,则包括下面的头文件即可.
 #if SYSTEM_SUPPORT_OS
@@ -210,7 +211,7 @@ void USART6_IRQHandler(void)
         USART_ClearFlag(USART6, USART_FLAG_RXNE);
         USART_ClearITPendingBit(USART6, USART_IT_RXNE);
         Data = USART_ReceiveData(USART6);
-		 //printf("%c",Data);
+		// printf("%c",Data);
         analyse(Data); //处理函数
     } 
 } 

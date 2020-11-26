@@ -18,31 +18,46 @@
 #include "servo.h"
 #include "tfmini.h"  
 #include "play.h"
-#include "pca9685.h"
+#include "analyse.h"
 
 
 
 
 
 
-u8 flag_Stop=1;     //停止标志位
-int  Encoder[4];        //编码器的脉冲计数
-int moto;           //电机PWM变量
+
+//int sign;
+//int sign_x;
+//int sign_y;
+
+u8 flag_Stop=1;      //停止标志位
+int  Encoder[4];     //编码器的脉冲计数
+int moto;            //电机PWM变量
+int task_flag;       //任务标志，1 = 11，2 = 12，3 = 21，4 = 22
+int wuliao_flag;     //物料标志，如果为1则一号物料，2为二号物料
+int dir_flag;	      //方向标志，如果为0则左转，为1则右转   
+
 
 char pro[20] = {0x41,0x46,0x3a,0x33,0x30}; //语音播报模块——>增大声音
+//扫描完成，请装入1号物料，并关闭仓门
 char open1[38] = {0xc9,0xa8,0xc3,0xe8,0xcd,0xea,0xb3,0xc9,0xa3,0xac,0xc7,0xeb,0xd7,0xb0,0xc8,0xeb,0x31,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
+//扫描完成，请装入2号物料，并关闭仓门
 char open2[38] ={0xc9,0xa8,0xc3,0xe8,0xcd,0xea,0xb3,0xc9,0xa3,0xac,0xc7,0xeb,0xd7,0xb0,0xc8,0xeb,0x32,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
+//到达1号收货点，请出示提货码
 char arr1[30] = {0xb5,0xbd,0xb4,0xef,0x31,0xba,0xc5,0xca,0xd5,0xbb,0xf5,0xb5,0xe3,0xa3,0xac,0xc7,0xeb,0xb3,0xf6,0xca,0xbe,0xcc,0xe1,0xbb,0xf5,0xc2,0xeb};
+//到达2号收货点，请出示提货码
 char arr2[30] = {0xb5,0xbd,0xb4,0xef,0x32,0xba,0xc5,0xca,0xd5,0xbb,0xf5,0xb5,0xe3,0xa3,0xac,0xc7,0xeb,0xb3,0xf6,0xca,0xbe,0xcc,0xe1,0xbb,0xf5,0xc2,0xeb};
+//请取出1号物料，并关闭仓门
 char suc1[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x31,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
+//请取出2号物料，并关闭仓门
 char suc2[27] = {0xc7,0xeb,0xc8,0xa1,0xb3,0xf6,0x32,0xba,0xc5,0xce,0xef,0xc1,0xcf,0xa3,0xac,0xb2,0xa2,0xb9,0xd8,0xb1,0xd5,0xb2,0xd6,0xc3,0xc5};
 
 //重定向printf函数
-int fputc(int c, FILE *fp)
+int fputc(int c, FILE *fp)//语音播报模块为uart7
 {
 
 	USART_SendData( USART1,(u8)c );	// 发送单字节数据
-	while (USART_GetFlagStatus(USART6, USART_FLAG_TXE) == RESET);	//等待发送完毕 
+	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);	//等待发送完毕 
 
 	return (c); //返回字符
 }
@@ -57,9 +72,9 @@ int main(void)
 	PAout(9) = 0;
 	PAout(10) = 0;
 	delay_init(180);			          //初始化延时函数
-	uart_init(90,115200);           //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
+	uart_init(90,115200);             //与电脑端串口通讯,使用电机时，必须把这行和所有printf注释掉，否则电脑蓝屏
 //	K210_USART(90,115200);            //与K210进行通讯
-	USART6_Init(115200);
+	USART6_Init(115200);              //与OPEN MV进行通讯
 	I2C_Configuration();              //硬件I2C初始化
 	
 //	printf("STM32外设初始化成功！");
@@ -69,19 +84,18 @@ int main(void)
 //	SDRAM_Init();	       			  //初始化SDRAM 		
 	LED_Init();		            			//初始化与LED连接的硬件接口
 	KEY_Init();					            //初始化按键
-//	BREEZE_Init();                  //初始化蜂鸣器
-//	PLAY_Init();	                  //初始化语音播报模块
-	OLED0561_Init();                //初始化OLED显示屏
-	EncoderInit();	                //初始化编码器   
-	OLED_SHOW();                    //oled显示
-	printf("硬件初始化成功！");     
+	BREEZE_Init();                  //初始化蜂鸣器
+	PLAY_Init();	                  //初始化语音播报模块
+	OLED0561_Init();                 //初始化OLED显示屏
+	EncoderInit();	                  //初始化编码器   
+	OLED_SHOW();                     //oled显示  
 		
 /***********硬件初始化设置************/	
 	
-	int a = 123;
+//	int a = 123;
 	//OLED_ShowNumber(2,0,a,3);
 	
-//	printf("%s", pro);              //增大音量
+	printf("%s", pro);              //增大音量
 	delay_ms(200);                  //延时等待
 	
 /***********初始化完成************/	
@@ -97,7 +111,7 @@ int main(void)
 //	printf("ok");
 //	TIM8_PwmSetPulse(1,62);
 //	TIM8_PwmSetPulse(4,62);
-//  TIM1_PwmSetPulse(1,65);
+//  TIM1_PwmSetPulse(1,65)
 //	TIM1_PwmSetPulse(4,65);
 //	TIM12_PWMinit(20000,1000000);  //50hz
 //	
@@ -120,14 +134,29 @@ int main(void)
 
 
 
-
+task_flag = 1;
 
 	while(1){
 		
-		printf("1");
+		printf("s = %d \r\n",sign);
+		printf("x = %d \r\n",sign_x);
+		printf("y = %d \r\n",sign_y);
+	
 		
-//		TIM12_PwmSetPulse(1,40);
-		delay_ms(200);
+		
+//		if(task_flag == 1)  //如果task_flag=1，则任务为11，
+//		{
+//			printf("%s",open1);
+//			task_flag = 0;
+//			delay_ms(5000);
+//			break;
+//		}
+		//else 
+//		
+//		printf("1");
+//		
+////		TIM12_PwmSetPulse(1,40);
+		delay_ms(2000);
 		
 
 //		TIM12_PwmSetPulse(1,20);
@@ -141,7 +170,7 @@ int main(void)
 //		TIM12_PwmSetPulse(1,80);
 //		delay_ms(1000);
 		
-//				TIM12_PwmSetPulse(1,0);
+//		  TIM12_PwmSetPulse(1,0);
 //		delay_ms(200);
 //		TIM12_PwmSetPulse(1,50);
 		//printf("%s",suc2);
