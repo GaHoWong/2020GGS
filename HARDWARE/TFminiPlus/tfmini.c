@@ -2,63 +2,20 @@
 #include "stdio.h"
 #include "stdarg.h"
 #include "oled.h"
-
+#include "sys.h"
 
 // 函数：usart IO口初始化
 //
 
-#define USART3_MAX_RX_LEN 9
-#define USART3_MAX_TX_LEN 9
+
 u8   USART3_TX_BUF[USART3_MAX_TX_LEN]; 		//发送缓冲,最大USART3_MAX_TX_LEN-1字节
 u8   USART3_RX_BUF[USART3_MAX_RX_LEN]; 		//接收缓冲,最大USART3_MAX_RX_LEN-1字节
 volatile u16 USART3_RX_STA=0;               //bit15:接收完成标志   bit14~0:接收到的有效字节数目    
 
-#define USART2_MAX_RX_LEN 9
-#define USART2_MAX_TX_LEN 9
 u8   USART2_TX_BUF[USART2_MAX_TX_LEN]; 		//发送缓冲,最大USART3_MAX_TX_LEN-1字节
 u8   USART2_RX_BUF[USART2_MAX_RX_LEN]; 		//接收缓冲,最大USART3_MAX_RX_LEN-1字节
 volatile u16 USART2_RX_STA=0;               //bit15:接收完成标志   bit14~0:接收到的有效字节数目    
 
-
-//移植修改区start
-//全局替换.h  .c 的串口USART3为移植的串口，并修改下面代码
-
-//USART3   y
-#define USART3_TX_RCC_APB2Periph_GPIOx      RCC_AHB1Periph_GPIOB
-#define USART3_TX_GPIOx                     GPIOB
-#define USART3_TX_GPIO_Pin_x                GPIO_Pin_10
-#define USART3_TX_GPIO_PinSourcex           GPIO_PinSource10
-
-#define USART3_RX_RCC_APB2Periph_GPIOx      RCC_AHB1Periph_GPIOB
-#define USART3_RX_GPIOx                     GPIOB
-#define USART3_RX_GPIO_Pin_x                GPIO_Pin_11
-#define USART3_RX_GPIO_PinSourcex           GPIO_PinSource11
-
-#define RCC_AHBxPeriph_DMAy                 RCC_AHB1Periph_DMA1
-
-#define USART3_RX_DMAx_Streamy_IRQHandler   DMA1_Stream1_IRQHandler
-#define USART3_RX_DMAx_Streamy_IRQn         DMA1_Stream1_IRQn
-#define USART3_RX_DMAx_Streamy              DMA1_Stream1
-#define USART3_RX_DMA_IT_TCIFx              DMA_IT_TCIF1
-#define USART3_RX_DMA_Channelx              DMA_Channel_4
-
-
-//USART2   x
-#define USART2_TX_RCC_APB2Periph_GPIOx      RCC_AHB1Periph_GPIOD
-#define USART2_TX_GPIOx                     GPIOD
-#define USART2_TX_GPIO_Pin_x                GPIO_Pin_5
-#define USART2_TX_GPIO_PinSourcex           GPIO_PinSource5
-
-#define USART2_RX_RCC_APB2Periph_GPIOx      RCC_AHB1Periph_GPIOD
-#define USART2_RX_GPIOx                     GPIOD
-#define USART2_RX_GPIO_Pin_x                GPIO_Pin_6
-#define USART2_RX_GPIO_PinSourcex           GPIO_PinSource6
-
-#define USART2_RX_DMAx_Streamy_IRQHandler   DMA1_Stream5_IRQHandler
-#define USART2_RX_DMAx_Streamy_IRQn         DMA1_Stream5_IRQn
-#define USART2_RX_DMAx_Streamy              DMA1_Stream5
-#define USART2_RX_DMA_IT_TCIFx              DMA_IT_TCIF1
-#define USART2_RX_DMA_Channelx              DMA_Channel_4
 
 
 
@@ -109,8 +66,8 @@ void USART3_Init(u32 bound )
 	
 	//NVIC配置
 	NVIC_InitStructure.NVIC_IRQChannel                   = USART3_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 0;		
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 3;		
 	NVIC_InitStructure.NVIC_IRQChannelCmd                = ENABLE;			 
 	NVIC_Init(&NVIC_InitStructure);	 
   
@@ -203,8 +160,8 @@ void USART2_Init(u32 bound )
 	
 	//NVIC配置
 	NVIC_InitStructure.NVIC_IRQChannel                   = USART2_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 0;		
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 2;		
 	NVIC_InitStructure.NVIC_IRQChannelCmd                = ENABLE;			 
 	NVIC_Init(&NVIC_InitStructure);	 
   
@@ -344,7 +301,7 @@ void DMA1_Stream1_IRQHandler(void)
 		//printf("error:  %d \r\n",DMA_GetITStatus(DMA2_Stream5,DMA_IT_TCIF5));
 }
 
-//TF1 -> Y
+//TF1 -> X
 uint8_t temp2_data = 0;
 uint8_t TFmini2_low,TFmini2_high = 0;
 uint8_t flag2 = 0;
@@ -353,7 +310,7 @@ uint8_t lastdis2 = 0;
 uint8_t rx2_dis[30]= "0";
 uint8_t num2 = 0;
 uint16_t sum2 = 0;
-int Y  = 0;
+//int X  ;
 void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
 	//printf("USAART1 stay\r\n");
@@ -388,13 +345,24 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 //			if(distance2 <= 1200 && distance2 != 89 && distance2 != 86)
 //				lastdis2 = distance2;
 			distance2 = ((uint16_t)TFmini2_high<<8) | ((uint16_t)TFmini2_low);
-			Y = distance2;
+//			if(distance2 == 89 || distance2 == 86){
+//			
+//			}else{
+			
+			X = distance2;
+//		OLED_DISPLAY_8x16(2,80,X/1000%10+0x30);
+//		OLED_DISPLAY_8x16(2,88,X/100%10+0x30);
+//		OLED_DISPLAY_8x16(2,96,X/10%10+0x30);
+//		OLED_DISPLAY_8x16(2,104,X%10+0x30); 
+//			}
+			
+			
 			//                        1printf("result x :%d\r\n" , x);
 	//		OLED_DISPLAY_8x16(6,8*8,(u8)Encoder[1]/10000%10+0x30);//显示温度值
-		OLED_DISPLAY_8x16(2,80,Y/1000%10+0x30);
-		OLED_DISPLAY_8x16(2,88,Y/100%10+0x30);
-		OLED_DISPLAY_8x16(2,96,Y/10%10+0x30);
-		OLED_DISPLAY_8x16(2,104,Y%10+0x30);
+//		OLED_DISPLAY_8x16(2,80,Y/1000%10+0x30);
+//		OLED_DISPLAY_8x16(2,88,Y/100%10+0x30);
+//		OLED_DISPLAY_8x16(2,96,Y/10%10+0x30);
+//		OLED_DISPLAY_8x16(2,104,Y%10+0x30);
 //		OLED_DISPLAY_8x16(6,13*8,'C');//
 //z  					OLED_DISPLAY_8x16(2,0,x);
 			
@@ -440,7 +408,7 @@ uint8_t lastdis3 = 0;
 uint8_t rx3_dis[30]= "0";
 uint8_t num3 = 0;
 uint16_t sum3 = 0;
-int X = 0;
+//int Y;
 void USART3_IRQHandler(void)                	//串口1中断服务程序
 {
 	//printf("USAART1 stay\r\n");
@@ -471,15 +439,26 @@ void USART3_IRQHandler(void)                	//串口1中断服务程序
 		{
 
 			TFmini3_high = temp3_data;
-			
-//			if(distance3 <= 120 && distance3 != 89 && distance3 != 86)
-//				lastdis3 = distance3;
 			distance3 = ((uint16_t)TFmini3_high<<8) | ((uint16_t)TFmini3_low);
-			X = distance3;
-			OLED_DISPLAY_8x16(2,16,X/1000%10+0x30);
-			OLED_DISPLAY_8x16(2,24,X/100%10+0x30);
-			OLED_DISPLAY_8x16(2,32,X/10%10+0x30);
-			OLED_DISPLAY_8x16(2,40,X%10+0x30);			
+			
+//			if(distance3 == 89 || distance3 == 86){
+//				
+//			
+//			}else{
+			
+			Y = distance3;
+//			OLED_DISPLAY_8x16(2,16,Y/1000%10+0x30);
+//			OLED_DISPLAY_8x16(2,24,Y/100%10+0x30);
+//			OLED_DISPLAY_8x16(2,32,Y/10%10+0x30);
+//			OLED_DISPLAY_8x16(2,40,Y%10+0x30);	
+//			}
+			
+			
+			
+//			OLED_DISPLAY_8x16(2,16,X/1000%10+0x30);
+//			OLED_DISPLAY_8x16(2,24,X/100%10+0x30);
+//			OLED_DISPLAY_8x16(2,32,X/10%10+0x30);
+//			OLED_DISPLAY_8x16(2,40,X%10+0x30);			
 			
 		//	printf("result x :%d\r\n" , y);
 		//	OLED_DISPLAY_8x16(2,0,y);

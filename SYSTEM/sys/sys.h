@@ -154,7 +154,24 @@ extern int sign_x;//зјБъ
 extern int sign_y;
 
 
+extern int X;//зјБъ
+extern int Y;
+
+
 ////////////////////////////////////////////////////////////////
+
+void forward(void);
+void backward(void);
+void left_forward(void);
+void right_forward(void);
+void left(void);
+void right(void);
+void stop(void);
+
+
+
+
+
 
 
 

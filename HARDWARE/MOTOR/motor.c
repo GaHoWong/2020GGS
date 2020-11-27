@@ -130,9 +130,9 @@ static void TIM6_NVIC_Configuration(void)
 		// 设置中断来源
     NVIC_InitStructure.NVIC_IRQChannel = BASIC_TIM_IRQn; 	
 		// 设置抢占优先级
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;	 
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;	 
 	  // 设置子优先级
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;	
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;	
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 }
@@ -188,7 +188,7 @@ static void TIM6_Mode_Config(void)
 void TIM6_Init(void)
 {
 	TIM6_NVIC_Configuration();	
-  TIM6_Mode_Config();
+	TIM6_Mode_Config();
 }
 
 
