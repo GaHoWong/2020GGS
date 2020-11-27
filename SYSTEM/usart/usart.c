@@ -211,7 +211,7 @@ void USART6_IRQHandler(void)
         USART_ClearFlag(USART6, USART_FLAG_RXNE);
         USART_ClearITPendingBit(USART6, USART_IT_RXNE);
         Data = USART_ReceiveData(USART6);
-		//	printf("%c",Data);
+			//printf("%c",Data);
         analyse(Data); //´¦Àíº¯Êý
     } 
 } 

@@ -380,7 +380,7 @@ void  TIM1_PwmSetPulse (u8 TIM1_CH,u8 pulse)
 
 
 //int Target_velocity=50;  //设定速度控制的目标速度为50个脉冲每10ms
-
+/*
 void  BASIC_TIM_IRQHandler (void)
 {	
 	
@@ -474,11 +474,13 @@ void  BASIC_TIM_IRQHandler (void)
 	}		 	
 }
 
-
+*/
 void MOTOR_Init(void){
 	TIM1_PWM_Init(TIM1_Period,0);//定时器1——>PWM初始化
 	TIM8_PWM_Init(TIM8_Period,0);
 }
+
+
 
 
 

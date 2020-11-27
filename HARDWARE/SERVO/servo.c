@@ -96,8 +96,8 @@ void	TIM12_PWMinit(u16 period,u32 frequency)
 	
 	TIM_ARRPreloadConfig(TIM12,ENABLE);	//	使能自动重载
 	TIM_Cmd(TIM12,ENABLE); 					//	使能TIM12		
-	TIM12_PwmSetPulse (1,0); 		//	设置占空比为0%
-	TIM12_PwmSetPulse (2,0); 		//	设置占空比为0%
+	TIM12_PwmSetPulse (1,22); 		//	关闭
+	TIM12_PwmSetPulse (2,22); 		//	关闭
 }
 
 
@@ -187,7 +187,7 @@ void	TIM9_PWMinit(u16 period,u32 frequency)
 	
 	TIM_ARRPreloadConfig(TIM9,ENABLE);	//	使能自动重载
 	TIM_Cmd(TIM9,ENABLE); 					//	使能TIM12		
-	TIM9_PwmSetPulse (1,0); 		//	设置占空比为0%
-	TIM9_PwmSetPulse (2,45); 		//	设置占空比为0%
+	TIM9_PwmSetPulse (1,20); 		//	设置占空比为0%
+	TIM9_PwmSetPulse (2,0); 		//	设置占空比为0%
 }
 
