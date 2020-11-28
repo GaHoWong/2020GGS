@@ -2,7 +2,7 @@
 ..\obj\usart.o: ..\SYSTEM\sys\sys.h
 ..\obj\usart.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\usart.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\usart.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\usart.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\usart.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\usart.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -39,7 +39,7 @@
 ..\obj\usart.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\usart.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\usart.o: ..\SYSTEM\usart\usart.h
-..\obj\usart.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\usart.o: ..\HARDWARE\OLED\oled.h
 ..\obj\usart.o: ..\SYSTEM\i2c\i2c.h
 ..\obj\usart.o: ..\HARDWARE\LED\led.h

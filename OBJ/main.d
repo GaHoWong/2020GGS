@@ -2,7 +2,7 @@
 ..\obj\main.o: ..\SYSTEM\sys\sys.h
 ..\obj\main.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\main.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\main.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\main.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\main.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -41,7 +41,7 @@
 ..\obj\main.o: ..\SYSTEM\delay\delay.h
 ..\obj\main.o: ..\HARDWARE\LED\led.h
 ..\obj\main.o: ..\SYSTEM\usart\usart.h
-..\obj\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\main.o: ..\HARDWARE\SDRAM\sdram.h
 ..\obj\main.o: ..\USMART\usmart.h
 ..\obj\main.o: ..\USMART\usmart_str.h
@@ -58,6 +58,6 @@
 ..\obj\main.o: ..\HARDWARE\SERVO\servo.h
 ..\obj\main.o: ..\HARDWARE\TFminiPlus\tfmini.h
 ..\obj\main.o: ..\HARDWARE\PLAY\play.h
-..\obj\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-..\obj\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\main.o: ..\SYSTEM\analyse\analyse.h

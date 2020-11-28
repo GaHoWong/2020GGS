@@ -104,13 +104,13 @@ int main(void)
 	KEY_Init();					            //初始化按键
 	BREEZE_Init();                  //初始化蜂鸣器
 	PLAY_Init();	                  //初始化语音播报模块
-	OLED0561_Init();                 //初始化OLED显示屏
+//	OLED0561_Init();                 //初始化OLED显示屏
 	//EncoderInit();	                  //初始化编码器   
-	OLED_SHOW();                     //oled显示  
+	//OLED_SHOW();                     //oled显示  
 		
 /***********硬件初始化设置************/	
 	
-
+delay_ms(2000);
 	printf("%s", pro);              //增大音量
 	delay_ms(200);                  //延时等待
 	
@@ -150,7 +150,9 @@ sign_y = 0;
 delay_ms(500);
 task_flag = 0;
 
+//left();
 
+//right();
 //forward();
 
 while(1){	
@@ -206,10 +208,10 @@ while(1){
 
 
 
-int motor1_speed = 63;
-int motor2_speed = 63;
-int motor3_speed = 63;
-int motor4_speed = 63 ;
+int motor1_speed = 60;
+int motor2_speed = 60;
+int motor3_speed = 60;
+int motor4_speed = 60 ;
 
 
 
@@ -238,24 +240,29 @@ void backward(void){
 
 //向左行驶  14号轮子反转，23正转
 void left(void){
-			TIM8_PwmSetPulse(4,motor1_speed);     //motor1 = T8CH3前进   CH4后退
-			TIM1_PwmSetPulse(4,motor2_speed);    //motor2 = T1CH4前进   CH3后退
+			forward();
+			delay_ms(1500);
+			TIM8_PwmSetPulse(4,70);     //motor1 = T8CH3前进   CH4后退
+			TIM1_PwmSetPulse(4,70);    //motor2 = T1CH4前进   CH3后退
 	
-			TIM8_PwmSetPulse(1,motor3_speed);		//motor3 = T8CH1前进   CH2后退
-			TIM1_PwmSetPulse(1,motor4_speed);     //motor4 = T1CH2前进   CH1后退
-//			delay_ms(200);
-//			stop();
+			TIM8_PwmSetPulse(2,70);		//motor3 = T8CH1前进   CH2后退
+			TIM1_PwmSetPulse(2,70);     //motor4 = T1CH2前进   CH1后退
+	
+	
+			delay_ms(550);
+			stop();
 
 }
 void right(void){
-
-			TIM8_PwmSetPulse(3,motor1_speed);     //motor1 = T8CH3前进   CH4后退
-			TIM1_PwmSetPulse(3,motor2_speed);    //motor2 = T1CH4前进   CH3后退
+			forward();
+			delay_ms(1500);
+			TIM8_PwmSetPulse(3,70);     //motor1 = T8CH3前进   CH4后退
+			TIM1_PwmSetPulse(3,70);    //motor2 = T1CH4前进   CH3后退
 	
-			TIM8_PwmSetPulse(2,motor3_speed);		//motor3 = T8CH1前进   CH2后退
-			TIM1_PwmSetPulse(2,motor4_speed);     //motor4 = T1CH2前进   CH1后退
-//			delay_ms(200);
-//			stop();
+			TIM8_PwmSetPulse(1,70);		//motor3 = T8CH1前进   CH2后退
+			TIM1_PwmSetPulse(1,70);     //motor4 = T1CH2前进   CH1后退
+			delay_ms(550);
+			stop();
 }
 
 
@@ -300,9 +307,21 @@ void  BASIC_TIM_IRQHandler (void)
 				task_flag = 1;
 				go_flag = 1;
 				forward();
-				delay_ms(5000);
+				delay_ms(7300);
 				stop();
+				delay_ms(10000);
+						if(sign_x ==1){
+							left();
+							forward();
+							delay_ms(5000);
+							stop();
+							}else{
+							right();
+							forward();
+							delay_ms(5000);
+							stop();
 				
+				}
 			}else if(sign_y == 2&& task_flag ==0){
 				sign_x =0;
 				sign_y=0;
@@ -313,8 +332,23 @@ void  BASIC_TIM_IRQHandler (void)
 				task_flag = 2;
 				go_flag = 1;
 				forward();
-				delay_ms(5000);
+				delay_ms(7400);
 				stop();
+				delay_ms(10000);
+				if(sign_x ==1){
+					left();
+					forward();
+					delay_ms(5000);
+					stop();
+				}else{
+					right();
+					forward();
+					delay_ms(5000);
+					stop();
+				
+				}
+				
+				
 			}else if(sign_y == 1&& task_flag ==1){
 				sign_x =0;
 				sign_y=0;
@@ -340,7 +374,7 @@ void  BASIC_TIM_IRQHandler (void)
 				delay_ms(4000);
 				stop();
 			}
-		}else if(sign==2){//////////////障碍物
+		}else //if(sign==2){//////////////障碍物
 //				if(sign_x < safe_x && sign_y < safe_y)//障碍物左上方
 //				{
 //					right();
@@ -372,45 +406,45 @@ void  BASIC_TIM_IRQHandler (void)
 //				TIM9_PwmSetPulse(1,20);//摄像头抬起
 //				delay_ms(2000);
 				
-			}else if(sign == 4){
-					if(task_flag==1){   //任务1
-							TIM9_PwmSetPulse(1,22);//摄像头抬下//摄像头抬起//ch1摄像头抬起范围10-24，越小抬越高，ch2设置为40，174则逆时针23，278顺时针
-							TIM9_PwmSetPulse(2,23);//摄像头左转
-							delay_ms(278);
-							TIM9_PwmSetPulse(2,0);//摄像头左转
-							forward();
-							delay_ms(1000);
-							stop();
-							delay_ms(500);
-							left();
-							delay_ms(5000);
-					}else if(task_flag==2){//任务2
-							TIM9_PwmSetPulse(1,8);//摄像头抬下//摄像头抬起//ch1摄像头抬起范围10-24，越小抬越高，ch2设置为逆时针40，174 顺时针为23，278
-							TIM9_PwmSetPulse(2,40);//摄像头右转
-							delay_ms(174);
-							TIM9_PwmSetPulse(2,0);
-							forward();
-							delay_ms(1000);
-							stop();
-							delay_ms(500);
-							right();
-							delay_ms(5000);
-						}
-			}else if(sign == 5){
-					if(task_flag ==1){
-						if(sign_x < safe_x && sign_y < safe_y)//停车区在左上方
-						{backward();delay_ms(200);left();delay_ms(200);}else if(sign_x > safe_x && sign_y < safe_y)//停车区在右上方
-						{forward();delay_ms(200);left();delay_ms(200);}else if(sign_x < safe_x && sign_y > safe_y)//停车区左下方
-						{stop();}else if(sign_x > safe_x && sign_y > safe_y)//停车区在右下方
-						{stop();}else stop();
-					}else if(task_flag ==2){
-					if(sign_x < safe_x && sign_y < safe_y)//停车区在左上方
-						{backward();delay_ms(200);right();delay_ms(200);}else if(sign_x > safe_x && sign_y < safe_y)//停车区在右上方
-						{forward();delay_ms(200);right();delay_ms(200);}else if(sign_x < safe_x && sign_y > safe_y)//停车区左下方
-						{stop();}else if(sign_x > safe_x && sign_y > safe_y)//停车区在右下方
-						{stop();}else stop();
-					}
-			}else 
+//			}else if(sign == 4){
+//					if(task_flag==1){   //任务1
+//							TIM9_PwmSetPulse(1,22);//摄像头抬下//摄像头抬起//ch1摄像头抬起范围10-24，越小抬越高，ch2设置为40，174则逆时针23，278顺时针
+//							TIM9_PwmSetPulse(2,23);//摄像头左转
+//							delay_ms(278);
+//							TIM9_PwmSetPulse(2,0);//摄像头左转
+//							forward();
+//							delay_ms(1000);
+//							stop();
+//							delay_ms(500);
+//							left();
+//							delay_ms(5000);
+//					}else if(task_flag==2){//任务2
+//							TIM9_PwmSetPulse(1,8);//摄像头抬下//摄像头抬起//ch1摄像头抬起范围10-24，越小抬越高，ch2设置为逆时针40，174 顺时针为23，278
+//							TIM9_PwmSetPulse(2,40);//摄像头右转
+//							delay_ms(174);
+//							TIM9_PwmSetPulse(2,0);
+//							forward();
+//							delay_ms(1000);
+//							stop();
+//							delay_ms(500);
+//							right();
+//							delay_ms(5000);
+//						}
+//			}else if(sign == 5){
+//					if(task_flag ==1){
+//						if(sign_x < safe_x && sign_y < safe_y)//停车区在左上方
+//						{backward();delay_ms(200);left();delay_ms(200);}else if(sign_x > safe_x && sign_y < safe_y)//停车区在右上方
+//						{forward();delay_ms(200);left();delay_ms(200);}else if(sign_x < safe_x && sign_y > safe_y)//停车区左下方
+//						{stop();}else if(sign_x > safe_x && sign_y > safe_y)//停车区在右下方
+//						{stop();}else stop();
+//					}else if(task_flag ==2){
+//					if(sign_x < safe_x && sign_y < safe_y)//停车区在左上方
+//						{backward();delay_ms(200);right();delay_ms(200);}else if(sign_x > safe_x && sign_y < safe_y)//停车区在右上方
+//						{forward();delay_ms(200);right();delay_ms(200);}else if(sign_x < safe_x && sign_y > safe_y)//停车区左下方
+//						{stop();}else if(sign_x > safe_x && sign_y > safe_y)//停车区在右下方
+//						{stop();}else stop();
+//					}
+//			}else 
 			stop();
 		}
 	

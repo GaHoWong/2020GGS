@@ -3,7 +3,7 @@
 ..\obj\analyse.o: ..\SYSTEM\sys\sys.h
 ..\obj\analyse.o: ..\LIBRARIES\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\obj\analyse.o: ..\LIBRARIES\CMSIS\Include\core_cm4.h
-..\obj\analyse.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\analyse.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\analyse.o: ..\LIBRARIES\CMSIS\Include\core_cmInstr.h
 ..\obj\analyse.o: ..\LIBRARIES\CMSIS\Include\core_cmFunc.h
 ..\obj\analyse.o: ..\LIBRARIES\CMSIS\Include\core_cmSimd.h
@@ -40,4 +40,4 @@
 ..\obj\analyse.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\obj\analyse.o: ..\LIBRARIES\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 ..\obj\analyse.o: ..\SYSTEM\usart\usart.h
-..\obj\analyse.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\analyse.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
